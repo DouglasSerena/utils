@@ -14,7 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./regex", "./functions", "./validations"], factory);
+        define(["require", "exports", "./regex", "./functions", "./validations", "./calc"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -22,5 +22,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     __exportStar(require("./regex"), exports);
     __exportStar(require("./functions"), exports);
     __exportStar(require("./validations"), exports);
+    __exportStar(require("./calc"), exports);
 });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBQUEsMENBQXdCO0lBQ3hCLDhDQUE0QjtJQUM1QixnREFBOEIifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBQUEsMENBQXdCO0lBQ3hCLDhDQUE0QjtJQUM1QixnREFBOEI7SUFDOUIseUNBQXVCIn0=

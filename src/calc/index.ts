@@ -106,5 +106,4 @@ class Calc {
   }
 }
 
-export { Calc };
-export default calc;
+export { Calc, calc };
