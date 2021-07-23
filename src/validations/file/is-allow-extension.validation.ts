@@ -1,35 +1,30 @@
-import { AnyFile, ErrosFile, FileInvalid } from "./index";
-import { isDifferent, isEmpty, isInstance, notIsInstance } from "../common";
+import { AnyFile, ErrosFile, FileInvalid } from "./file.validation";
+import { isDifferent, isInstanceOf, notIsInstanceOf } from "../common/common.validation";
 import { isLess } from "../number.validation";
+import { isEmpty } from "../common";
 
-type ErrosAllowExtension =
-  | "INVALID_EXTENSION"
-  | "WITHOUT_EXTENSION"
-  | ErrosFile;
+type ErrosAllowExtension = "INVALID_EXTENSION" | "WITHOUT_EXTENSION" | ErrosFile;
 interface FileInvalidExtension extends FileInvalid<ErrosAllowExtension> {
   extension?: string;
 }
-interface Return {
+export interface ReturnExtension {
   allowedExtensions: string[];
   valid: boolean;
   filesInvalid: FileInvalidExtension[];
 }
 
-export const isAllowExtensions = (
-  files: AnyFile,
-  extensions: string[]
-): Return => {
+export const isAllowExtensions = (files: AnyFile, extensions: string[]): ReturnExtension => {
   const filesInvalid: FileInvalidExtension[] = [];
   files = files || [];
 
-  if (isInstance(files, File)) {
+  if (isInstanceOf(files, File)) {
     files = [files as File];
   }
 
   for (const file of Array.from(files as FileList)) {
     let type = [];
 
-    if (notIsInstance(file, File)) {
+    if (notIsInstanceOf(file, File)) {
       filesInvalid.push({ error: "NOT_FILE" });
     }
 

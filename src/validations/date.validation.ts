@@ -1,29 +1,27 @@
-import * as dayjs from "dayjs";
-import * as isBetween from "dayjs/plugin/isBetween";
+import dayjs from "dayjs";
+import isBetween from "dayjs/plugin/isBetween";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 
 dayjs.extend(isBetween);
+dayjs.extend(isSameOrAfter);
+dayjs.extend(isSameOrBefore);
 
-type IDateAny = Date | string | dayjs.Dayjs | number;
-type Range = { start?: IDateAny; end?: IDateAny };
-type MaxMin = { min?: string | number; max?: string | number };
+export type IDateAny = Date | string | dayjs.Dayjs | number;
+export type DateRange = { start: IDateAny; end: IDateAny };
+export type MaxMin = { min?: string | number; max?: string | number };
 
 const isDate = (value: IDateAny): boolean => dayjs(value).isValid();
 
-const isAfterDate = (
-  date: IDateAny,
-  dataAfter: IDateAny,
-  options?: dayjs.OpUnitType
-): boolean => dayjs(date).isAfter(dayjs(dataAfter), options);
+const isAfterDate = (date: IDateAny, dataAfter: IDateAny, options?: dayjs.OpUnitType): boolean =>
+  dayjs(date).isAfter(dayjs(dataAfter), options);
 
-const isBeforeDate = (
-  date: IDateAny,
-  dataBefore: IDateAny,
-  options?: dayjs.OpUnitType
-): boolean => dayjs(date).isBefore(dayjs(dataBefore), options);
+const isBeforeDate = (date: IDateAny, dataBefore: IDateAny, options?: dayjs.OpUnitType): boolean =>
+  dayjs(date).isBefore(dayjs(dataBefore), options);
 
 const isBetweenDate = (
   date: IDateAny,
-  range?: Range,
+  range: DateRange,
   options?: dayjs.OpUnitType,
   d?: "()" | "[]" | "[)" | "(]"
 ): boolean =>
@@ -34,13 +32,17 @@ const isBetweenDate = (
     d
   );
 
-const isBirthDateValidation = (birchDay: IDateAny, year?: MaxMin): boolean => {
-  year.min = Number.parseInt(year?.min?.toString() || "0");
-  year.max = Number.parseInt(year?.max?.toString() || "200");
+const isBirthDateValidation = (birchDay: IDateAny, year: MaxMin): boolean => {
+  if (!year?.max) {
+    year.min = Number.parseInt(year?.min?.toString());
+    return dayjs(birchDay).isSameOrBefore(dayjs().subtract(year.min, "years"));
+  }
+  year.max = Number.parseInt(year?.max?.toString());
+  year.min = Number.parseInt(year?.min?.toString());
 
-  return dayjs(birchDay).isBetween(
-    dayjs().subtract(year.min, "years"),
-    dayjs().subtract(year.max, "years")
+  return (
+    dayjs(birchDay).isSameOrAfter(dayjs().subtract(year.max, "years")) &&
+    dayjs(birchDay).isSameOrBefore(dayjs().subtract(year.min || 0, "years"))
   );
 };
 

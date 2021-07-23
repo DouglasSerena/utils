@@ -1,4 +1,4 @@
-export async function fileToBase64(file: File): Promise<string | ArrayBuffer> {
+export async function fileToBase64(file: File | Blob): Promise<string | ArrayBuffer> {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();
 

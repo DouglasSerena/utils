@@ -1,6 +1,5 @@
 export * from "./file";
 export * from "./object";
-
 export * from "./contains.function";
 export * from "./handle-try.function";
 export * from "./parse-number.function";

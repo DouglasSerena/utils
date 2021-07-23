@@ -1,10 +1,8 @@
-import { isDifferent } from "../../validations";
-import { isFile } from "../../validations/file";
+import { isDifferent } from "../../validations/common/common.validation";
+import { isFile } from "../../validations/file/file.validation";
 import { fileToBase64 } from "./file-to-base64.function";
 
-export const getSizeImage = async (
-  file: File
-): Promise<{ height: number; width: number }> => {
+export const getSizeImage = async (file: File): Promise<{ height: number; width: number }> => {
   const type = file.type.split("/");
 
   if (!isFile(file)) {

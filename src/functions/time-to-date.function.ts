@@ -1,4 +1,4 @@
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { REGEX_TIME } from "./../regex/time.regex";
 
 export function timeToDate(time: string): string {

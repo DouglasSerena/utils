@@ -5,9 +5,10 @@ import {
   ErrosFile,
   FileInvalid,
   isFile,
-} from ".";
-import { isEmpty, isInstance } from "../common";
+} from "./file.validation";
+import { isInstanceOf } from "../common/common.validation";
 import { isMore } from "../number.validation";
+import { isEmpty } from "../common";
 
 export type ErrosMaxSize = ErrosFile | "SIZE";
 export interface FileInvalidMaxSize extends FileInvalid<ErrosMaxSize> {
@@ -20,18 +21,14 @@ interface Return {
   filesInvalid: FileInvalidMaxSize[];
 }
 
-export const maxSize = (
-  files: AnyFile,
-  max: number,
-  type: BitSizesKeys = "KB"
-): Return => {
+export const maxSize = (files: AnyFile, max: number, type: BitSizesKeys = "KB"): Return => {
   const filesInvalid: FileInvalidMaxSize[] = [];
   files = files || [];
 
   let size = BIT_SIZES[type] || BIT_SIZES.B;
   size = size * max;
 
-  if (isInstance(files, File)) {
+  if (isInstanceOf(files, File)) {
     files = [files as File];
   }
 

@@ -5,9 +5,10 @@ import {
   ErrosFile,
   FileInvalid,
   isFile,
-} from ".";
-import { isEmpty, isInstance } from "../common";
+} from "./file.validation";
+import { isInstanceOf } from "../common/common.validation";
 import { isLess } from "../number.validation";
+import { isEmpty } from "../common";
 
 export type ErrosMinSize = ErrosFile | "SIZE";
 export interface FileInvalidMinSize extends FileInvalid<ErrosMinSize> {
@@ -20,18 +21,14 @@ interface Return {
   filesInvalid: FileInvalidMinSize[];
 }
 
-export const minSize = (
-  files: AnyFile,
-  min: number,
-  type: BitSizesKeys = "KB"
-): Return => {
+export const minSize = (files: AnyFile, min: number, type: BitSizesKeys = "KB"): Return => {
   const filesInvalid: FileInvalidMinSize[] = [];
   files = files || [];
 
   let size = BIT_SIZES[type] || BIT_SIZES.B;
   size = size * min;
 
-  if (isInstance(files, File)) {
+  if (isInstanceOf(files, File)) {
     files = [files as File];
   }
 

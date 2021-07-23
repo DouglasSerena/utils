@@ -1,0 +1,32 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.isDifferentNotStrict = exports.isEqualNotStrict = exports.isDifferent = exports.isEqual = exports.isNull = exports.isCpfOrCnpj = exports.isUndefined = exports.isString = exports.notIsInstance = exports.isInstance = exports.isFill = void 0;
+var is_cnpj_validation_1 = require("./is-cnpj.validation");
+var is_cpf_validation_1 = require("./is-cpf.validation");
+var is_empty_validation_1 = require("./is-empty.validation");
+var isEqual = function (value, verify) { return value === verify; };
+exports.isEqual = isEqual;
+var isDifferent = function (value, verify) { return value !== verify; };
+exports.isDifferent = isDifferent;
+var isEqualNotStrict = function (value, verify) { return value == verify; };
+exports.isEqualNotStrict = isEqualNotStrict;
+var isDifferentNotStrict = function (value, verify) { return value != verify; };
+exports.isDifferentNotStrict = isDifferentNotStrict;
+var isFill = function (item) { return !is_empty_validation_1.isEmpty(item); };
+exports.isFill = isFill;
+var isInstance = function (value, instance) { return value instanceof instance; };
+exports.isInstance = isInstance;
+var notIsInstance = function (value, instance) { return !isInstance(value, instance); };
+exports.notIsInstance = notIsInstance;
+var isString = function (value) { return typeof value === "string"; };
+exports.isString = isString;
+var isNull = function (value) { return value === null; };
+exports.isNull = isNull;
+var isUndefined = function (value) { return typeof value === "undefined"; };
+exports.isUndefined = isUndefined;
+var isCpfOrCnpj = function (value) {
+    value = value.replace(/\D/g, "");
+    return value.length <= 11 ? is_cpf_validation_1.isCpf(value) : is_cnpj_validation_1.isCnpj(value);
+};
+exports.isCpfOrCnpj = isCpfOrCnpj;
+//# sourceMappingURL=common.validation.js.map
