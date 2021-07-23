@@ -1,0 +1,35 @@
+{
+  "name": "@douglas-serena/utils",
+  "version": "0.0.3",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DouglasSerena/utils.git"
+  },
+  "keywords": [
+    "utils"
+  ],
+  "author": "DouglasSerena",
+  "bugs": {
+    "url": "https://github.com/DouglasSerena/utils/issues"
+  },
+  "homepage": "https://github.com/DouglasSerena/utils#readme",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "eslint": "^7.31.0",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.4",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "dayjs": "^1.10.6",
+    "rxjs": "^7.2.0"
+  }
+}

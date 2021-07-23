@@ -1,0 +1,17 @@
+import { isCnpj } from "./is-cnpj.validation";
+import { isCpf } from "./is-cpf.validation";
+import { isEmpty } from "./is-empty.validation";
+declare const isEqual: (value: any, verify: any) => boolean;
+declare const isDifferent: (value: any, verify: any) => boolean;
+declare const isEqualNotStrict: (value: any, verify: any) => boolean;
+declare const isDifferentNotStrict: (value: any, verify: any) => boolean;
+declare const isFill: <T = any>(item: T | T[]) => boolean;
+declare const isInstance: (value: any, instance: any) => boolean;
+declare const notIsInstance: (value: any, instance: any) => boolean;
+declare const isString: (value: any) => boolean;
+declare const isNull: (value: any) => boolean;
+declare const isUndefined: (value: any) => boolean;
+declare const isCpfOrCnpj: (value: string) => boolean;
+export * from "./is-rg-sp.validation";
+export * from "./is-password.validation";
+export { isEmpty, isFill, isInstance, notIsInstance, isString, isUndefined, isCnpj, isCpf, isCpfOrCnpj, isNull, isEqual, isDifferent, isEqualNotStrict, isDifferentNotStrict, };
