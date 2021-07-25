@@ -25,7 +25,7 @@ export const RESOLUTION_HEIGHT = {
 };
 
 export type ErrosFile = null | "NOT_FILE";
-export interface FileInvalid<Error = ErrosFile> {
+export interface IFileInvalid<Error = ErrosFile> {
   error: Error;
   filename?: string;
   mimeType?: string;

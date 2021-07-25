@@ -22,7 +22,7 @@ import {
 } from "./common";
 import {
   DateRange,
-  IDateAny,
+  DateAny,
   isAfterDate,
   isBeforeDate,
   isBetweenDate,
@@ -114,10 +114,10 @@ export class Validate {
 
   // VALIDATION DATE
   public isDate = (): boolean => isDate(this.value);
-  public isAfterDate = (date: IDateAny, options?: OpUnitType): boolean =>
+  public isAfterDate = (date: DateAny, options?: OpUnitType): boolean =>
     isAfterDate(this.value, date, options);
 
-  public isBeforeDate = (date: IDateAny, options?: OpUnitType): boolean =>
+  public isBeforeDate = (date: DateAny, options?: OpUnitType): boolean =>
     isBeforeDate(this.value, date, options);
 
   public isBetweenDate = (
@@ -129,9 +129,9 @@ export class Validate {
   public isBirthDateValidation = (year?: MaxMin): boolean =>
     isBirthDateValidation(this.value, year);
 
-  public isEqualDate = (date: IDateAny, options?: OpUnitType): boolean =>
+  public isEqualDate = (date: DateAny, options?: OpUnitType): boolean =>
     isEqualDate(this.value, date, options);
 
-  public isDifferentDate = (date: IDateAny, options?: OpUnitType): boolean =>
+  public isDifferentDate = (date: DateAny, options?: OpUnitType): boolean =>
     isDifferentDate(this.value, date, options);
 }
