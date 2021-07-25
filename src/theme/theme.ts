@@ -4,20 +4,15 @@ import { ColorScheme, IColors, ITheme, IThemeConfig } from "./theme.type";
 
 let _themes: ITheme = {};
 let _config: IThemeConfig = {
-  use: "dark",
   prefix: "color",
+  use: theme().themeSystem,
   disableSystemBasedColorShift: false,
   _element: document.createElement("style"),
 };
 
 window?.matchMedia?.("(prefers-color-scheme: dark)")?.addEventListener("change", (event) => {
   if (validate(_config.disableSystemBasedColorShift).isFalse()) {
-    theme().change("dark");
-  }
-});
-window?.matchMedia?.("(prefers-color-scheme: light)")?.addEventListener("change", (event) => {
-  if (validate(_config.disableSystemBasedColorShift).isFalse()) {
-    theme().change("light");
+    theme().change(theme().themeSystem);
   }
 });
 
@@ -43,6 +38,11 @@ export class Theme {
   }
   public get element(): HTMLStyleElement {
     return _config._element;
+  }
+  get themeSystem(): "dark" | "light" {
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
   }
 
   constructor(themes?: ITheme, config?: IThemeConfig) {

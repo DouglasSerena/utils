@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isCpfOrCnpj = exports.isUndefined = exports.isNull = exports.isBoolean = exports.isFunction = exports.isObject = exports.isString = exports.notIsInstanceOf = exports.isInstanceOf = exports.isFill = exports.isDifferentNotStrict = exports.isEqualNotStrict = exports.isDifferent = exports.isEqual = void 0;
+exports.isCpfOrCnpj = exports.isUndefined = exports.isNull = exports.isBoolean = exports.isFunction = exports.isObject = exports.isString = exports.isTrue = exports.isFalse = exports.notIsInstanceOf = exports.isInstanceOf = exports.isFill = exports.isDifferentNotStrict = exports.isEqualNotStrict = exports.isDifferent = exports.isEqual = void 0;
 var is_cnpj_validation_1 = require("./is-cnpj.validation");
 var is_cpf_validation_1 = require("./is-cpf.validation");
 var is_empty_validation_1 = require("./is-empty.validation");
@@ -18,6 +18,10 @@ var isInstanceOf = function (value, instance) { return value instanceof instance
 exports.isInstanceOf = isInstanceOf;
 var notIsInstanceOf = function (value, instance) { return !exports.isInstanceOf(value, instance); };
 exports.notIsInstanceOf = notIsInstanceOf;
+var isFalse = function (value) { return !value; };
+exports.isFalse = isFalse;
+var isTrue = function (value) { return !!value; };
+exports.isTrue = isTrue;
 var isString = function (value) { return typeof value === "string"; };
 exports.isString = isString;
 var isObject = function (value) { return typeof value === "object"; };

@@ -7,6 +7,7 @@ export declare namespace theme {
 }
 export declare class Theme {
     get themes(): ITheme;
+    get prefix(): string;
     get style(): string;
     get use(): ColorScheme;
     get config(): IThemeConfig;
@@ -19,4 +20,5 @@ export declare class Theme {
     change(theme: ColorScheme): void;
     createStyle(): void;
     private generatorStyle;
+    private generatorStyleContent;
 }

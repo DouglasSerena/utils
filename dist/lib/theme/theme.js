@@ -1,4 +1,5 @@
 "use strict";
+var _a, _b, _c, _d;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Theme = exports.theme = void 0;
 var functions_1 = require("../functions");
@@ -6,8 +7,20 @@ var validations_1 = require("../validations");
 var _themes = {};
 var _config = {
     use: "dark",
+    prefix: "color",
+    disableSystemBasedColorShift: false,
     _element: document.createElement("style"),
 };
+(_b = (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(prefers-color-scheme: dark)")) === null || _b === void 0 ? void 0 : _b.addEventListener("change", function (event) {
+    if (validations_1.validate(_config.disableSystemBasedColorShift).isFalse()) {
+        theme().change("dark");
+    }
+});
+(_d = (_c = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _c === void 0 ? void 0 : _c.call(window, "(prefers-color-scheme: light)")) === null || _d === void 0 ? void 0 : _d.addEventListener("change", function (event) {
+    if (validations_1.validate(_config.disableSystemBasedColorShift).isFalse()) {
+        theme().change("light");
+    }
+});
 function theme(themes, config) {
     return new Theme(themes, config);
 }
@@ -23,6 +36,13 @@ var Theme = /** @class */ (function () {
     Object.defineProperty(Theme.prototype, "themes", {
         get: function () {
             return _themes;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Theme.prototype, "prefix", {
+        get: function () {
+            return _config.prefix;
         },
         enumerable: false,
         configurable: true
@@ -78,6 +98,13 @@ var Theme = /** @class */ (function () {
     });
     Theme.prototype.reset = function () {
         _themes = {};
+        _config = {
+            use: "dark",
+            _style: "",
+            prefix: "color",
+            disableChangeScheme: false,
+            _element: _config._element,
+        };
     };
     Theme.prototype.change = function (theme) {
         _config.use = theme;
@@ -90,23 +117,33 @@ var Theme = /** @class */ (function () {
     Theme.prototype.generatorStyle = function () {
         var style = ["color-scheme: " + this.use];
         var colors = _themes[this.use];
-        Object.keys(colors).forEach(function (colorType) {
+        if (validations_1.validate(_themes.global).isObject()) {
+            style = style.concat(this.generatorStyleContent(_themes.global));
+        }
+        if (validations_1.validate(colors).isObject()) {
+            style = style.concat(this.generatorStyleContent(colors));
+        }
+        return ":root{" + style.join(";") + ";}";
+    };
+    Theme.prototype.generatorStyleContent = function (colors) {
+        var _this = this;
+        return Object.keys(colors).reduce(function (prev, colorType) {
             if (validations_1.validate(colors[colorType]).isString()) {
-                style.push("--color-" + colorType + ": " + colors[colorType]);
+                prev.push("--" + _this.prefix + "-" + colorType + ": " + colors[colorType]);
             }
             else {
                 Object.keys(colors[colorType]).forEach(function (colorName) {
                     var value = colors[colorType][colorName];
                     if (validations_1.validate(colorName).isEqual("default")) {
-                        style.push("--color-" + colorType + ": " + value);
+                        prev.push("--" + _this.prefix + "-" + colorType + ": " + value);
                     }
                     else {
-                        style.push("--color-" + colorType + "-" + colorName + ": " + value);
+                        prev.push("--" + _this.prefix + "-" + colorType + "-" + colorName + ": " + value);
                     }
                 });
             }
-        });
-        return ":root{" + style.join(";") + ";}";
+            return prev;
+        }, []);
     };
     return Theme;
 }());

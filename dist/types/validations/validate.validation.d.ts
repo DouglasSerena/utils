@@ -6,6 +6,8 @@ export declare function validate(value: any): Validate;
 export declare class Validate {
     value: any;
     constructor(value: any);
+    isFalse: () => boolean;
+    isTrue: () => boolean;
     isEqual: (compare: any) => boolean;
     isDifferent: (compare: any) => boolean;
     isEqualNotStrict: (compare: any) => boolean;

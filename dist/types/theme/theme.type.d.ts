@@ -1,5 +1,8 @@
 export declare type ColorScheme = "dark" | "light" | "no-preference";
 export interface ITheme {
+    global?: {
+        [key: string]: IColors | string;
+    };
     dark?: {
         [key: string]: IColors | string;
     };
@@ -15,8 +18,9 @@ export interface IColors {
     [key: string]: string;
 }
 export interface IThemeConfig {
-    disableChangeScheme?: boolean;
     use?: ColorScheme;
+    prefix?: string;
     _style?: string;
     _element?: HTMLStyleElement;
+    disableSystemBasedColorShift?: boolean;
 }

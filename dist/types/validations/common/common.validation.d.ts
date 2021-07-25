@@ -5,6 +5,8 @@ export declare const isDifferentNotStrict: (value: any, compare: any) => boolean
 export declare const isFill: <T = any>(item: T | T[]) => boolean;
 export declare const isInstanceOf: (value: any, instance: any) => boolean;
 export declare const notIsInstanceOf: (value: any, instance: any) => boolean;
+export declare const isFalse: (value: any) => boolean;
+export declare const isTrue: (value: any) => boolean;
 export declare const isString: (value: any) => boolean;
 export declare const isObject: (value: any) => boolean;
 export declare const isFunction: (value: any) => boolean;

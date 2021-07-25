@@ -51,6 +51,8 @@ var Validate = /** @class */ (function () {
         var _this = this;
         this.value = value;
         // COMMON
+        this.isFalse = function () { return common_1.isFalse(_this.value); };
+        this.isTrue = function () { return common_1.isTrue(_this.value); };
         this.isEqual = function (compare) { return common_1.isEqual(_this.value, compare); };
         this.isDifferent = function (compare) { return common_1.isDifferent(_this.value, compare); };
         this.isEqualNotStrict = function (compare) { return common_1.isEqualNotStrict(_this.value, compare); };
