@@ -83,6 +83,8 @@ export class Theme {
   createStyle(): void {
     _config._style = this.generatorStyle();
     _config._element.innerHTML = this.style;
+    document.body.classList.remove("theme-dark", "theme-light", "theme-no-preference");
+    document.body.classList.add(`theme-${_config.use}`);
   }
 
   getColor(colors: string, currentTheme = true): string {

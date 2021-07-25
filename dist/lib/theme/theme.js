@@ -117,6 +117,8 @@ var Theme = /** @class */ (function () {
     Theme.prototype.createStyle = function () {
         _config._style = this.generatorStyle();
         _config._element.innerHTML = this.style;
+        document.body.classList.remove("theme-dark", "theme-light", "theme-no-preference");
+        document.body.classList.add("theme-" + _config.use);
     };
     Theme.prototype.getColor = function (colors, currentTheme) {
         if (currentTheme === void 0) { currentTheme = true; }

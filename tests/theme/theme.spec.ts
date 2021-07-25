@@ -1,4 +1,4 @@
-import { theme } from "./../../src/utils";
+import { theme, validate } from "./../../src/utils";
 
 describe("Function theme", () => {
   it("Create theme", () => {
@@ -104,6 +104,18 @@ describe("Function theme", () => {
     }).createStyle();
 
     expect(theme().themeSystem).toEqual(`light`);
+  });
+
+  it("Class body", () => {
+    theme().reset();
+    theme({
+      global: { text: { light: "#212" } },
+      dark: { primary: "#000" },
+      light: { primary: "#000" },
+    }).createStyle();
+
+    expect(document.body.className).toContain("theme-light");
+    expect(validate(document.body.className).contains("theme-dark")).toBe(false);
   });
 
   it("is theme", () => {
