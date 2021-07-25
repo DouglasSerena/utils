@@ -1,4 +1,4 @@
-import { theme } from "./../../src/theme";
+import { theme } from "./../../src/utils";
 
 describe("Function theme", () => {
   it("Create theme", () => {

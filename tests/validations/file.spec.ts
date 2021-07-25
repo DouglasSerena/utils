@@ -1,5 +1,4 @@
-import { validate } from "./../../src/validations/validate.validation";
-import { base64toFile } from "../../src/functions";
+import { validate, base64toFile } from "./../../src/utils";
 import path from "path";
 import fs from "fs";
 

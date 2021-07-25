@@ -1,5 +1,4 @@
-import { REGEX_CPF } from "../../src/regex";
-import { Validate, validate } from "./../../src/validations";
+import { Validate, validate, REGEX_CPF } from "./../../src/utils";
 
 describe("Function validate common", () => {
   it("Is equal", () => {
@@ -53,8 +52,8 @@ describe("Function validate common", () => {
     expect(validate([""]).isEmpty()).toBe(false);
   });
   it("Is instance of", () => {
-    expect(validate(validate(0)).isInstanceOf(Validate)).toBe(true);
-    expect(validate(validate(0)).isInstanceOf(Date)).toBe(false);
+    expect(validate(validate(0)).isInstanceof(Validate)).toBe(true);
+    expect(validate(validate(0)).isInstanceof(Date)).toBe(false);
   });
   it("Not is instance of", () => {
     expect(validate(validate(0)).notIsInstanceOf(Date)).toBe(true);

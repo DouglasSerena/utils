@@ -1,4 +1,4 @@
-import { parseNumber } from "./../../src/functions";
+import { parseNumber } from "./../../src/utils";
 
 describe("function parseNumber", () => {
   it("String to number", () => {
@@ -10,26 +10,26 @@ describe("function parseNumber", () => {
   });
 
   it("String to number with decimal ',' and thousands '.'", () => {
-    expect(
-      parseNumber("1.000.100,254312312", { thousands: ".", decimal: "," })
-    ).toBe(1000100.254312312);
+    expect(parseNumber("1.000.100,254312312", { thousands: ".", decimal: "," })).toBe(
+      1000100.254312312
+    );
   });
 
   it("String to number with decimal '.' and thousands ','", () => {
-    expect(
-      parseNumber("1,000,100.254312312", { thousands: ",", decimal: "." })
-    ).toBe(1000100.254312312);
+    expect(parseNumber("1,000,100.254312312", { thousands: ",", decimal: "." })).toBe(
+      1000100.254312312
+    );
   });
 
   it("String to number with decimal ',' and thousands '.'", () => {
-    expect(
-      parseNumber("1.000.100,254312312", { thousands: ".", decimal: "," })
-    ).toBe(1000100.254312312);
+    expect(parseNumber("1.000.100,254312312", { thousands: ".", decimal: "," })).toBe(
+      1000100.254312312
+    );
   });
 
   it("String to number with decimal ',' and thousands '.'", () => {
-    expect(
-      parseNumber("1.000.100,254312312", { thousands: ".", decimal: "," })
-    ).toBe(1000100.254312312);
+    expect(parseNumber("1.000.100,254312312", { thousands: ".", decimal: "," })).toBe(
+      1000100.254312312
+    );
   });
 });
