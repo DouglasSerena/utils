@@ -1,4 +1,5 @@
 import { OpUnitType } from "dayjs";
+import { IPasswordOptionsDisabled, Typeof } from "./common";
 import { IContainsOption } from "./common/contains.validation";
 import { DateRange, DateAny, MaxMin } from "./date.validation";
 import { BitSizesKeys } from "./file";
@@ -9,6 +10,8 @@ export declare class Validate {
     constructor(value: any);
     contains: (pattern: string | RegExp, options?: IContainsOption) => boolean;
     testPattern: (pattern: string | RegExp) => boolean;
+    isPassword: (disabled?: IPasswordOptionsDisabled, minLength?: number) => boolean;
+    isTypeof: (type: Typeof) => boolean;
     isFalse: () => boolean;
     isTrue: () => boolean;
     isEqual: (compare: unknown) => boolean;

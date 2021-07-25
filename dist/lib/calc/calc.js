@@ -29,7 +29,7 @@ var Calc = /** @class */ (function () {
         this.save(value);
     }
     Calc.prototype.parse = function (value) {
-        if (validations_1.isInstanceOf(value, Calc)) {
+        if (validations_1.isInstanceof(value, Calc)) {
             value = value.valueRaw;
         }
         else {
@@ -38,7 +38,7 @@ var Calc = /** @class */ (function () {
         return value;
     };
     Calc.prototype.save = function (value) {
-        if (validations_1.isInstanceOf(value, Calc)) {
+        if (validations_1.isInstanceof(value, Calc)) {
             this.valueRaw = value.valueRaw;
         }
         else {

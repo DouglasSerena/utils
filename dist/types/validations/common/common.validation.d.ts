@@ -1,10 +1,12 @@
+export declare type Typeof = "string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function";
 export declare const isEqual: (value: any, compare: any) => boolean;
 export declare const isDifferent: (value: any, compare: any) => boolean;
 export declare const isEqualNotStrict: (value: any, compare: any) => boolean;
 export declare const isDifferentNotStrict: (value: any, compare: any) => boolean;
 export declare const isFill: <T = any>(item: T | T[]) => boolean;
-export declare const isInstanceOf: (value: any, instance: any) => boolean;
-export declare const notIsInstanceOf: (value: any, instance: any) => boolean;
+export declare const isTypeof: (value: any, type: Typeof) => boolean;
+export declare const isInstanceof: (value: any, instance: any) => boolean;
+export declare const notIsInstanceof: (value: any, instance: any) => boolean;
 export declare const isFalse: (value: any) => boolean;
 export declare const isTrue: (value: any) => boolean;
 export declare const isString: (value: any) => boolean;

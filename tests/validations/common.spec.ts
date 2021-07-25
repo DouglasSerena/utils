@@ -31,6 +31,14 @@ describe("Function validate common", () => {
     expect(validate("000.000.000-00").contains("000.000")).toBe(true);
     expect(validate("000.000.00000").contains("000000")).toBe(false);
   });
+  it("Is typeof", () => {
+    expect(validate("000.000.000-00").isTypeof("string")).toBe(true);
+    expect(validate("000.000.00000").isTypeof("number")).toBe(false);
+  });
+  it("Is password", () => {
+    expect(validate("Do@1234567").isPassword()).toBe(true);
+    expect(validate("Do5661234567").isPassword()).toBe(false);
+  });
   it("Is fill", () => {
     expect(validate([""]).isFill()).toBe(true);
     expect(validate([]).isFill()).toBe(false);

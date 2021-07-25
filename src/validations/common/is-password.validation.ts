@@ -1,13 +1,15 @@
 import { REGEX_CHAR_SPECIAL, REGEX_NUMBER, REGEX_UPPER_CASE } from "../../regex";
 import { contains } from "./contains.validation";
 
+export interface IPasswordOptionsDisabled {
+  charUpperCase?: boolean;
+  charSpecial?: boolean;
+  number?: boolean;
+}
+
 export function isPassword(
   value: string,
-  disabled?: {
-    charUpperCase?: boolean;
-    charSpecial?: boolean;
-    number?: boolean;
-  },
+  disabled?: IPasswordOptionsDisabled,
   minLength = 9
 ): boolean {
   const resultUpperCase =

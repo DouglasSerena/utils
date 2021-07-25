@@ -1,6 +1,7 @@
 import { OpUnitType } from "dayjs";
 import { getSizeImage } from "../functions";
 import {
+  IPasswordOptionsDisabled,
   isBoolean,
   isCnpj,
   isCpf,
@@ -12,13 +13,16 @@ import {
   isEqualNotStrict,
   isFalse,
   isFunction,
-  isInstanceOf,
+  isInstanceof,
   isNull,
   isObject,
+  isPassword,
   isString,
   isTrue,
+  isTypeof,
   isUndefined,
-  notIsInstanceOf,
+  notIsInstanceof,
+  Typeof,
 } from "./common";
 import { contains, IContainsOption } from "./common/contains.validation";
 import { testPattern } from "./common/test-pattern.validation";
@@ -61,7 +65,10 @@ export class Validate {
     contains(this.value, pattern, options);
 
   public testPattern = (pattern: string | RegExp): boolean => testPattern(this.value, pattern);
+  public isPassword = (disabled?: IPasswordOptionsDisabled, minLength?: number): boolean =>
+    isPassword(this.value, disabled, minLength);
 
+  public isTypeof = (type: Typeof): boolean => isTypeof(this.value, type);
   public isFalse = (): boolean => isFalse(this.value);
   public isTrue = (): boolean => isTrue(this.value);
   public isEqual = (compare: unknown): boolean => isEqual(this.value, compare);
@@ -71,8 +78,8 @@ export class Validate {
     isDifferentNotStrict(this.value, compare);
   public isFill = <T = unknown>(): boolean => !isEmpty<T>(this.value);
   public isEmpty = <T = unknown>(): boolean => isEmpty<T>(this.value);
-  public isInstanceOf = (instance: unknown): boolean => isInstanceOf(this.value, instance);
-  public notIsInstanceOf = (instance: unknown): boolean => notIsInstanceOf(this.value, instance);
+  public isInstanceOf = (instance: unknown): boolean => isInstanceof(this.value, instance);
+  public notIsInstanceOf = (instance: unknown): boolean => notIsInstanceof(this.value, instance);
   public isString = (): boolean => isString(this.value);
   public isObject = (): boolean => isObject(this.value);
   public isFunction = (): boolean => isFunction(this.value);

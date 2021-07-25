@@ -1,5 +1,5 @@
 import { AnyFile, ErrosFile, IFileInvalid } from "./file.validation";
-import { isDifferent, isInstanceOf, notIsInstanceOf } from "../common/common.validation";
+import { isDifferent, isInstanceof, notIsInstanceof } from "../common/common.validation";
 import { isLess } from "../number.validation";
 import { isEmpty } from "../common";
 
@@ -17,14 +17,14 @@ export const isAllowExtensions = (files: AnyFile, extensions: string[]): IReturn
   const filesInvalid: IFileInvalidExtension[] = [];
   files = files || [];
 
-  if (isInstanceOf(files, File)) {
+  if (isInstanceof(files, File)) {
     files = [files as File];
   }
 
   for (const file of Array.from(files as FileList)) {
     let type = [];
 
-    if (notIsInstanceOf(file, File)) {
+    if (notIsInstanceof(file, File)) {
       filesInvalid.push({ error: "NOT_FILE" });
     }
 

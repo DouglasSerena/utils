@@ -6,7 +6,7 @@ import {
   IFileInvalid,
   isFile,
 } from "./file.validation";
-import { isInstanceOf } from "../common/common.validation";
+import { isInstanceof } from "../common/common.validation";
 import { isMore } from "../number.validation";
 import { isEmpty } from "../common";
 
@@ -28,7 +28,7 @@ export const maxSize = (files: AnyFile, max: number, type: BitSizesKeys = "KB"):
   let size = BIT_SIZES[type] || BIT_SIZES.B;
   size = size * max;
 
-  if (isInstanceOf(files, File)) {
+  if (isInstanceof(files, File)) {
     files = [files as File];
   }
 

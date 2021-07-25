@@ -1,4 +1,4 @@
-import { isInstanceOf } from "../common/common.validation";
+import { isInstanceof } from "../common/common.validation";
 
 export type AnyFile = File[] | FileList | File;
 export type BitSizesKeys = "B" | "KB" | "MB" | "GB" | "TB";
@@ -31,4 +31,4 @@ export interface IFileInvalid<Error = ErrosFile> {
   mimeType?: string;
 }
 
-export const isFile = (file: any) => isInstanceOf(file, File);
+export const isFile = (file: any) => isInstanceof(file, File);

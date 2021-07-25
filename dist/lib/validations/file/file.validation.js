@@ -23,6 +23,6 @@ exports.RESOLUTION_HEIGHT = {
     QUAD_HD: 1440,
     UHD: 2160,
 };
-var isFile = function (file) { return common_validation_1.isInstanceOf(file, File); };
+var isFile = function (file) { return common_validation_1.isInstanceof(file, File); };
 exports.isFile = isFile;
 //# sourceMappingURL=file.validation.js.map

@@ -6,7 +6,7 @@ import {
   IFileInvalid,
   isFile,
 } from "./file.validation";
-import { isInstanceOf } from "../common/common.validation";
+import { isInstanceof } from "../common/common.validation";
 import { isLess } from "../number.validation";
 import { isEmpty } from "../common";
 
@@ -28,7 +28,7 @@ export const minSize = (files: AnyFile, min: number, type: BitSizesKeys = "KB"):
   let size = BIT_SIZES[type] || BIT_SIZES.B;
   size = size * min;
 
-  if (isInstanceOf(files, File)) {
+  if (isInstanceof(files, File)) {
     files = [files as File];
   }
 
