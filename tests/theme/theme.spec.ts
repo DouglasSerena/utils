@@ -3,7 +3,7 @@ import { theme } from "./../../src/theme";
 describe("Function theme", () => {
   it("Create theme", () => {
     theme({
-      dark: {
+      light: {
         primary: {
           default: "#333",
         },
@@ -12,11 +12,11 @@ describe("Function theme", () => {
     }).createStyle();
 
     expect(theme().style).toEqual(
-      `:root{color-scheme: dark;--color-primary: #333;--color-secondary: #553;}`
+      `:root{color-scheme: light;--color-primary: #333;--color-secondary: #553;}`
     );
 
     theme({
-      dark: {
+      light: {
         primary: {
           light: "#21312",
         },
@@ -24,7 +24,7 @@ describe("Function theme", () => {
     }).createStyle();
 
     expect(theme().style).toEqual(
-      `:root{color-scheme: dark;--color-primary: #333;--color-primary-light: #21312;--color-secondary: #553;}`
+      `:root{color-scheme: light;--color-primary: #333;--color-primary-light: #21312;--color-secondary: #553;}`
     );
   });
 
@@ -57,12 +57,12 @@ describe("Function theme", () => {
     }).createStyle();
 
     expect(theme().style).toEqual(
-      `:root{color-scheme: dark;--color-text-light: #212;--color-primary: #000;}`
+      `:root{color-scheme: light;--color-text-light: #212;--color-primary: #fff;}`
     );
 
-    theme().change("light");
+    theme().change("dark");
     expect(theme().style).toEqual(
-      `:root{color-scheme: light;--color-text-light: #212;--color-primary: #fff;}`
+      `:root{color-scheme: dark;--color-text-light: #212;--color-primary: #000;}`
     );
   });
 
@@ -71,14 +71,24 @@ describe("Function theme", () => {
     theme(
       {
         global: { text: { light: "#212" } },
-        dark: { primary: "#000" },
+        light: { primary: "#000" },
       },
       { prefix: "app" }
     ).createStyle();
 
     expect(theme().style).toEqual(
-      `:root{color-scheme: dark;--app-text-light: #212;--app-primary: #000;}`
+      `:root{color-scheme: light;--app-text-light: #212;--app-primary: #000;}`
     );
+  });
+
+  it("Theme system", () => {
+    theme().reset();
+    theme({
+      global: { text: { light: "#212" } },
+      dark: { primary: "#000" },
+    }).createStyle();
+
+    expect(theme().themeSystem).toEqual(`light`);
   });
 
   it("is theme", () => {

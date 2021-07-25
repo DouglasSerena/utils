@@ -1,18 +1,18 @@
-import { mergeObject } from "../functions";
+import { mergeObject, themeSystem } from "../functions";
 import { validate } from "../validations";
 import { ColorScheme, IColors, ITheme, IThemeConfig } from "./theme.type";
 
 let _themes: ITheme = {};
 let _config: IThemeConfig = {
   prefix: "color",
-  use: theme().themeSystem,
+  use: themeSystem() || "light",
   disableSystemBasedColorShift: false,
   _element: document.createElement("style"),
 };
 
 window?.matchMedia?.("(prefers-color-scheme: dark)")?.addEventListener("change", (event) => {
   if (validate(_config.disableSystemBasedColorShift).isFalse()) {
-    theme().change(theme().themeSystem);
+    theme().change(themeSystem() || "light");
   }
 });
 
@@ -40,9 +40,7 @@ export class Theme {
     return _config._element;
   }
   get themeSystem(): "dark" | "light" {
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    return themeSystem() || "light";
   }
 
   constructor(themes?: ITheme, config?: IThemeConfig) {
@@ -67,7 +65,7 @@ export class Theme {
   reset() {
     _themes = {} as ITheme;
     _config = {
-      use: "dark",
+      use: this.themeSystem,
       _style: "",
       prefix: "color",
       disableChangeScheme: false,

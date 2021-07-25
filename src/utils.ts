@@ -18,6 +18,7 @@ export * from "./functions/object/merge-object.function";
 export * from "./functions/object/sort-asc.function";
 export * from "./functions/object/sort-desc.function";
 
+export * from "./functions/theme-system.function";
 export * from "./functions/dom.function";
 export * from "./functions/contains.function";
 export * from "./functions/handle-try.function";

@@ -12,6 +12,7 @@ export declare class Theme {
     get use(): ColorScheme;
     get config(): IThemeConfig;
     get element(): HTMLStyleElement;
+    get themeSystem(): "dark" | "light";
     constructor(themes?: ITheme, config?: IThemeConfig);
     get isDark(): boolean;
     get isLight(): boolean;

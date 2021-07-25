@@ -1,24 +1,19 @@
 "use strict";
-var _a, _b, _c, _d;
+var _a, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Theme = exports.theme = void 0;
 var functions_1 = require("../functions");
 var validations_1 = require("../validations");
 var _themes = {};
 var _config = {
-    use: "dark",
     prefix: "color",
+    use: theme().themeSystem,
     disableSystemBasedColorShift: false,
     _element: document.createElement("style"),
 };
 (_b = (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(prefers-color-scheme: dark)")) === null || _b === void 0 ? void 0 : _b.addEventListener("change", function (event) {
     if (validations_1.validate(_config.disableSystemBasedColorShift).isFalse()) {
-        theme().change("dark");
-    }
-});
-(_d = (_c = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _c === void 0 ? void 0 : _c.call(window, "(prefers-color-scheme: light)")) === null || _d === void 0 ? void 0 : _d.addEventListener("change", function (event) {
-    if (validations_1.validate(_config.disableSystemBasedColorShift).isFalse()) {
-        theme().change("light");
+        theme().change(theme().themeSystem);
     }
 });
 function theme(themes, config) {
@@ -71,6 +66,15 @@ var Theme = /** @class */ (function () {
     Object.defineProperty(Theme.prototype, "element", {
         get: function () {
             return _config._element;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Theme.prototype, "themeSystem", {
+        get: function () {
+            return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
         },
         enumerable: false,
         configurable: true
