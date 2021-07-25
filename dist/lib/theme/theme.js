@@ -2,18 +2,20 @@
 var _a, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Theme = exports.theme = void 0;
-var functions_1 = require("../functions");
-var validations_1 = require("../validations");
+var get_node_function_1 = require("../functions/object/get-node.function");
+var merge_object_function_1 = require("../functions/object/merge-object.function");
+var theme_system_function_1 = require("../functions/theme-system.function");
+var validate_validation_1 = require("../validations/validate.validation");
 var _themes = {};
 var _config = {
     prefix: "color",
-    use: functions_1.themeSystem() || "light",
+    use: theme_system_function_1.themeSystem() || "light",
     disableSystemBasedColorShift: false,
     _element: document.createElement("style"),
 };
 (_b = (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(prefers-color-scheme: dark)")) === null || _b === void 0 ? void 0 : _b.addEventListener("change", function (event) {
-    if (validations_1.validate(_config.disableSystemBasedColorShift).isFalse()) {
-        theme().change(functions_1.themeSystem() || "light");
+    if (validate_validation_1.validate(_config.disableSystemBasedColorShift).isFalse()) {
+        theme().change(theme_system_function_1.themeSystem() || "light");
     }
 });
 function theme(themes, config) {
@@ -22,8 +24,8 @@ function theme(themes, config) {
 exports.theme = theme;
 var Theme = /** @class */ (function () {
     function Theme(themes, config) {
-        functions_1.mergeObject(_themes, themes);
-        functions_1.mergeObject(_config, config);
+        merge_object_function_1.mergeObject(_themes, themes);
+        merge_object_function_1.mergeObject(_config, config);
         if (!document.head.contains(this.element)) {
             document.head.appendChild(this.element);
         }
@@ -72,28 +74,28 @@ var Theme = /** @class */ (function () {
     });
     Object.defineProperty(Theme.prototype, "themeSystem", {
         get: function () {
-            return functions_1.themeSystem() || "light";
+            return theme_system_function_1.themeSystem() || "light";
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(Theme.prototype, "isDark", {
         get: function () {
-            return validations_1.validate(this.use).isEqual("dark");
+            return validate_validation_1.validate(this.use).isEqual("dark");
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(Theme.prototype, "isLight", {
         get: function () {
-            return validations_1.validate(this.use).isEqual("light");
+            return validate_validation_1.validate(this.use).isEqual("light");
         },
         enumerable: false,
         configurable: true
     });
     Object.defineProperty(Theme.prototype, "isNoPreference", {
         get: function () {
-            return validations_1.validate(this.use).isEqual("no-preference");
+            return validate_validation_1.validate(this.use).isEqual("no-preference");
         },
         enumerable: false,
         configurable: true
@@ -122,8 +124,8 @@ var Theme = /** @class */ (function () {
         if (currentTheme) {
             nodes.unshift(this.use);
         }
-        var color = functions_1.getNode(this.themes, nodes);
-        if (validations_1.validate(color).isObject()) {
+        var color = get_node_function_1.getNode(this.themes, nodes);
+        if (validate_validation_1.validate(color).isObject()) {
             return color.default;
         }
         return color;
@@ -131,10 +133,10 @@ var Theme = /** @class */ (function () {
     Theme.prototype.generatorStyle = function () {
         var style = ["color-scheme: " + this.use];
         var colors = _themes[this.use];
-        if (validations_1.validate(_themes.global).isObject()) {
+        if (validate_validation_1.validate(_themes.global).isObject()) {
             style = style.concat(this.generatorStyleContent(_themes.global));
         }
-        if (validations_1.validate(colors).isObject()) {
+        if (validate_validation_1.validate(colors).isObject()) {
             style = style.concat(this.generatorStyleContent(colors));
         }
         return ":root{" + style.join(";") + ";}";
@@ -142,13 +144,13 @@ var Theme = /** @class */ (function () {
     Theme.prototype.generatorStyleContent = function (colors) {
         var _this = this;
         return Object.keys(colors).reduce(function (prev, colorType) {
-            if (validations_1.validate(colors[colorType]).isString()) {
+            if (validate_validation_1.validate(colors[colorType]).isString()) {
                 prev.push("--" + _this.prefix + "-" + colorType + ": " + colors[colorType]);
             }
             else {
                 Object.keys(colors[colorType]).forEach(function (colorName) {
                     var value = colors[colorType][colorName];
-                    if (validations_1.validate(colorName).isEqual("default")) {
+                    if (validate_validation_1.validate(colorName).isEqual("default")) {
                         prev.push("--" + _this.prefix + "-" + colorType + ": " + value);
                     }
                     else {
@@ -163,10 +165,10 @@ var Theme = /** @class */ (function () {
 }());
 exports.Theme = Theme;
 theme.config = function (config) {
-    functions_1.mergeObject(_config, config);
+    merge_object_function_1.mergeObject(_config, config);
 };
 theme.theme = function (themes) {
-    functions_1.mergeObject(_themes, themes);
+    merge_object_function_1.mergeObject(_themes, themes);
 };
-theme.isTheme = function (prop) { return validations_1.validate(prop).isInstanceOf(Theme); };
+theme.isTheme = function (prop) { return validate_validation_1.validate(prop).isInstanceof(Theme); };
 //# sourceMappingURL=theme.js.map

@@ -1,5 +1,7 @@
-import { getNode, mergeObject, themeSystem } from "../functions";
-import { validate } from "../validations";
+import { getNode } from "../functions/object/get-node.function";
+import { mergeObject } from "../functions/object/merge-object.function";
+import { themeSystem } from "../functions/theme-system.function";
+import { validate } from "../validations/validate.validation";
 import { ColorScheme, IColors, ITheme, IThemeConfig } from "./theme.type";
 
 let _themes: ITheme = {};
@@ -133,4 +135,4 @@ theme.config = (config: IThemeConfig): void => {
 theme.theme = (themes: ITheme): void => {
   mergeObject(_themes, themes);
 };
-theme.isTheme = (prop: any): boolean => validate(prop).isInstanceOf(Theme);
+theme.isTheme = (prop: any): boolean => validate(prop).isInstanceof(Theme);

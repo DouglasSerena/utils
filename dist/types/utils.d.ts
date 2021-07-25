@@ -28,6 +28,7 @@ export * from "./regex/time.regex";
 export * from "./regex/upper-case.regex";
 export * from "./regex/url.regex";
 export * from "./validations/common/common.validation";
+export * from "./validations/common/test-pattern.validation";
 export * from "./validations/common/contains.validation";
 export * from "./validations/common/is-cnpj.validation";
 export * from "./validations/common/is-cpf.validation";

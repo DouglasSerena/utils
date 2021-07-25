@@ -1,30 +1,30 @@
 import { OpUnitType } from "dayjs";
-import { getSizeImage } from "../functions";
+import { getSizeImage } from "../functions/file/get-size-image.function";
 import {
-  IPasswordOptionsDisabled,
   isBoolean,
-  isCnpj,
-  isCpf,
   isCpfOrCnpj,
   isDifferent,
   isDifferentNotStrict,
-  isEmpty,
   isEqual,
   isEqualNotStrict,
   isFalse,
+  isFill,
   isFunction,
   isInstanceof,
   isNull,
   isObject,
-  isPassword,
   isString,
   isTrue,
   isTypeof,
   isUndefined,
   notIsInstanceof,
   Typeof,
-} from "./common";
+} from "./common/common.validation";
 import { contains, IContainsOption } from "./common/contains.validation";
+import { isCnpj } from "./common/is-cnpj.validation";
+import { isCpf } from "./common/is-cpf.validation";
+import { isEmpty } from "./common/is-empty.validation";
+import { IPasswordOptionsDisabled, isPassword } from "./common/is-password.validation";
 import { testPattern } from "./common/test-pattern.validation";
 import {
   DateRange,
@@ -38,7 +38,10 @@ import {
   isEqualDate,
   MaxMin,
 } from "./date.validation";
-import { BitSizesKeys, isAllowExtensions, isFile, maxSize, minSize } from "./file";
+import { BitSizesKeys, isFile } from "./file/file.validation";
+import { isAllowExtensions } from "./file/is-allow-extension.validation";
+import { maxSize } from "./file/max-size.validation";
+import { minSize } from "./file/min-size.validation";
 import {
   isBeforeNumber,
   isDifferentNumber,
@@ -76,9 +79,9 @@ export class Validate {
   public isEqualNotStrict = (compare: unknown): boolean => isEqualNotStrict(this.value, compare);
   public isDifferentNotStrict = (compare: unknown): boolean =>
     isDifferentNotStrict(this.value, compare);
-  public isFill = <T = unknown>(): boolean => !isEmpty<T>(this.value);
+  public isFill = <T = unknown>(): boolean => isFill<T>(this.value);
   public isEmpty = <T = unknown>(): boolean => isEmpty<T>(this.value);
-  public isInstanceOf = (instance: unknown): boolean => isInstanceof(this.value, instance);
+  public isInstanceof = (instance: unknown): boolean => isInstanceof(this.value, instance);
   public notIsInstanceOf = (instance: unknown): boolean => notIsInstanceof(this.value, instance);
   public isString = (): boolean => isString(this.value);
   public isObject = (): boolean => isObject(this.value);

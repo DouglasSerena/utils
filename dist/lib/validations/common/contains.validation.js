@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.contains = void 0;
-var functions_1 = require("../../functions");
+var remove_accents_function_1 = require("../../functions/remove-accents.function");
 function contains(value, compare, options) {
     if (!value)
         return false;
@@ -11,9 +11,9 @@ function contains(value, compare, options) {
         caseSensitive: false,
     }, options);
     if (options === null || options === void 0 ? void 0 : options.removeAccents) {
-        value = functions_1.removeAccents(value);
+        value = remove_accents_function_1.removeAccents(value);
         if (typeof compare === "string") {
-            compare = functions_1.removeAccents(compare);
+            compare = remove_accents_function_1.removeAccents(compare);
         }
     }
     if (!(options === null || options === void 0 ? void 0 : options.caseSensitive)) {

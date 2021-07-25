@@ -4,7 +4,7 @@ exports.minSize = void 0;
 var file_validation_1 = require("./file.validation");
 var common_validation_1 = require("../common/common.validation");
 var number_validation_1 = require("../number.validation");
-var common_1 = require("../common");
+var is_empty_validation_1 = require("../common/is-empty.validation");
 var minSize = function (files, min, type) {
     if (type === void 0) { type = "KB"; }
     var filesInvalid = [];
@@ -31,7 +31,7 @@ var minSize = function (files, min, type) {
     return {
         minSize: size,
         typeDefined: type,
-        valid: common_1.isEmpty(filesInvalid),
+        valid: is_empty_validation_1.isEmpty(filesInvalid),
         filesInvalid: filesInvalid,
     };
 };

@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.merge = exports.mergeObject = void 0;
-var validations_1 = require("../../validations");
+var validate_validation_1 = require("../../validations/validate.validation");
 function mergeObject(objectMerge) {
     var objects = [];
     for (var _i = 1; _i < arguments.length; _i++) {
         objects[_i - 1] = arguments[_i];
     }
-    if (validations_1.validate(objects).isFill()) {
+    if (validate_validation_1.validate(objects).isFill()) {
         objects.forEach(function (object) {
-            if (validations_1.validate(object).isFill()) {
+            if (validate_validation_1.validate(object).isFill()) {
                 merge(objectMerge, object);
             }
         });
@@ -19,7 +19,7 @@ function mergeObject(objectMerge) {
 exports.mergeObject = mergeObject;
 function merge(objectMerge, object) {
     return Object.keys(object).reduce(function (prev, key) {
-        if (validations_1.validate(object[key]).isObject() && validations_1.validate(object[key].name).isUndefined()) {
+        if (validate_validation_1.validate(object[key]).isObject() && validate_validation_1.validate(object[key].name).isUndefined()) {
             prev[key] = merge(prev[key], object[key]);
         }
         else {

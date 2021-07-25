@@ -1,7 +1,7 @@
 import { AnyFile, ErrosFile, IFileInvalid } from "./file.validation";
 import { isDifferent, isInstanceof, notIsInstanceof } from "../common/common.validation";
 import { isLess } from "../number.validation";
-import { isEmpty } from "../common";
+import { isEmpty } from "../common/is-empty.validation";
 
 type ErrosAllowExtension = "INVALID_EXTENSION" | "WITHOUT_EXTENSION" | ErrosFile;
 interface IFileInvalidExtension extends IFileInvalid<ErrosAllowExtension> {

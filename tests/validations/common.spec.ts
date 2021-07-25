@@ -23,6 +23,11 @@ describe("Function validate common", () => {
     expect(validate(10).isDifferentNotStrict("10")).toBe(false);
     expect(validate(10).isDifferentNotStrict(10)).toBe(false);
   });
+  it("Valida with value null", () => {
+    expect(validate(null).isCnpj()).toBe(false);
+    expect(validate(undefined).isCnpj()).toBe(false);
+    expect(validate("").isCnpj()).toBe(false);
+  });
   it("Is test pattern", () => {
     expect(validate("000.000.000-00").testPattern(REGEX_CPF)).toBe(true);
     expect(validate("000.000.00000").testPattern(REGEX_CPF)).toBe(false);
