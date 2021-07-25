@@ -20,7 +20,8 @@
   "scripts": {
     "test": "jest",
     "docs": "typedoc src/utils.ts",
-    "build": "yarn jest && tsc --module commonjs && rollup -c rollup.config.ts && yarn run docs"
+    "build:ts": "tsc --module commonjs && rollup -c rollup.config.ts",
+    "build": "npm run test && npm run build:ts && npm run docs"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
