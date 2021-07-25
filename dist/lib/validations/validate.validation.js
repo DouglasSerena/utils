@@ -39,6 +39,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Validate = exports.validate = void 0;
 var functions_1 = require("../functions");
 var common_1 = require("./common");
+var contains_validation_1 = require("./common/contains.validation");
+var test_pattern_validation_1 = require("./common/test-pattern.validation");
 var date_validation_1 = require("./date.validation");
 var file_1 = require("./file");
 var number_validation_1 = require("./number.validation");
@@ -51,6 +53,10 @@ var Validate = /** @class */ (function () {
         var _this = this;
         this.value = value;
         // COMMON
+        this.contains = function (pattern, options) {
+            return contains_validation_1.contains(_this.value, pattern, options);
+        };
+        this.testPattern = function (pattern) { return test_pattern_validation_1.testPattern(_this.value, pattern); };
         this.isFalse = function () { return common_1.isFalse(_this.value); };
         this.isTrue = function () { return common_1.isTrue(_this.value); };
         this.isEqual = function (compare) { return common_1.isEqual(_this.value, compare); };

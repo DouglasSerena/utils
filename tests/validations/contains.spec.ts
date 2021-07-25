@@ -1,4 +1,4 @@
-import { contains } from "./../../src/functions";
+import { contains } from "../../src/validations/common/contains.validation";
 
 describe("Function contains", () => {
   it("Contain 'sao' in 'São paulo'", () => {

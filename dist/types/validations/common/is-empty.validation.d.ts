@@ -1,1 +1,1 @@
-export declare function isEmpty<T = any>(item: T | Array<T>): boolean;
+export declare function isEmpty<T = unknown>(item: T | Array<T>): boolean;

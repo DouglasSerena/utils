@@ -20,7 +20,6 @@ export * from "./functions/object/sort-desc.function";
 
 export * from "./functions/theme-system.function";
 export * from "./functions/dom.function";
-export * from "./functions/contains.function";
 export * from "./functions/handle-try.function";
 export * from "./functions/parse-number.function";
 export * from "./functions/relative-time.function";
@@ -42,6 +41,7 @@ export * from "./regex/url.regex";
 // VALIDATIONS
 // // COMMON
 export * from "./validations/common/common.validation";
+export * from "./validations/common/contains.validation";
 export * from "./validations/common/is-cnpj.validation";
 export * from "./validations/common/is-cpf.validation";
 export * from "./validations/common/is-empty.validation";

@@ -1,5 +1,5 @@
-import { contains } from "../../functions/contains.function";
 import { REGEX_CHAR_SPECIAL, REGEX_NUMBER, REGEX_UPPER_CASE } from "../../regex";
+import { contains } from "./contains.validation";
 
 export function isPassword(
   value: string,
