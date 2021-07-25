@@ -1,6 +1,6 @@
 {
   "name": "@douglas-serena/utils",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "main": "dist/utils.umd.js",
   "module": "dist/utils.es5.js",
   "typings": "dist/types/utils.d.ts",
@@ -22,11 +22,14 @@
     "build": "tsc --module commonjs && rollup -c rollup.config.ts "
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@types/": "testing-library/jest-dom",
     "@types/jest": "^26.0.24",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
     "eslint": "^7.31.0",
     "jest": "^27.0.6",
+    "jsdom": "^16.6.0",
     "lodash.camelcase": "^4.3.0",
     "madge": "^5.0.1",
     "rollup": "^2.53.3",

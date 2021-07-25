@@ -3,10 +3,10 @@ declare type ErrosAllowExtension = "INVALID_EXTENSION" | "WITHOUT_EXTENSION" | E
 interface FileInvalidExtension extends FileInvalid<ErrosAllowExtension> {
     extension?: string;
 }
-interface Return {
+export interface ReturnExtension {
     allowedExtensions: string[];
     valid: boolean;
     filesInvalid: FileInvalidExtension[];
 }
-export declare const isAllowExtensions: (files: AnyFile, extensions: string[]) => Return;
+export declare const isAllowExtensions: (files: AnyFile, extensions: string[]) => ReturnExtension;
 export {};

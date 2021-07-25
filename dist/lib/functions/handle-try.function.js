@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleTry = void 0;
-var validations_1 = require("../validations");
+var common_validation_1 = require("../validations/common/common.validation");
 function handleTry(promise) {
     return __awaiter(this, void 0, void 0, function () {
         var _, data, error_1;
@@ -46,7 +46,7 @@ function handleTry(promise) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
                     _ = promise.toPromise();
-                    if (!validations_1.isUndefined(_)) {
+                    if (!common_validation_1.isUndefined(_)) {
                         promise = promise.toPromise();
                     }
                     return [4 /*yield*/, promise];

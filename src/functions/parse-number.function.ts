@@ -1,4 +1,5 @@
-import { isNumeric, isString } from "../validations";
+import { isString } from "../validations/common/common.validation";
+import { isNumeric } from "../validations/number.validation";
 
 export const parseNumberOptions: IParseNumberOptions = {
   decimal: ",",
@@ -12,10 +13,7 @@ export interface IParseNumberOptions {
   error?: boolean;
 }
 
-export function parseNumber(
-  value: number | string,
-  options?: IParseNumberOptions
-): number {
+export function parseNumber(value: number | string, options?: IParseNumberOptions): number {
   options = Object.assign({}, parseNumberOptions, options);
   if (!isNumeric(value) && isString(value)) {
     const decimalStr = new RegExp(`\\${options?.decimal}`, "g");

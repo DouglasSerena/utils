@@ -7,13 +7,13 @@ var common_1 = require("../common");
 var isAllowExtensions = function (files, extensions) {
     var filesInvalid = [];
     files = files || [];
-    if (common_validation_1.isInstance(files, File)) {
+    if (common_validation_1.isInstanceOf(files, File)) {
         files = [files];
     }
     for (var _i = 0, _a = Array.from(files); _i < _a.length; _i++) {
         var file = _a[_i];
         var type = [];
-        if (common_validation_1.notIsInstance(file, File)) {
+        if (common_validation_1.notIsInstanceOf(file, File)) {
             filesInvalid.push({ error: "NOT_FILE" });
         }
         for (var _b = 0, extensions_1 = extensions; _b < extensions_1.length; _b++) {

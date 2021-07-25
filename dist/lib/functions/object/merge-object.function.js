@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.merge = exports.mergeObject = void 0;
-var validations_1 = require("../../validations");
+var is_empty_validation_1 = require("../../validations/common/is-empty.validation");
 function mergeObject(objectMerge) {
     var objects = [];
     for (var _i = 1; _i < arguments.length; _i++) {
         objects[_i - 1] = arguments[_i];
     }
-    if (!validations_1.isEmpty(objects)) {
+    if (!is_empty_validation_1.isEmpty(objects)) {
         objects.forEach(function (object) {
-            if (!validations_1.isEmpty(object)) {
+            if (!is_empty_validation_1.isEmpty(object)) {
                 merge(objectMerge, object);
             }
         });

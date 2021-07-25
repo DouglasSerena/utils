@@ -11,6 +11,16 @@ describe("Function calc", () => {
     expect(result.valueRaw).toBe(100.2123123123123123123);
   });
 
+  it("Config", () => {
+    calc.config({ increment: 0.05 });
+
+    const result = calc(calc("100.2123123123123123123"));
+    expect(result.value).toBe(100.2);
+    expect(result.valueRaw).toBe(100.2123123123123123123);
+
+    calc.config({ increment: 0 });
+  });
+
   it("Pass Calc to function calc", () => {
     let result = calc(calc("100.2123123123123123123"));
     expect(result.value).toBe(100.21);

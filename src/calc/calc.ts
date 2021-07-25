@@ -1,21 +1,28 @@
-import { parseNumber } from "../functions";
+import { parseNumber, parseNumberOptions } from "../functions";
 import { add, distribute, divide, increment, multiply, subtract } from "./math.calc";
-import { isInstanceOf } from "../validations";
-import { AnyCalc, calcOptions, CalcOptions } from "./calc.type";
+import { isInstanceOf, validate } from "../validations";
+import { AnyCalc, CalcOptions } from "./calc.type";
 
-export function calc(value: AnyCalc, settings?: CalcOptions): Calc {
-  return new Calc(value, settings);
-}
+const configGlobal: CalcOptions = {
+  ...parseNumberOptions,
+  precision: 2,
+  increment: 0,
+  round: "round",
+};
+
+export const calc = (value: AnyCalc, config?: CalcOptions): Calc => {
+  return new Calc(value, config);
+};
 
 export class Calc {
   value: number;
   valueRaw: number;
-  settings: CalcOptions;
   precision: number;
+  config: CalcOptions;
 
-  constructor(value: AnyCalc, settings?: CalcOptions) {
-    this.settings = Object.assign({}, this.settings, calcOptions, settings);
-    this.precision = Math.pow(10, this.settings?.precision);
+  constructor(value: AnyCalc, config?: CalcOptions) {
+    this.config = Object.assign({}, configGlobal, config);
+    this.precision = Math.pow(10, this.config?.precision);
 
     this.save(value);
   }
@@ -24,7 +31,7 @@ export class Calc {
     if (isInstanceOf(value, Calc)) {
       value = (value as Calc).valueRaw;
     } else {
-      value = parseNumber(value as string, this.settings);
+      value = parseNumber(value as string, this.config);
     }
     return value;
   }
@@ -33,7 +40,7 @@ export class Calc {
     if (isInstanceOf(value, Calc)) {
       this.valueRaw = (value as Calc).valueRaw;
     } else {
-      this.valueRaw = parseNumber(value as string, this.settings);
+      this.valueRaw = parseNumber(value as string, this.config);
     }
     this.value = this.roundingNumber(this.valueRaw);
   }
@@ -42,11 +49,11 @@ export class Calc {
     value = Number(value) * this.precision;
     value = Number(value.toFixed(4));
 
-    const mathRound = Math[this.settings.round];
+    const mathRound = Math[this.config.round];
     value = mathRound(value as number) / this.precision;
 
-    if (this.settings.increment) {
-      value = increment(value, this.settings.increment) * this.precision;
+    if (this.config.increment) {
+      value = increment(value, this.config.increment) * this.precision;
       value = mathRound(value as number) / this.precision;
     }
 
@@ -91,3 +98,8 @@ export class Calc {
     return [...result, rest];
   }
 }
+
+calc.config = (config: CalcOptions) => {
+  Object.assign(configGlobal, config);
+};
+calc.isCalc = (prop: any): boolean => validate(prop).isInstanceOf(Calc);

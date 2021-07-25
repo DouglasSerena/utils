@@ -1,15 +1,15 @@
-import { isDifferent } from "../../validations/common/common.validation";
-import { isFile } from "../../validations/file/file.validation";
+import { validate } from "../../validations";
+import { base64toFile } from "./base64-to-file.function";
 import { fileToBase64 } from "./file-to-base64.function";
 
 export const getSizeImage = async (file: File): Promise<{ height: number; width: number }> => {
   const type = file.type.split("/");
 
-  if (!isFile(file)) {
-    throw new Error("file is not instance of File");
+  if (!validate(file).isFile() && validate(file).isString()) {
+    file = base64toFile(file as any, "unnamed.png");
   }
 
-  if (isDifferent(type[0], "image")) {
+  if (validate(type[0]).isDifferent("image")) {
     throw new Error("File is not image");
   }
 

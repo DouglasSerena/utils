@@ -54,6 +54,7 @@ __exportStar(require("./validations/file/file.validation"), exports);
 __exportStar(require("./validations/file/is-allow-extension.validation"), exports);
 __exportStar(require("./validations/file/max-size.validation"), exports);
 __exportStar(require("./validations/file/min-size.validation"), exports);
+__exportStar(require("./validations/validate.validation"), exports);
 __exportStar(require("./validations/date.validation"), exports);
 __exportStar(require("./validations/number.validation"), exports);
 //# sourceMappingURL=utils.js.map

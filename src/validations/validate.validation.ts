@@ -1,6 +1,7 @@
 import { OpUnitType } from "dayjs";
 import { getSizeImage } from "../functions";
 import {
+  isBoolean,
   isCnpj,
   isCpf,
   isCpfOrCnpj,
@@ -9,8 +10,10 @@ import {
   isEmpty,
   isEqual,
   isEqualNotStrict,
+  isFunction,
   isInstanceOf,
   isNull,
+  isObject,
   isString,
   isUndefined,
   notIsInstanceOf,
@@ -27,7 +30,7 @@ import {
   isEqualDate,
   MaxMin,
 } from "./date.validation";
-import { BitSizesKeys, isAllowExtensions, isFile, maxSize, minSize, ReturnExtension } from "./file";
+import { BitSizesKeys, isAllowExtensions, isFile, maxSize, minSize } from "./file";
 import {
   isBeforeNumber,
   isDifferentNumber,
@@ -60,6 +63,9 @@ export class Validate {
   public isInstanceOf = (instance: any): boolean => isInstanceOf(this.value, instance);
   public notIsInstanceOf = (instance: any): boolean => notIsInstanceOf(this.value, instance);
   public isString = (): boolean => isString(this.value);
+  public isObject = (): boolean => isObject(this.value);
+  public isFunction = (): boolean => isFunction(this.value);
+  public isBoolean = (): boolean => isBoolean(this.value);
   public isNull = (): boolean => isNull(this.value);
   public isUndefined = (): boolean => isUndefined(this.value);
   public isCnpj = (): boolean => isCnpj(this.value);
@@ -68,18 +74,25 @@ export class Validate {
 
   // VALIDATION FILE
   public isFile = (): boolean => isFile(this.value);
+
   public maxHeightFile = async (max: number): Promise<boolean> =>
-    isMore((await getSizeImage(this.value)).height, max);
+    isMoreOrEqual((await getSizeImage(this.value)).height, max);
+
   public minHeightFile = async (min: number): Promise<boolean> =>
-    isLess((await getSizeImage(this.value)).height, min);
+    isLessOrEqual((await getSizeImage(this.value)).height, min);
+
   public maxWidthFile = async (max: number): Promise<boolean> =>
-    isMore((await getSizeImage(this.value)).width, max);
+    isMoreOrEqual((await getSizeImage(this.value)).width, max);
+
   public minWidthFile = async (min: number): Promise<boolean> =>
-    isLess((await getSizeImage(this.value)).width, min);
+    isLessOrEqual((await getSizeImage(this.value)).width, min);
+
   public maxSizeFile = (max: number, type?: BitSizesKeys): boolean =>
     maxSize(this.value, max, type).valid;
+
   public minSizeFile = (min: number, type?: BitSizesKeys): boolean =>
     minSize(this.value, min, type).valid;
+
   public isAllowExtensionsFile = (extensions: string[]): boolean =>
     isAllowExtensions(this.value, extensions).valid;
 
