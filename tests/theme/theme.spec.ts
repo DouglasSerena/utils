@@ -48,6 +48,39 @@ describe("Function theme", () => {
     expect(theme().style).toEqual(`:root{color-scheme: no-preference;--color-primary: #777;}`);
   });
 
+  it("Var Global", () => {
+    theme().reset();
+    theme({
+      global: { text: { light: "#212" } },
+      dark: { primary: "#000" },
+      light: { primary: "#fff" },
+    }).createStyle();
+
+    expect(theme().style).toEqual(
+      `:root{color-scheme: dark;--color-text-light: #212;--color-primary: #000;}`
+    );
+
+    theme().change("light");
+    expect(theme().style).toEqual(
+      `:root{color-scheme: light;--color-text-light: #212;--color-primary: #fff;}`
+    );
+  });
+
+  it("Var prefix", () => {
+    theme().reset();
+    theme(
+      {
+        global: { text: { light: "#212" } },
+        dark: { primary: "#000" },
+      },
+      { prefix: "app" }
+    ).createStyle();
+
+    expect(theme().style).toEqual(
+      `:root{color-scheme: dark;--app-text-light: #212;--app-primary: #000;}`
+    );
+  });
+
   it("is theme", () => {
     theme().reset();
     theme(

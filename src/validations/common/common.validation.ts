@@ -13,6 +13,9 @@ export const isFill = <T = any>(item: T | Array<T>): boolean => !isEmpty<T>(item
 export const isInstanceOf = (value: any, instance: any) => value instanceof instance;
 export const notIsInstanceOf = (value: any, instance: any) => !isInstanceOf(value, instance);
 
+export const isFalse = (value: any) => !value;
+export const isTrue = (value: any) => !!value;
+
 export const isString = (value: any) => typeof value === "string";
 export const isObject = (value: any) => typeof value === "object";
 export const isFunction = (value: any) => typeof value === "function";

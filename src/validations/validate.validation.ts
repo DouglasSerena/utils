@@ -10,11 +10,13 @@ import {
   isEmpty,
   isEqual,
   isEqualNotStrict,
+  isFalse,
   isFunction,
   isInstanceOf,
   isNull,
   isObject,
   isString,
+  isTrue,
   isUndefined,
   notIsInstanceOf,
 } from "./common";
@@ -53,6 +55,8 @@ export class Validate {
   constructor(public value: any) {}
 
   // COMMON
+  public isFalse = () => isFalse(this.value);
+  public isTrue = () => isTrue(this.value);
   public isEqual = (compare: any): boolean => isEqual(this.value, compare);
   public isDifferent = (compare: any): boolean => isDifferent(this.value, compare);
   public isEqualNotStrict = (compare: any): boolean => isEqualNotStrict(this.value, compare);
@@ -112,17 +116,22 @@ export class Validate {
   public isDate = (): boolean => isDate(this.value);
   public isAfterDate = (date: IDateAny, options?: OpUnitType): boolean =>
     isAfterDate(this.value, date, options);
+
   public isBeforeDate = (date: IDateAny, options?: OpUnitType): boolean =>
     isBeforeDate(this.value, date, options);
+
   public isBetweenDate = (
     range: DateRange,
     options?: OpUnitType,
     d?: "()" | "[]" | "[)" | "(]"
   ): boolean => isBetweenDate(this.value, range, options, d);
+
   public isBirthDateValidation = (year?: MaxMin): boolean =>
     isBirthDateValidation(this.value, year);
+
   public isEqualDate = (date: IDateAny, options?: OpUnitType): boolean =>
     isEqualDate(this.value, date, options);
+
   public isDifferentDate = (date: IDateAny, options?: OpUnitType): boolean =>
     isDifferentDate(this.value, date, options);
 }

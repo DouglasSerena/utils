@@ -1,12 +1,25 @@
 import { mergeObject } from "../functions";
 import { validate } from "../validations";
-import { ColorScheme, ITheme, IThemeConfig } from "./theme.type";
+import { ColorScheme, IColors, ITheme, IThemeConfig } from "./theme.type";
 
 let _themes: ITheme = {};
-const _config: IThemeConfig = {
+let _config: IThemeConfig = {
   use: "dark",
+  prefix: "color",
+  disableSystemBasedColorShift: false,
   _element: document.createElement("style"),
 };
+
+window?.matchMedia?.("(prefers-color-scheme: dark)")?.addEventListener("change", (event) => {
+  if (validate(_config.disableSystemBasedColorShift).isFalse()) {
+    theme().change("dark");
+  }
+});
+window?.matchMedia?.("(prefers-color-scheme: light)")?.addEventListener("change", (event) => {
+  if (validate(_config.disableSystemBasedColorShift).isFalse()) {
+    theme().change("light");
+  }
+});
 
 export function theme(themes?: ITheme, config?: IThemeConfig): Theme {
   return new Theme(themes, config);
@@ -15,6 +28,9 @@ export function theme(themes?: ITheme, config?: IThemeConfig): Theme {
 export class Theme {
   public get themes(): ITheme {
     return _themes;
+  }
+  public get prefix(): string {
+    return _config.prefix;
   }
   public get style(): string {
     return _config._style;
@@ -49,7 +65,14 @@ export class Theme {
   }
 
   reset() {
-    _themes = {};
+    _themes = {} as ITheme;
+    _config = {
+      use: "dark",
+      _style: "",
+      prefix: "color",
+      disableChangeScheme: false,
+      _element: _config._element,
+    } as IThemeConfig;
   }
 
   change(theme: ColorScheme): void {
@@ -63,23 +86,34 @@ export class Theme {
   }
 
   private generatorStyle(): string {
-    const style = [`color-scheme: ${this.use}`];
+    let style = [`color-scheme: ${this.use}`];
     const colors = _themes[this.use];
-    Object.keys(colors).forEach((colorType) => {
+
+    if (validate(_themes.global).isObject()) {
+      style = style.concat(this.generatorStyleContent(_themes.global));
+    }
+    if (validate(colors).isObject()) {
+      style = style.concat(this.generatorStyleContent(colors));
+    }
+
+    return `:root{${style.join(";")};}`;
+  }
+  private generatorStyleContent(colors: { [key: string]: string | IColors }) {
+    return Object.keys(colors).reduce((prev, colorType) => {
       if (validate(colors[colorType]).isString()) {
-        style.push(`--color-${colorType}: ${colors[colorType]}`);
+        prev.push(`--${this.prefix}-${colorType}: ${colors[colorType]}`);
       } else {
         Object.keys(colors[colorType]).forEach((colorName) => {
           const value = colors[colorType][colorName];
           if (validate(colorName).isEqual("default")) {
-            style.push(`--color-${colorType}: ${value}`);
+            prev.push(`--${this.prefix}-${colorType}: ${value}`);
           } else {
-            style.push(`--color-${colorType}-${colorName}: ${value}`);
+            prev.push(`--${this.prefix}-${colorType}-${colorName}: ${value}`);
           }
         });
       }
-    });
-    return `:root{${style.join(";")};}`;
+      return prev;
+    }, []);
   }
 }
 
