@@ -7,20 +7,20 @@ dayjs.extend(isBetween);
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
 
-export type IDateAny = Date | string | dayjs.Dayjs | number;
-export type DateRange = { start: IDateAny; end: IDateAny };
+export type DateAny = Date | string | dayjs.Dayjs | number;
+export type DateRange = { start: DateAny; end: DateAny };
 export type MaxMin = { min?: string | number; max?: string | number };
 
-const isDate = (value: IDateAny): boolean => dayjs(value).isValid();
+const isDate = (value: DateAny): boolean => dayjs(value).isValid();
 
-const isAfterDate = (date: IDateAny, dataAfter: IDateAny, options?: dayjs.OpUnitType): boolean =>
+const isAfterDate = (date: DateAny, dataAfter: DateAny, options?: dayjs.OpUnitType): boolean =>
   dayjs(date).isAfter(dayjs(dataAfter), options);
 
-const isBeforeDate = (date: IDateAny, dataBefore: IDateAny, options?: dayjs.OpUnitType): boolean =>
+const isBeforeDate = (date: DateAny, dataBefore: DateAny, options?: dayjs.OpUnitType): boolean =>
   dayjs(date).isBefore(dayjs(dataBefore), options);
 
 const isBetweenDate = (
-  date: IDateAny,
+  date: DateAny,
   range: DateRange,
   options?: dayjs.OpUnitType,
   d?: "()" | "[]" | "[)" | "(]"
@@ -32,7 +32,7 @@ const isBetweenDate = (
     d
   );
 
-const isBirthDateValidation = (birchDay: IDateAny, year: MaxMin): boolean => {
+const isBirthDateValidation = (birchDay: DateAny, year: MaxMin): boolean => {
   if (!year?.max) {
     year.min = Number.parseInt(year?.min?.toString());
     return dayjs(birchDay).isSameOrBefore(dayjs().subtract(year.min, "years"));
@@ -47,14 +47,14 @@ const isBirthDateValidation = (birchDay: IDateAny, year: MaxMin): boolean => {
 };
 
 const isEqualDate = (
-  date: IDateAny,
-  dateDifferent: IDateAny,
+  date: DateAny,
+  dateDifferent: DateAny,
   options?: dayjs.OpUnitType
 ): boolean => dayjs(date).isSame(dayjs(dateDifferent), options);
 
 const isDifferentDate = (
-  date: IDateAny,
-  dateDifferent: IDateAny,
+  date: DateAny,
+  dateDifferent: DateAny,
   options?: dayjs.OpUnitType
 ): boolean => !isEqualDate(date, dateDifferent, options);
 

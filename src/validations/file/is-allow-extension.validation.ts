@@ -1,20 +1,20 @@
-import { AnyFile, ErrosFile, FileInvalid } from "./file.validation";
+import { AnyFile, ErrosFile, IFileInvalid } from "./file.validation";
 import { isDifferent, isInstanceOf, notIsInstanceOf } from "../common/common.validation";
 import { isLess } from "../number.validation";
 import { isEmpty } from "../common";
 
 type ErrosAllowExtension = "INVALID_EXTENSION" | "WITHOUT_EXTENSION" | ErrosFile;
-interface FileInvalidExtension extends FileInvalid<ErrosAllowExtension> {
+interface IFileInvalidExtension extends IFileInvalid<ErrosAllowExtension> {
   extension?: string;
 }
-export interface ReturnExtension {
+export interface IReturnExtension {
   allowedExtensions: string[];
   valid: boolean;
-  filesInvalid: FileInvalidExtension[];
+  filesInvalid: IFileInvalidExtension[];
 }
 
-export const isAllowExtensions = (files: AnyFile, extensions: string[]): ReturnExtension => {
-  const filesInvalid: FileInvalidExtension[] = [];
+export const isAllowExtensions = (files: AnyFile, extensions: string[]): IReturnExtension => {
+  const filesInvalid: IFileInvalidExtension[] = [];
   files = files || [];
 
   if (isInstanceOf(files, File)) {

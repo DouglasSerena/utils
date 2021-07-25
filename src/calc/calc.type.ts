@@ -3,7 +3,7 @@ import { Calc } from "./calc";
 
 export type AnyCalc = Calc | string | number;
 
-export interface CalcOptions extends IParseNumberOptions {
+export interface ICalcOptions extends IParseNumberOptions {
   round?: "ceil" | "floor" | "round";
   precision?: number;
   increment?: number;

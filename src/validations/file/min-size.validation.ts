@@ -3,7 +3,7 @@ import {
   BitSizesKeys,
   BIT_SIZES,
   ErrosFile,
-  FileInvalid,
+  IFileInvalid,
   isFile,
 } from "./file.validation";
 import { isInstanceOf } from "../common/common.validation";
@@ -11,18 +11,18 @@ import { isLess } from "../number.validation";
 import { isEmpty } from "../common";
 
 export type ErrosMinSize = ErrosFile | "SIZE";
-export interface FileInvalidMinSize extends FileInvalid<ErrosMinSize> {
+export interface IFileInvalidMinSize extends IFileInvalid<ErrosMinSize> {
   fileSizeInBytes?: number;
 }
-interface Return {
+interface IReturnMinSize {
   minSize: number;
   typeDefined: BitSizesKeys;
   valid: boolean;
-  filesInvalid: FileInvalidMinSize[];
+  filesInvalid: IFileInvalidMinSize[];
 }
 
-export const minSize = (files: AnyFile, min: number, type: BitSizesKeys = "KB"): Return => {
-  const filesInvalid: FileInvalidMinSize[] = [];
+export const minSize = (files: AnyFile, min: number, type: BitSizesKeys = "KB"): IReturnMinSize => {
+  const filesInvalid: IFileInvalidMinSize[] = [];
   files = files || [];
 
   let size = BIT_SIZES[type] || BIT_SIZES.B;

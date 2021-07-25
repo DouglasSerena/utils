@@ -1,7 +1,7 @@
 import { isString } from "../validations/common/common.validation";
 import { isNumeric } from "../validations/number.validation";
 
-export const parseNumberOptions: IParseNumberOptions = {
+const _config: IParseNumberOptions = {
   decimal: ",",
   thousands: ".",
   error: false,
@@ -13,17 +13,17 @@ export interface IParseNumberOptions {
   error?: boolean;
 }
 
-export function parseNumber(value: number | string, options?: IParseNumberOptions): number {
-  options = Object.assign({}, parseNumberOptions, options);
+export function parseNumber(value: number | string, config?: IParseNumberOptions): number {
+  config = Object.assign({}, _config, config);
   if (!isNumeric(value) && isString(value)) {
-    const decimalStr = new RegExp(`\\${options?.decimal}`, "g");
-    const thousandsStr = new RegExp(`\\${options?.thousands}`, "g");
+    const decimalStr = new RegExp(`\\${config?.decimal}`, "g");
+    const thousandsStr = new RegExp(`\\${config?.thousands}`, "g");
 
     value = value.toString().replace(thousandsStr, "").replace(decimalStr, ".");
 
     value = Number(value) || 0;
   } else {
-    if (options?.error) new Error("Invalid Input.");
+    if (config?.error) new Error("Invalid Input.");
   }
 
   return Number(value);

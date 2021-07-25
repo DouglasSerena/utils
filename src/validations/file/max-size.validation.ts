@@ -3,7 +3,7 @@ import {
   BitSizesKeys,
   BIT_SIZES,
   ErrosFile,
-  FileInvalid,
+  IFileInvalid,
   isFile,
 } from "./file.validation";
 import { isInstanceOf } from "../common/common.validation";
@@ -11,18 +11,18 @@ import { isMore } from "../number.validation";
 import { isEmpty } from "../common";
 
 export type ErrosMaxSize = ErrosFile | "SIZE";
-export interface FileInvalidMaxSize extends FileInvalid<ErrosMaxSize> {
+export interface IFileInvalidMaxSize extends IFileInvalid<ErrosMaxSize> {
   fileSizeInBytes?: number;
 }
-interface Return {
+interface IReturnMaxSize {
   maxSize: number;
   typeDefined: BitSizesKeys;
   valid: boolean;
-  filesInvalid: FileInvalidMaxSize[];
+  filesInvalid: IFileInvalidMaxSize[];
 }
 
-export const maxSize = (files: AnyFile, max: number, type: BitSizesKeys = "KB"): Return => {
-  const filesInvalid: FileInvalidMaxSize[] = [];
+export const maxSize = (files: AnyFile, max: number, type: BitSizesKeys = "KB"): IReturnMaxSize => {
+  const filesInvalid: IFileInvalidMaxSize[] = [];
   files = files || [];
 
   let size = BIT_SIZES[type] || BIT_SIZES.B;
