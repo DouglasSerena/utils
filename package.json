@@ -19,7 +19,8 @@
   "homepage": "https://github.com/DouglasSerena/utils#readme",
   "scripts": {
     "test": "jest",
-    "build": "tsc --module commonjs && rollup -c rollup.config.ts && yarn run typedoc src/utils.ts"
+    "docs": "typedoc src/utils.ts",
+    "build": "yarn jest && tsc --module commonjs && rollup -c rollup.config.ts && yarn run docs"
   },
   "devDependencies": {
     "@types/jest": "^26.0.24",
