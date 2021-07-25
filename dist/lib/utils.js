@@ -48,6 +48,7 @@ __exportStar(require("./regex/url.regex"), exports);
 // VALIDATIONS
 // // COMMON
 __exportStar(require("./validations/common/common.validation"), exports);
+__exportStar(require("./validations/common/test-pattern.validation"), exports);
 __exportStar(require("./validations/common/contains.validation"), exports);
 __exportStar(require("./validations/common/is-cnpj.validation"), exports);
 __exportStar(require("./validations/common/is-cpf.validation"), exports);

@@ -1,8 +1,9 @@
 import { OpUnitType } from "dayjs";
-import { IPasswordOptionsDisabled, Typeof } from "./common";
+import { Typeof } from "./common/common.validation";
 import { IContainsOption } from "./common/contains.validation";
+import { IPasswordOptionsDisabled } from "./common/is-password.validation";
 import { DateRange, DateAny, MaxMin } from "./date.validation";
-import { BitSizesKeys } from "./file";
+import { BitSizesKeys } from "./file/file.validation";
 import { NumberRange } from "./number.validation";
 export declare function validate(value: any): Validate;
 export declare class Validate {
@@ -20,7 +21,7 @@ export declare class Validate {
     isDifferentNotStrict: (compare: unknown) => boolean;
     isFill: <T = unknown>() => boolean;
     isEmpty: <T = unknown>() => boolean;
-    isInstanceOf: (instance: unknown) => boolean;
+    isInstanceof: (instance: unknown) => boolean;
     notIsInstanceOf: (instance: unknown) => boolean;
     isString: () => boolean;
     isObject: () => boolean;

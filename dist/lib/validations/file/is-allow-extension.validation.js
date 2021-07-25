@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.isAllowExtensions = void 0;
 var common_validation_1 = require("../common/common.validation");
 var number_validation_1 = require("../number.validation");
-var common_1 = require("../common");
+var is_empty_validation_1 = require("../common/is-empty.validation");
 var isAllowExtensions = function (files, extensions) {
     var filesInvalid = [];
     files = files || [];
@@ -38,7 +38,7 @@ var isAllowExtensions = function (files, extensions) {
     }
     return {
         allowedExtensions: extensions,
-        valid: common_1.isEmpty(filesInvalid),
+        valid: is_empty_validation_1.isEmpty(filesInvalid),
         filesInvalid: filesInvalid,
     };
 };

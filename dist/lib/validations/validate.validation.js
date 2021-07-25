@@ -37,12 +37,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Validate = exports.validate = void 0;
-var functions_1 = require("../functions");
-var common_1 = require("./common");
+var get_size_image_function_1 = require("../functions/file/get-size-image.function");
+var common_validation_1 = require("./common/common.validation");
 var contains_validation_1 = require("./common/contains.validation");
+var is_cnpj_validation_1 = require("./common/is-cnpj.validation");
+var is_cpf_validation_1 = require("./common/is-cpf.validation");
+var is_empty_validation_1 = require("./common/is-empty.validation");
+var is_password_validation_1 = require("./common/is-password.validation");
 var test_pattern_validation_1 = require("./common/test-pattern.validation");
 var date_validation_1 = require("./date.validation");
-var file_1 = require("./file");
+var file_validation_1 = require("./file/file.validation");
+var is_allow_extension_validation_1 = require("./file/is-allow-extension.validation");
+var max_size_validation_1 = require("./file/max-size.validation");
+var min_size_validation_1 = require("./file/min-size.validation");
 var number_validation_1 = require("./number.validation");
 function validate(value) {
     return new Validate(value);
@@ -58,37 +65,37 @@ var Validate = /** @class */ (function () {
         };
         this.testPattern = function (pattern) { return test_pattern_validation_1.testPattern(_this.value, pattern); };
         this.isPassword = function (disabled, minLength) {
-            return common_1.isPassword(_this.value, disabled, minLength);
+            return is_password_validation_1.isPassword(_this.value, disabled, minLength);
         };
-        this.isTypeof = function (type) { return common_1.isTypeof(_this.value, type); };
-        this.isFalse = function () { return common_1.isFalse(_this.value); };
-        this.isTrue = function () { return common_1.isTrue(_this.value); };
-        this.isEqual = function (compare) { return common_1.isEqual(_this.value, compare); };
-        this.isDifferent = function (compare) { return common_1.isDifferent(_this.value, compare); };
-        this.isEqualNotStrict = function (compare) { return common_1.isEqualNotStrict(_this.value, compare); };
+        this.isTypeof = function (type) { return common_validation_1.isTypeof(_this.value, type); };
+        this.isFalse = function () { return common_validation_1.isFalse(_this.value); };
+        this.isTrue = function () { return common_validation_1.isTrue(_this.value); };
+        this.isEqual = function (compare) { return common_validation_1.isEqual(_this.value, compare); };
+        this.isDifferent = function (compare) { return common_validation_1.isDifferent(_this.value, compare); };
+        this.isEqualNotStrict = function (compare) { return common_validation_1.isEqualNotStrict(_this.value, compare); };
         this.isDifferentNotStrict = function (compare) {
-            return common_1.isDifferentNotStrict(_this.value, compare);
+            return common_validation_1.isDifferentNotStrict(_this.value, compare);
         };
-        this.isFill = function () { return !common_1.isEmpty(_this.value); };
-        this.isEmpty = function () { return common_1.isEmpty(_this.value); };
-        this.isInstanceOf = function (instance) { return common_1.isInstanceof(_this.value, instance); };
-        this.notIsInstanceOf = function (instance) { return common_1.notIsInstanceof(_this.value, instance); };
-        this.isString = function () { return common_1.isString(_this.value); };
-        this.isObject = function () { return common_1.isObject(_this.value); };
-        this.isFunction = function () { return common_1.isFunction(_this.value); };
-        this.isBoolean = function () { return common_1.isBoolean(_this.value); };
-        this.isNull = function () { return common_1.isNull(_this.value); };
-        this.isUndefined = function () { return common_1.isUndefined(_this.value); };
-        this.isCnpj = function () { return common_1.isCnpj(_this.value); };
-        this.isCpf = function () { return common_1.isCpf(_this.value); };
-        this.isCpfOrCnpj = function () { return common_1.isCpfOrCnpj(_this.value); };
+        this.isFill = function () { return common_validation_1.isFill(_this.value); };
+        this.isEmpty = function () { return is_empty_validation_1.isEmpty(_this.value); };
+        this.isInstanceof = function (instance) { return common_validation_1.isInstanceof(_this.value, instance); };
+        this.notIsInstanceOf = function (instance) { return common_validation_1.notIsInstanceof(_this.value, instance); };
+        this.isString = function () { return common_validation_1.isString(_this.value); };
+        this.isObject = function () { return common_validation_1.isObject(_this.value); };
+        this.isFunction = function () { return common_validation_1.isFunction(_this.value); };
+        this.isBoolean = function () { return common_validation_1.isBoolean(_this.value); };
+        this.isNull = function () { return common_validation_1.isNull(_this.value); };
+        this.isUndefined = function () { return common_validation_1.isUndefined(_this.value); };
+        this.isCnpj = function () { return is_cnpj_validation_1.isCnpj(_this.value); };
+        this.isCpf = function () { return is_cpf_validation_1.isCpf(_this.value); };
+        this.isCpfOrCnpj = function () { return common_validation_1.isCpfOrCnpj(_this.value); };
         // VALIDATION FILE
-        this.isFile = function () { return file_1.isFile(_this.value); };
+        this.isFile = function () { return file_validation_1.isFile(_this.value); };
         this.maxHeightFile = function (max) { return __awaiter(_this, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _a = number_validation_1.isMoreOrEqual;
-                    return [4 /*yield*/, functions_1.getSizeImage(this.value)];
+                    return [4 /*yield*/, get_size_image_function_1.getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).height, max])];
             }
         }); }); };
@@ -96,7 +103,7 @@ var Validate = /** @class */ (function () {
             switch (_b.label) {
                 case 0:
                     _a = number_validation_1.isLessOrEqual;
-                    return [4 /*yield*/, functions_1.getSizeImage(this.value)];
+                    return [4 /*yield*/, get_size_image_function_1.getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).height, min])];
             }
         }); }); };
@@ -104,7 +111,7 @@ var Validate = /** @class */ (function () {
             switch (_b.label) {
                 case 0:
                     _a = number_validation_1.isMoreOrEqual;
-                    return [4 /*yield*/, functions_1.getSizeImage(this.value)];
+                    return [4 /*yield*/, get_size_image_function_1.getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).width, max])];
             }
         }); }); };
@@ -112,18 +119,18 @@ var Validate = /** @class */ (function () {
             switch (_b.label) {
                 case 0:
                     _a = number_validation_1.isLessOrEqual;
-                    return [4 /*yield*/, functions_1.getSizeImage(this.value)];
+                    return [4 /*yield*/, get_size_image_function_1.getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).width, min])];
             }
         }); }); };
         this.maxSizeFile = function (max, type) {
-            return file_1.maxSize(_this.value, max, type).valid;
+            return max_size_validation_1.maxSize(_this.value, max, type).valid;
         };
         this.minSizeFile = function (min, type) {
-            return file_1.minSize(_this.value, min, type).valid;
+            return min_size_validation_1.minSize(_this.value, min, type).valid;
         };
         this.isAllowExtensionsFile = function (extensions) {
-            return file_1.isAllowExtensions(_this.value, extensions).valid;
+            return is_allow_extension_validation_1.isAllowExtensions(_this.value, extensions).valid;
         };
         // VALIDATIONS NUMBER
         this.isNumeric = function () { return number_validation_1.isNumeric(_this.value); };

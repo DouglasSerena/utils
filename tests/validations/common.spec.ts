@@ -1,5 +1,4 @@
-import { REGEX_CPF } from "../../src/regex";
-import { Validate, validate } from "./../../src/validations";
+import { Validate, validate, REGEX_CPF } from "./../../src/utils";
 
 describe("Function validate common", () => {
   it("Is equal", () => {
@@ -22,6 +21,11 @@ describe("Function validate common", () => {
     expect(validate(10).isDifferentNotStrict("11")).toBe(true);
     expect(validate(10).isDifferentNotStrict("10")).toBe(false);
     expect(validate(10).isDifferentNotStrict(10)).toBe(false);
+  });
+  it("Valida with value null", () => {
+    expect(validate(null).isCnpj()).toBe(false);
+    expect(validate(undefined).isCnpj()).toBe(false);
+    expect(validate("").isCnpj()).toBe(false);
   });
   it("Is test pattern", () => {
     expect(validate("000.000.000-00").testPattern(REGEX_CPF)).toBe(true);
@@ -48,8 +52,8 @@ describe("Function validate common", () => {
     expect(validate([""]).isEmpty()).toBe(false);
   });
   it("Is instance of", () => {
-    expect(validate(validate(0)).isInstanceOf(Validate)).toBe(true);
-    expect(validate(validate(0)).isInstanceOf(Date)).toBe(false);
+    expect(validate(validate(0)).isInstanceof(Validate)).toBe(true);
+    expect(validate(validate(0)).isInstanceof(Date)).toBe(false);
   });
   it("Not is instance of", () => {
     expect(validate(validate(0)).notIsInstanceOf(Date)).toBe(true);

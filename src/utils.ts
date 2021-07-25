@@ -41,6 +41,7 @@ export * from "./regex/url.regex";
 // VALIDATIONS
 // // COMMON
 export * from "./validations/common/common.validation";
+export * from "./validations/common/test-pattern.validation";
 export * from "./validations/common/contains.validation";
 export * from "./validations/common/is-cnpj.validation";
 export * from "./validations/common/is-cpf.validation";

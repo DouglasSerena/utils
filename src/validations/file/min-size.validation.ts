@@ -8,7 +8,7 @@ import {
 } from "./file.validation";
 import { isInstanceof } from "../common/common.validation";
 import { isLess } from "../number.validation";
-import { isEmpty } from "../common";
+import { isEmpty } from "../common/is-empty.validation";
 
 export type ErrosMinSize = ErrosFile | "SIZE";
 export interface IFileInvalidMinSize extends IFileInvalid<ErrosMinSize> {

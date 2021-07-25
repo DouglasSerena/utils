@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.distribute = exports.increment = exports.divide = exports.multiply = exports.subtract = exports.add = void 0;
-var functions_1 = require("../functions");
+var parse_number_function_1 = require("../functions/parse-number.function");
 var convertValues = function (value, twoValue) {
-    value = functions_1.parseNumber(value);
-    twoValue = functions_1.parseNumber(twoValue);
+    value = parse_number_function_1.parseNumber(value);
+    twoValue = parse_number_function_1.parseNumber(twoValue);
     return [value, twoValue];
 };
 var add = function (value, twoValue) {

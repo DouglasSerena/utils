@@ -7,6 +7,8 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isCpf = void 0;
 function isCpf(cpf) {
+    if (!cpf)
+        return false;
     cpf = cpf.replace(/\D/g, "");
     var cpfInvalid = __spreadArray(__spreadArray(__spreadArray([], ["00000000000", "11111111111", "22222222222", "33333333333"]), ["44444444444", "55555555555", "66666666666", "77777777777"]), ["88888888888", "99999999999"]);
     if (cpfInvalid.includes(cpf) || cpf.length !== 11) {
@@ -30,9 +32,7 @@ exports.isCpf = isCpf;
 function calcDigit(parteCPF, multi) {
     var generatedDigit = 0;
     var valueTotal = 0;
-    valueTotal = parteCPF.reduce(function (result, currentNumber) {
-        return result + Number.parseInt(currentNumber) * multi--;
-    }, 0);
+    valueTotal = parteCPF.reduce(function (result, currentNumber) { return result + Number.parseInt(currentNumber) * multi--; }, 0);
     generatedDigit = 11 - (valueTotal % 11);
     if (generatedDigit > 9) {
         generatedDigit = 0;

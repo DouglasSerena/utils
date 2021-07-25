@@ -1,4 +1,4 @@
-import { validate } from "./../../src/validations";
+import { validate } from "./../../src/utils";
 
 describe("Function validate date", () => {
   it("Is numeric", () => {

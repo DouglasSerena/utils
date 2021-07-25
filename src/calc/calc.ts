@@ -1,7 +1,7 @@
-import { parseNumber } from "../functions";
 import { add, distribute, divide, increment, multiply, subtract } from "./math.calc";
-import { isInstanceof, validate } from "../validations";
 import { AnyCalc, ICalcOptions } from "./calc.type";
+import { validate } from "../validations/validate.validation";
+import { parseNumber } from "../functions/parse-number.function";
 
 const _config: ICalcOptions = {
   decimal: ",",
@@ -12,7 +12,7 @@ const _config: ICalcOptions = {
   round: "round",
 };
 
-export function calc(value: AnyCalc, config?: ICalcOptions): Calc {
+export function calc(value: AnyCalc | Calc, config?: ICalcOptions): Calc {
   return new Calc(value, config);
 }
 
@@ -22,15 +22,15 @@ export class Calc {
   precision: number;
   config: ICalcOptions;
 
-  constructor(value: AnyCalc, config?: ICalcOptions) {
+  constructor(value: AnyCalc | Calc, config?: ICalcOptions) {
     this.config = Object.assign({}, _config, config);
     this.precision = Math.pow(10, this.config?.precision);
 
     this.save(value);
   }
 
-  private parse(value: AnyCalc) {
-    if (isInstanceof(value, Calc)) {
+  private parse(value: AnyCalc | Calc) {
+    if (validate(value).isInstanceof(Calc)) {
       value = (value as Calc).valueRaw;
     } else {
       value = parseNumber(value as string, this.config);
@@ -38,8 +38,8 @@ export class Calc {
     return value;
   }
 
-  private save(value: AnyCalc): void {
-    if (isInstanceof(value, Calc)) {
+  private save(value: AnyCalc | Calc): void {
+    if (validate(value).isInstanceof(Calc)) {
       this.valueRaw = (value as Calc).valueRaw;
     } else {
       this.valueRaw = parseNumber(value as string, this.config);
@@ -62,35 +62,35 @@ export class Calc {
     return value;
   }
 
-  public add(value: AnyCalc): Calc {
+  public add(value: AnyCalc | Calc): Calc {
     this.valueRaw = add(this.valueRaw, this.parse(value));
     this.value = this.roundingNumber(this.valueRaw);
 
     return this;
   }
 
-  public subtract(value: AnyCalc): Calc {
+  public subtract(value: AnyCalc | Calc): Calc {
     this.valueRaw = subtract(this.valueRaw, this.parse(value));
     this.value = this.roundingNumber(this.valueRaw);
 
     return this;
   }
 
-  public multiply(value: AnyCalc): Calc {
+  public multiply(value: AnyCalc | Calc): Calc {
     this.valueRaw = multiply(this.valueRaw, this.parse(value));
     this.value = this.roundingNumber(this.valueRaw);
 
     return this;
   }
 
-  public divide(value: AnyCalc): Calc {
+  public divide(value: AnyCalc | Calc): Calc {
     this.valueRaw = divide(this.valueRaw, this.parse(value));
     this.value = this.roundingNumber(this.valueRaw);
 
     return this;
   }
 
-  public distribute(value: AnyCalc): number[] {
+  public distribute(value: AnyCalc | Calc): number[] {
     const result = distribute(this.valueRaw, this.parse(value)).map((value) => {
       return this.roundingNumber(value);
     });
@@ -104,4 +104,4 @@ export class Calc {
 calc.config = (config: ICalcOptions) => {
   Object.assign(_config, config);
 };
-calc.isCalc = (prop: any): boolean => validate(prop).isInstanceOf(Calc);
+calc.isCalc = (prop: any): boolean => validate(prop).isInstanceof(Calc);

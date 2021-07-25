@@ -6,9 +6,9 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Calc = exports.calc = void 0;
-var functions_1 = require("../functions");
 var math_calc_1 = require("./math.calc");
-var validations_1 = require("../validations");
+var validate_validation_1 = require("../validations/validate.validation");
+var parse_number_function_1 = require("../functions/parse-number.function");
 var _config = {
     decimal: ",",
     thousands: ".",
@@ -29,20 +29,20 @@ var Calc = /** @class */ (function () {
         this.save(value);
     }
     Calc.prototype.parse = function (value) {
-        if (validations_1.isInstanceof(value, Calc)) {
+        if (validate_validation_1.validate(value).isInstanceof(Calc)) {
             value = value.valueRaw;
         }
         else {
-            value = functions_1.parseNumber(value, this.config);
+            value = parse_number_function_1.parseNumber(value, this.config);
         }
         return value;
     };
     Calc.prototype.save = function (value) {
-        if (validations_1.isInstanceof(value, Calc)) {
+        if (validate_validation_1.validate(value).isInstanceof(Calc)) {
             this.valueRaw = value.valueRaw;
         }
         else {
-            this.valueRaw = functions_1.parseNumber(value, this.config);
+            this.valueRaw = parse_number_function_1.parseNumber(value, this.config);
         }
         this.value = this.roundingNumber(this.valueRaw);
     };
@@ -91,5 +91,5 @@ exports.Calc = Calc;
 calc.config = function (config) {
     Object.assign(_config, config);
 };
-calc.isCalc = function (prop) { return validations_1.validate(prop).isInstanceOf(Calc); };
+calc.isCalc = function (prop) { return validate_validation_1.validate(prop).isInstanceof(Calc); };
 //# sourceMappingURL=calc.js.map

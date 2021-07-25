@@ -7,6 +7,8 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.isCnpj = void 0;
 function isCnpj(cnpj) {
+    if (!cnpj)
+        return false;
     cnpj = cnpj.replace(/\D/g, "");
     var cpfInvalid = __spreadArray(__spreadArray(__spreadArray([], ["00000000000000", "11111111111111", "22222222222222", "33333333333333"]), ["44444444444444", "55555555555555", "66666666666666", "77777777777777"]), ["88888888888888", "99999999999999"]);
     if (cpfInvalid.includes(cnpj) || cnpj.length !== 14) {

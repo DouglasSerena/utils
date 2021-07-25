@@ -1,4 +1,4 @@
-import { validate } from "../../validations";
+import { validate } from "../../validations/validate.validation";
 
 export function mergeObject<T = unknown>(objectMerge: unknown, ...objects: unknown[]): T {
   if (validate(objects).isFill()) {

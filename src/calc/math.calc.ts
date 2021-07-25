@@ -1,4 +1,4 @@
-import { parseNumber } from "../functions";
+import { parseNumber } from "../functions/parse-number.function";
 
 const convertValues = (value: string | number, twoValue: string | number): [number, number] => {
   value = parseNumber(value as number);

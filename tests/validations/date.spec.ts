@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { validate } from "./../../src/validations";
+import { validate } from "./../../src/validations/validate.validation";
 
 describe("Function validate date", () => {
   it("Is date", () => {

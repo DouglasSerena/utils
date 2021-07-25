@@ -11,6 +11,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./common.validation"), exports);
+__exportStar(require("./contains.validation"), exports);
+__exportStar(require("./test-pattern.validation"), exports);
 __exportStar(require("./is-cnpj.validation"), exports);
 __exportStar(require("./is-cpf.validation"), exports);
 __exportStar(require("./is-empty.validation"), exports);
