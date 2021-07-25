@@ -27,6 +27,7 @@ __exportStar(require("./functions/object/get-node.function"), exports);
 __exportStar(require("./functions/object/merge-object.function"), exports);
 __exportStar(require("./functions/object/sort-asc.function"), exports);
 __exportStar(require("./functions/object/sort-desc.function"), exports);
+__exportStar(require("./functions/theme-system.function"), exports);
 __exportStar(require("./functions/dom.function"), exports);
 __exportStar(require("./functions/contains.function"), exports);
 __exportStar(require("./functions/handle-try.function"), exports);

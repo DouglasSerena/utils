@@ -66,6 +66,21 @@ describe("Function theme", () => {
     );
   });
 
+  it("Get colors", () => {
+    theme().reset();
+    theme({
+      global: { text: { light: "#212" } },
+      dark: { primary: "#000", secondary: { default: "#212", light: "#214566" } },
+      light: { primary: "#fff" },
+    }).createStyle();
+
+    expect(theme().getColor("primary")).toEqual("#fff");
+
+    expect(theme().getColor("dark.primary", false)).toEqual("#000");
+    expect(theme().getColor("dark.secondary", false)).toEqual("#212");
+    expect(theme().getColor("dark.secondary.light", false)).toEqual("#214566");
+  });
+
   it("Var prefix", () => {
     theme().reset();
     theme(

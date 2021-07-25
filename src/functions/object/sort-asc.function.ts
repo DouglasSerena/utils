@@ -1,14 +1,14 @@
 import { getNode } from "./get-node.function";
 
-export function sortAsc(object: any[], filter: string): any[] {
+export function sortAsc(object: unknown[], filter: string): unknown[] {
   const arrayFilterLabel = filter?.split("|");
   const pipe = arrayFilterLabel[1];
 
   filter = arrayFilterLabel[0];
 
-  return object.sort((a: any, b: any) => {
-    const node_a = getNode(a, filter?.split("."));
-    const node_b = getNode(b, filter?.split("."));
+  return object.sort((a: unknown, b: unknown) => {
+    const node_a = getNode<string>(a, filter?.split("."));
+    const node_b = getNode<string>(b, filter?.split("."));
 
     if (typeof node_a === "number" && typeof node_b === "number") {
       return node_a - node_b;

@@ -1,5 +1,6 @@
 export * from "./file";
 export * from "./object";
+export * from "./theme-system.function";
 export * from "./contains.function";
 export * from "./handle-try.function";
 export * from "./parse-number.function";

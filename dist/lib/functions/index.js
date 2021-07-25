@@ -12,6 +12,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./file"), exports);
 __exportStar(require("./object"), exports);
+__exportStar(require("./theme-system.function"), exports);
 __exportStar(require("./contains.function"), exports);
 __exportStar(require("./handle-try.function"), exports);
 __exportStar(require("./parse-number.function"), exports);

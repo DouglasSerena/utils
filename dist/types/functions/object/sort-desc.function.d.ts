@@ -1,1 +1,1 @@
-export declare function sortDesc(object: any[], filter: string): any[];
+export declare function sortDesc(object: unknown[], filter: string): unknown[];

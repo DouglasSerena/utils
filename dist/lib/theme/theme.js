@@ -7,13 +7,13 @@ var validations_1 = require("../validations");
 var _themes = {};
 var _config = {
     prefix: "color",
-    use: theme().themeSystem,
+    use: functions_1.themeSystem() || "light",
     disableSystemBasedColorShift: false,
     _element: document.createElement("style"),
 };
 (_b = (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(prefers-color-scheme: dark)")) === null || _b === void 0 ? void 0 : _b.addEventListener("change", function (event) {
     if (validations_1.validate(_config.disableSystemBasedColorShift).isFalse()) {
-        theme().change(theme().themeSystem);
+        theme().change(functions_1.themeSystem() || "light");
     }
 });
 function theme(themes, config) {
@@ -72,9 +72,7 @@ var Theme = /** @class */ (function () {
     });
     Object.defineProperty(Theme.prototype, "themeSystem", {
         get: function () {
-            return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
+            return functions_1.themeSystem() || "light";
         },
         enumerable: false,
         configurable: true
@@ -103,7 +101,7 @@ var Theme = /** @class */ (function () {
     Theme.prototype.reset = function () {
         _themes = {};
         _config = {
-            use: "dark",
+            use: this.themeSystem,
             _style: "",
             prefix: "color",
             disableChangeScheme: false,
@@ -117,6 +115,18 @@ var Theme = /** @class */ (function () {
     Theme.prototype.createStyle = function () {
         _config._style = this.generatorStyle();
         _config._element.innerHTML = this.style;
+    };
+    Theme.prototype.getColor = function (colors, currentTheme) {
+        if (currentTheme === void 0) { currentTheme = true; }
+        var nodes = colors.split(".");
+        if (currentTheme) {
+            nodes.unshift(this.use);
+        }
+        var color = functions_1.getNode(this.themes, nodes);
+        if (validations_1.validate(color).isObject()) {
+            return color.default;
+        }
+        return color;
     };
     Theme.prototype.generatorStyle = function () {
         var style = ["color-scheme: " + this.use];

@@ -1,11 +1,11 @@
-export function getNode(object: any, keys: string[] | string): string {
+export function getNode<T = unknown>(object: unknown, keys: string[] | string): T {
   if (typeof keys === "string") {
     keys = keys?.split(".");
   }
   keys = keys?.filter((key) => key);
 
   if (keys?.length === 0) {
-    return object;
+    return object as T;
   }
 
   const key = keys[0];

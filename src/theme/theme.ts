@@ -1,4 +1,4 @@
-import { mergeObject, themeSystem } from "../functions";
+import { getNode, mergeObject, themeSystem } from "../functions";
 import { validate } from "../validations";
 import { ColorScheme, IColors, ITheme, IThemeConfig } from "./theme.type";
 
@@ -62,7 +62,7 @@ export class Theme {
     return validate(this.use).isEqual("no-preference");
   }
 
-  reset() {
+  reset(): void {
     _themes = {} as ITheme;
     _config = {
       use: this.themeSystem,
@@ -81,6 +81,18 @@ export class Theme {
   createStyle(): void {
     _config._style = this.generatorStyle();
     _config._element.innerHTML = this.style;
+  }
+
+  getColor(colors: string, currentTheme = true): string {
+    const nodes = colors.split(".");
+    if (currentTheme) {
+      nodes.unshift(this.use);
+    }
+    const color = getNode<IColors | string>(this.themes, nodes);
+    if (validate(color).isObject()) {
+      return (color as IColors).default;
+    }
+    return color as string;
   }
 
   private generatorStyle(): string {

@@ -1,1 +1,1 @@
-export declare function sortAsc(object: any[], filter: string): any[];
+export declare function sortAsc(object: unknown[], filter: string): unknown[];

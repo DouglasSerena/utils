@@ -20,6 +20,7 @@ export declare class Theme {
     reset(): void;
     change(theme: ColorScheme): void;
     createStyle(): void;
+    getColor(colors: string, currentTheme?: boolean): string;
     private generatorStyle;
     private generatorStyleContent;
 }
