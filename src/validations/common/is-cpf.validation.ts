@@ -1,4 +1,6 @@
 export function isCpf(cpf: string): boolean {
+  if (!cpf) return false;
+
   cpf = cpf.replace(/\D/g, "") as string;
 
   const cpfInvalid = [
@@ -33,8 +35,7 @@ function calcDigit(parteCPF: string[], multi: number) {
   let valueTotal = 0;
 
   valueTotal = parteCPF.reduce(
-    (result: number, currentNumber: string) =>
-      result + Number.parseInt(currentNumber) * multi--,
+    (result: number, currentNumber: string) => result + Number.parseInt(currentNumber) * multi--,
     0
   );
 

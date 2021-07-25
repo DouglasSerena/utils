@@ -1,4 +1,6 @@
 export function isRgSp(rg: string): boolean {
+  if (!rg) return false;
+
   rg = rg.replace(/\D/g, "") as string;
 
   const partRg = rg.substr(0, 8).split("");
@@ -13,8 +15,7 @@ function calcDigit(parteCPF: string[], multi = 9) {
   let valueTotal = 0;
 
   valueTotal = parteCPF.reduce(
-    (result: number, currentNumber: string) =>
-      result + Number.parseInt(currentNumber) * multi--,
+    (result: number, currentNumber: string) => result + Number.parseInt(currentNumber) * multi--,
     0
   );
 

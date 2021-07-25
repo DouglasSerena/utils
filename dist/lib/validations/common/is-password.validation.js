@@ -5,6 +5,8 @@ var regex_1 = require("../../regex");
 var contains_validation_1 = require("./contains.validation");
 function isPassword(value, disabled, minLength) {
     if (minLength === void 0) { minLength = 9; }
+    if (!value)
+        return false;
     var resultUpperCase = (disabled === null || disabled === void 0 ? void 0 : disabled.charUpperCase) || contains_validation_1.contains(value, regex_1.REGEX_UPPER_CASE, { caseSensitive: true });
     var resultMinLength = (value === null || value === void 0 ? void 0 : value.length) >= minLength;
     var resultCharSpecial = (disabled === null || disabled === void 0 ? void 0 : disabled.charSpecial) || contains_validation_1.contains(value, regex_1.REGEX_CHAR_SPECIAL);

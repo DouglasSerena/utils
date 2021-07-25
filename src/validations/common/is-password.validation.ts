@@ -12,6 +12,8 @@ export function isPassword(
   disabled?: IPasswordOptionsDisabled,
   minLength = 9
 ): boolean {
+  if (!value) return false;
+
   const resultUpperCase =
     disabled?.charUpperCase || contains(value, REGEX_UPPER_CASE, { caseSensitive: true });
 

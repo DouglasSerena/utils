@@ -7,10 +7,12 @@ export interface IContainsOption {
 }
 
 export function contains(
-  work: string,
+  value: string,
   compare: string | RegExp,
   options?: IContainsOption
 ): boolean {
+  if (!value) return false;
+
   options = Object.assign(
     {},
     {
@@ -21,23 +23,23 @@ export function contains(
     options
   );
   if (options?.removeAccents) {
-    work = removeAccents(work);
+    value = removeAccents(value);
     if (typeof compare === "string") {
       compare = removeAccents(compare);
     }
   }
   if (!options?.caseSensitive) {
-    work = work.toLowerCase();
+    value = value.toLowerCase();
     if (typeof compare === "string") {
       compare = compare.toLowerCase();
     }
   }
   if (options?.removeSpace) {
-    work = work.replace(/ +/g, "");
+    value = value.replace(/ +/g, "");
     if (typeof compare === "string") {
       compare = compare.replace(/ +/g, "");
     }
   }
 
-  return work?.match(compare) !== null;
+  return value?.match(compare) !== null;
 }

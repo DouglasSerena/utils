@@ -1,4 +1,6 @@
 export function isCnpj(cnpj: string): boolean {
+  if (!cnpj) return false;
+
   cnpj = cnpj.replace(/\D/g, "") as string;
 
   const cpfInvalid = [
