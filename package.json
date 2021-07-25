@@ -1,6 +1,6 @@
 {
   "name": "@douglas-serena/utils",
-  "version": "0.0.18",
+  "version": "0.0.21",
   "main": "dist/utils.umd.js",
   "module": "dist/utils.es5.js",
   "typings": "dist/types/utils.d.ts",

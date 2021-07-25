@@ -1,4 +1,4 @@
-export function isEmpty<T = any>(item: T | Array<T>): boolean {
+export function isEmpty<T = unknown>(item: T | Array<T>): boolean {
   if (!item) {
     return true;
   }

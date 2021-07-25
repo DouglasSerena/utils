@@ -1,6 +1,7 @@
 import { OpUnitType } from "dayjs";
 import { getSizeImage } from "../functions";
 import {
+  IPasswordOptionsDisabled,
   isBoolean,
   isCnpj,
   isCpf,
@@ -12,14 +13,19 @@ import {
   isEqualNotStrict,
   isFalse,
   isFunction,
-  isInstanceOf,
+  isInstanceof,
   isNull,
   isObject,
+  isPassword,
   isString,
   isTrue,
+  isTypeof,
   isUndefined,
-  notIsInstanceOf,
+  notIsInstanceof,
+  Typeof,
 } from "./common";
+import { contains, IContainsOption } from "./common/contains.validation";
+import { testPattern } from "./common/test-pattern.validation";
 import {
   DateRange,
   DateAny,
@@ -55,17 +61,25 @@ export class Validate {
   constructor(public value: any) {}
 
   // COMMON
-  public isFalse = () => isFalse(this.value);
-  public isTrue = () => isTrue(this.value);
-  public isEqual = (compare: any): boolean => isEqual(this.value, compare);
-  public isDifferent = (compare: any): boolean => isDifferent(this.value, compare);
-  public isEqualNotStrict = (compare: any): boolean => isEqualNotStrict(this.value, compare);
-  public isDifferentNotStrict = (compare: any): boolean =>
+  public contains = (pattern: string | RegExp, options?: IContainsOption): boolean =>
+    contains(this.value, pattern, options);
+
+  public testPattern = (pattern: string | RegExp): boolean => testPattern(this.value, pattern);
+  public isPassword = (disabled?: IPasswordOptionsDisabled, minLength?: number): boolean =>
+    isPassword(this.value, disabled, minLength);
+
+  public isTypeof = (type: Typeof): boolean => isTypeof(this.value, type);
+  public isFalse = (): boolean => isFalse(this.value);
+  public isTrue = (): boolean => isTrue(this.value);
+  public isEqual = (compare: unknown): boolean => isEqual(this.value, compare);
+  public isDifferent = (compare: unknown): boolean => isDifferent(this.value, compare);
+  public isEqualNotStrict = (compare: unknown): boolean => isEqualNotStrict(this.value, compare);
+  public isDifferentNotStrict = (compare: unknown): boolean =>
     isDifferentNotStrict(this.value, compare);
-  public isFill = <T = any>(): boolean => !isEmpty<T>(this.value);
-  public isEmpty = <T = any>(): boolean => isEmpty<T>(this.value);
-  public isInstanceOf = (instance: any): boolean => isInstanceOf(this.value, instance);
-  public notIsInstanceOf = (instance: any): boolean => notIsInstanceOf(this.value, instance);
+  public isFill = <T = unknown>(): boolean => !isEmpty<T>(this.value);
+  public isEmpty = <T = unknown>(): boolean => isEmpty<T>(this.value);
+  public isInstanceOf = (instance: unknown): boolean => isInstanceof(this.value, instance);
+  public notIsInstanceOf = (instance: unknown): boolean => notIsInstanceof(this.value, instance);
   public isString = (): boolean => isString(this.value);
   public isObject = (): boolean => isObject(this.value);
   public isFunction = (): boolean => isFunction(this.value);

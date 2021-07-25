@@ -1,6 +1,6 @@
-import { removeAccents } from "./remove-accents.function";
+import { removeAccents } from "../../functions";
 
-interface IContainsOption {
+export interface IContainsOption {
   removeAccents?: boolean;
   caseSensitive?: boolean;
   removeSpace?: boolean;

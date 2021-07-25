@@ -11,7 +11,7 @@ var minSize = function (files, min, type) {
     files = files || [];
     var size = file_validation_1.BIT_SIZES[type] || file_validation_1.BIT_SIZES.B;
     size = size * min;
-    if (common_validation_1.isInstanceOf(files, File)) {
+    if (common_validation_1.isInstanceof(files, File)) {
         files = [files];
     }
     for (var _i = 0, _a = Array.from(files); _i < _a.length; _i++) {

@@ -1,6 +1,6 @@
 import { parseNumber } from "../functions";
 import { add, distribute, divide, increment, multiply, subtract } from "./math.calc";
-import { isInstanceOf, validate } from "../validations";
+import { isInstanceof, validate } from "../validations";
 import { AnyCalc, ICalcOptions } from "./calc.type";
 
 const _config: ICalcOptions = {
@@ -30,7 +30,7 @@ export class Calc {
   }
 
   private parse(value: AnyCalc) {
-    if (isInstanceOf(value, Calc)) {
+    if (isInstanceof(value, Calc)) {
       value = (value as Calc).valueRaw;
     } else {
       value = parseNumber(value as string, this.config);
@@ -39,7 +39,7 @@ export class Calc {
   }
 
   private save(value: AnyCalc): void {
-    if (isInstanceOf(value, Calc)) {
+    if (isInstanceof(value, Calc)) {
       this.valueRaw = (value as Calc).valueRaw;
     } else {
       this.valueRaw = parseNumber(value as string, this.config);

@@ -39,6 +39,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Validate = exports.validate = void 0;
 var functions_1 = require("../functions");
 var common_1 = require("./common");
+var contains_validation_1 = require("./common/contains.validation");
+var test_pattern_validation_1 = require("./common/test-pattern.validation");
 var date_validation_1 = require("./date.validation");
 var file_1 = require("./file");
 var number_validation_1 = require("./number.validation");
@@ -51,6 +53,14 @@ var Validate = /** @class */ (function () {
         var _this = this;
         this.value = value;
         // COMMON
+        this.contains = function (pattern, options) {
+            return contains_validation_1.contains(_this.value, pattern, options);
+        };
+        this.testPattern = function (pattern) { return test_pattern_validation_1.testPattern(_this.value, pattern); };
+        this.isPassword = function (disabled, minLength) {
+            return common_1.isPassword(_this.value, disabled, minLength);
+        };
+        this.isTypeof = function (type) { return common_1.isTypeof(_this.value, type); };
         this.isFalse = function () { return common_1.isFalse(_this.value); };
         this.isTrue = function () { return common_1.isTrue(_this.value); };
         this.isEqual = function (compare) { return common_1.isEqual(_this.value, compare); };
@@ -61,8 +71,8 @@ var Validate = /** @class */ (function () {
         };
         this.isFill = function () { return !common_1.isEmpty(_this.value); };
         this.isEmpty = function () { return common_1.isEmpty(_this.value); };
-        this.isInstanceOf = function (instance) { return common_1.isInstanceOf(_this.value, instance); };
-        this.notIsInstanceOf = function (instance) { return common_1.notIsInstanceOf(_this.value, instance); };
+        this.isInstanceOf = function (instance) { return common_1.isInstanceof(_this.value, instance); };
+        this.notIsInstanceOf = function (instance) { return common_1.notIsInstanceof(_this.value, instance); };
         this.isString = function () { return common_1.isString(_this.value); };
         this.isObject = function () { return common_1.isObject(_this.value); };
         this.isFunction = function () { return common_1.isFunction(_this.value); };

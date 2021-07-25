@@ -29,7 +29,6 @@ __exportStar(require("./functions/object/sort-asc.function"), exports);
 __exportStar(require("./functions/object/sort-desc.function"), exports);
 __exportStar(require("./functions/theme-system.function"), exports);
 __exportStar(require("./functions/dom.function"), exports);
-__exportStar(require("./functions/contains.function"), exports);
 __exportStar(require("./functions/handle-try.function"), exports);
 __exportStar(require("./functions/parse-number.function"), exports);
 __exportStar(require("./functions/relative-time.function"), exports);
@@ -49,6 +48,7 @@ __exportStar(require("./regex/url.regex"), exports);
 // VALIDATIONS
 // // COMMON
 __exportStar(require("./validations/common/common.validation"), exports);
+__exportStar(require("./validations/common/contains.validation"), exports);
 __exportStar(require("./validations/common/is-cnpj.validation"), exports);
 __exportStar(require("./validations/common/is-cpf.validation"), exports);
 __exportStar(require("./validations/common/is-empty.validation"), exports);
