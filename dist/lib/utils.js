@@ -14,6 +14,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./calc/calc"), exports);
 __exportStar(require("./calc/math.calc"), exports);
 __exportStar(require("./calc/calc.type"), exports);
+// THEME
+__exportStar(require("./theme/theme"), exports);
+__exportStar(require("./theme/theme.type"), exports);
 // FUNCTION
 // // FILE
 __exportStar(require("./functions/file/base64-to-file.function"), exports);
@@ -24,6 +27,7 @@ __exportStar(require("./functions/object/get-node.function"), exports);
 __exportStar(require("./functions/object/merge-object.function"), exports);
 __exportStar(require("./functions/object/sort-asc.function"), exports);
 __exportStar(require("./functions/object/sort-desc.function"), exports);
+__exportStar(require("./functions/dom.function"), exports);
 __exportStar(require("./functions/contains.function"), exports);
 __exportStar(require("./functions/handle-try.function"), exports);
 __exportStar(require("./functions/parse-number.function"), exports);

@@ -3,6 +3,10 @@ export * from "./calc/calc";
 export * from "./calc/math.calc";
 export * from "./calc/calc.type";
 
+// THEME
+export * from "./theme/theme";
+export * from "./theme/theme.type";
+
 // FUNCTION
 // // FILE
 export * from "./functions/file/base64-to-file.function";
@@ -14,6 +18,7 @@ export * from "./functions/object/merge-object.function";
 export * from "./functions/object/sort-asc.function";
 export * from "./functions/object/sort-desc.function";
 
+export * from "./functions/dom.function";
 export * from "./functions/contains.function";
 export * from "./functions/handle-try.function";
 export * from "./functions/parse-number.function";

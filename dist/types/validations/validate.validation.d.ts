@@ -15,6 +15,9 @@ export declare class Validate {
     isInstanceOf: (instance: any) => boolean;
     notIsInstanceOf: (instance: any) => boolean;
     isString: () => boolean;
+    isObject: () => boolean;
+    isFunction: () => boolean;
+    isBoolean: () => boolean;
     isNull: () => boolean;
     isUndefined: () => boolean;
     isCnpj: () => boolean;

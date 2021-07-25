@@ -1,6 +1,8 @@
 export * from "./calc/calc";
 export * from "./calc/math.calc";
 export * from "./calc/calc.type";
+export * from "./theme/theme";
+export * from "./theme/theme.type";
 export * from "./functions/file/base64-to-file.function";
 export * from "./functions/file/file-to-base64.function";
 export * from "./functions/file/get-size-image.function";
@@ -8,6 +10,7 @@ export * from "./functions/object/get-node.function";
 export * from "./functions/object/merge-object.function";
 export * from "./functions/object/sort-asc.function";
 export * from "./functions/object/sort-desc.function";
+export * from "./functions/dom.function";
 export * from "./functions/contains.function";
 export * from "./functions/handle-try.function";
 export * from "./functions/parse-number.function";

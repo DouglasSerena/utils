@@ -71,8 +71,8 @@ function __spreadArray(to, from) {
 function base64toFile(base64, filename) {
     var _a, _b;
     var array = base64 === null || base64 === void 0 ? void 0 : base64.split(",");
-    var mime = (_b = (_a = array[0]) === null || _a === void 0 ? void 0 : _a.match(/:(.*?);/)) === null || _b === void 0 ? void 0 : _b[1];
-    var _atob = atob(array[1]);
+    var mime = ((_b = (_a = array[0]) === null || _a === void 0 ? void 0 : _a.match(/:(.*?);/)) === null || _b === void 0 ? void 0 : _b[1]) || "image/png";
+    var _atob = atob(array[1] || array[0]);
     var length = _atob.length;
     var uint8array = new Uint8Array(length);
     while (length--) {
@@ -191,6 +191,9 @@ var isFill = function (item) { return !isEmpty(item); };
 var isInstanceOf = function (value, instance) { return value instanceof instance; };
 var notIsInstanceOf = function (value, instance) { return !isInstanceOf(value, instance); };
 var isString = function (value) { return typeof value === "string"; };
+var isObject = function (value) { return typeof value === "object"; };
+var isFunction = function (value) { return typeof value === "function"; };
+var isBoolean = function (value) { return typeof value === "boolean"; };
 var isNull = function (value) { return value === null; };
 var isUndefined = function (value) { return typeof value === "undefined"; };
 var isCpfOrCnpj = function (value) {
@@ -221,127 +224,21 @@ var RESOLUTION_HEIGHT = {
 };
 var isFile = function (file) { return isInstanceOf(file, File); };
 
-var getSizeImage = function (file) { return __awaiter(void 0, void 0, void 0, function () {
-    var type, image, base64;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                type = file.type.split("/");
-                if (!isFile(file)) {
-                    throw new Error("file is not instance of File");
-                }
-                if (isDifferent(type[0], "image")) {
-                    throw new Error("File is not image");
-                }
-                image = new Image();
-                return [4 /*yield*/, fileToBase64(file)];
-            case 1:
-                base64 = _a.sent();
-                return [2 /*return*/, new Promise(function (resolve, reject) {
-                        image.onerror = function (error) {
-                            reject(error);
-                        };
-                        image.onload = function () {
-                            resolve({
-                                height: image.height,
-                                width: image.width,
-                            });
-                        };
-                        image.src = base64;
-                    })];
-        }
-    });
-}); };
-
-function getNode(object, keys) {
-    if (typeof keys === "string") {
-        keys = keys === null || keys === void 0 ? void 0 : keys.split(".");
-    }
-    keys = keys === null || keys === void 0 ? void 0 : keys.filter(function (key) { return key; });
-    if ((keys === null || keys === void 0 ? void 0 : keys.length) === 0) {
-        return object;
-    }
-    var key = keys[0];
-    keys === null || keys === void 0 ? void 0 : keys.shift();
-    if ((keys === null || keys === void 0 ? void 0 : keys.length) === 0) {
-        return object === null || object === void 0 ? void 0 : object[key];
-    }
-    else {
-        return getNode(object === null || object === void 0 ? void 0 : object[key], keys);
-    }
-}
-
-function mergeObject(objectMerge) {
-    var objects = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        objects[_i - 1] = arguments[_i];
-    }
-    if (!isEmpty(objects)) {
-        objects.forEach(function (object) {
-            if (!isEmpty(object)) {
-                merge(objectMerge, object);
-            }
-        });
-    }
-    return objectMerge;
-}
-function merge(objectMerge, object) {
-    return Object.keys(object).reduce(function (prev, key) {
-        var _a;
-        if (((_a = object[key]) === null || _a === void 0 ? void 0 : _a.constructor) === Object) {
-            prev[key] = merge(objectMerge[key], object[key]);
-        }
-        else {
-            prev[key] = object[key];
-        }
-        return prev;
-    }, objectMerge || {});
-}
-
-function sortAsc(object, filter) {
-    var arrayFilterLabel = filter === null || filter === void 0 ? void 0 : filter.split("|");
-    arrayFilterLabel[1];
-    filter = arrayFilterLabel[0];
-    return object.sort(function (a, b) {
-        var node_a = getNode(a, filter === null || filter === void 0 ? void 0 : filter.split("."));
-        var node_b = getNode(b, filter === null || filter === void 0 ? void 0 : filter.split("."));
-        if (typeof node_a === "number" && typeof node_b === "number") {
-            return node_a - node_b;
-        }
-        else if (typeof node_a === "string") {
-            if (node_a.toLocaleUpperCase() < node_b.toLocaleUpperCase()) {
-                return -1;
-            }
-            if (node_b.toLocaleUpperCase() < node_a.toLocaleUpperCase()) {
-                return 1;
-            }
-        }
-        return 0;
-    });
-}
-
-function sortDesc(object, filter) {
-    var arrayFilterLabel = filter === null || filter === void 0 ? void 0 : filter.split("|");
-    arrayFilterLabel[1];
-    filter = arrayFilterLabel[0];
-    return object.sort(function (a, b) {
-        var node_a = getNode(a, filter === null || filter === void 0 ? void 0 : filter.split("."));
-        var node_b = getNode(b, filter === null || filter === void 0 ? void 0 : filter.split("."));
-        if (typeof node_a === "number" && typeof node_b === "number") {
-            var result = node_a - node_b;
-            return result > 0 ? -1 : result == 0 ? 0 : 1;
-        }
-        else if (typeof node_a === "string") {
-            if (node_a.toLocaleUpperCase() > node_b.toLocaleUpperCase()) {
-                return -1;
-            }
-            if (node_b.toLocaleUpperCase() > node_a.toLocaleUpperCase()) {
-                return 1;
-            }
-        }
-        return 0;
-    });
-}
+var isEqualNumber = function (value, compare) { return value === compare; };
+var isDifferentNumber = function (value, compare) { return value !== compare; };
+var isNumeric = function (value) { return !isNaN(parseInt(value)) && isFinite(value); };
+var isNumber = function (value) {
+    return !isNaN(parseInt(value)) && isFinite(value) && typeof value === "number";
+};
+var isFloat = function (value) { return isNumeric(value) && !Number.isInteger(value); };
+var isMore = function (value, compare) { return value > compare; };
+var isMoreOrEqual = function (value, compare) { return value >= compare; };
+var isLess = function (value, compare) { return value < compare; };
+var isLessOrEqual = function (value, compare) { return value <= compare; };
+var isBeforeNumber = function (value, range) {
+    value = Number.parseInt(value.toString());
+    return value >= (range.start || 0) && value <= range.end;
+};
 
 function removeAccents(work) {
     var accents = {
@@ -414,143 +311,6 @@ function contains(work, compare, options) {
     return (work === null || work === void 0 ? void 0 : work.match(compare)) !== null;
 }
 
-function handleTry(promise) {
-    return __awaiter(this, void 0, void 0, function () {
-        var _, data, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    _ = promise.toPromise();
-                    if (!isUndefined(_)) {
-                        promise = promise.toPromise();
-                    }
-                    return [4 /*yield*/, promise];
-                case 1:
-                    data = _a.sent();
-                    return [2 /*return*/, [data, null]];
-                case 2:
-                    error_1 = _a.sent();
-                    return [2 /*return*/, [null, error_1]];
-                case 3: return [2 /*return*/];
-            }
-        });
-    });
-}
-
-var isEqualNumber = function (value, compare) { return value === compare; };
-var isDifferentNumber = function (value, compare) { return value !== compare; };
-var isNumeric = function (value) { return !isNaN(parseInt(value)) && isFinite(value); };
-var isNumber = function (value) {
-    return !isNaN(parseInt(value)) && isFinite(value) && typeof value === "number";
-};
-var isFloat = function (value) { return isNumeric(value) && !Number.isInteger(value); };
-var isMore = function (value, compare) { return value > compare; };
-var isMoreOrEqual = function (value, compare) { return value >= compare; };
-var isLess = function (value, compare) { return value < compare; };
-var isLessOrEqual = function (value, compare) { return value <= compare; };
-var isBeforeNumber = function (value, range) {
-    value = Number.parseInt(value.toString());
-    return value >= (range.start || 0) && value <= range.end;
-};
-
-var parseNumberOptions = {
-    decimal: ",",
-    thousands: ".",
-    error: false,
-};
-function parseNumber(value, options) {
-    options = Object.assign({}, parseNumberOptions, options);
-    if (!isNumeric(value) && isString(value)) {
-        var decimalStr = new RegExp("\\" + (options === null || options === void 0 ? void 0 : options.decimal), "g");
-        var thousandsStr = new RegExp("\\" + (options === null || options === void 0 ? void 0 : options.thousands), "g");
-        value = value.toString().replace(thousandsStr, "").replace(decimalStr, ".");
-        value = Number(value) || 0;
-    }
-    else {
-        if (options === null || options === void 0 ? void 0 : options.error)
-            ;
-    }
-    return Number(value);
-}
-
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var relativeTime$1 = createCommonjsModule(function (module, exports) {
-!function(r,e){module.exports=e();}(commonjsGlobal,(function(){return function(r,e,t){r=r||{};var n=e.prototype,o={future:"in %s",past:"%s ago",s:"a few seconds",m:"a minute",mm:"%d minutes",h:"an hour",hh:"%d hours",d:"a day",dd:"%d days",M:"a month",MM:"%d months",y:"a year",yy:"%d years"};function i(r,e,t,o){return n.fromToBase(r,e,t,o)}t.en.relativeTime=o,n.fromToBase=function(e,n,i,d,u){for(var f,a,s,l=i.$locale().relativeTime||o,h=r.thresholds||[{l:"s",r:44,d:"second"},{l:"m",r:89},{l:"mm",r:44,d:"minute"},{l:"h",r:89},{l:"hh",r:21,d:"hour"},{l:"d",r:35},{l:"dd",r:25,d:"day"},{l:"M",r:45},{l:"MM",r:10,d:"month"},{l:"y",r:17},{l:"yy",d:"year"}],m=h.length,c=0;c<m;c+=1){var y=h[c];y.d&&(f=d?t(e).diff(i,y.d,!0):i.diff(e,y.d,!0));var p=(r.rounding||Math.round)(Math.abs(f));if(s=f>0,p<=y.r||!y.r){p<=1&&c>0&&(y=h[c-1]);var v=l[y.l];u&&(p=u(""+p)),a="string"==typeof v?v.replace("%d",p):v(p,n,y.l,s);break}}if(n)return a;var M=s?l.future:l.past;return "function"==typeof M?M(a):M.replace("%s",a)},n.to=function(r,e){return i(r,e,this,!0)},n.from=function(r,e){return i(r,e,this)};var d=function(r){return r.$u?t.utc():t()};n.toNow=function(r){return this.to(d(this),r)},n.fromNow=function(r){return this.from(d(this),r)};}}));
-});
-
-var dayjs_min = createCommonjsModule(function (module, exports) {
-!function(t,e){module.exports=e();}(commonjsGlobal,(function(){var t=1e3,e=6e4,n=36e5,r="millisecond",i="second",s="minute",u="hour",a="day",o="week",f="month",h="quarter",c="year",d="date",$="Invalid Date",l=/^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/,y=/\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,M={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},m=function(t,e,n){var r=String(t);return !r||r.length>=e?t:""+Array(e+1-r.length).join(n)+t},g={s:m,z:function(t){var e=-t.utcOffset(),n=Math.abs(e),r=Math.floor(n/60),i=n%60;return (e<=0?"+":"-")+m(r,2,"0")+":"+m(i,2,"0")},m:function t(e,n){if(e.date()<n.date())return -t(n,e);var r=12*(n.year()-e.year())+(n.month()-e.month()),i=e.clone().add(r,f),s=n-i<0,u=e.clone().add(r+(s?-1:1),f);return +(-(r+(n-i)/(s?i-u:u-i))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(t){return {M:f,y:c,w:o,d:a,D:d,h:u,m:s,s:i,ms:r,Q:h}[t]||String(t||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},D="en",v={};v[D]=M;var p=function(t){return t instanceof _},S=function(t,e,n){var r;if(!t)return D;if("string"==typeof t)v[t]&&(r=t),e&&(v[t]=e,r=t);else {var i=t.name;v[i]=t,r=i;}return !n&&r&&(D=r),r||!n&&D},w=function(t,e){if(p(t))return t.clone();var n="object"==typeof e?e:{};return n.date=t,n.args=arguments,new _(n)},O=g;O.l=S,O.i=p,O.w=function(t,e){return w(t,{locale:e.$L,utc:e.$u,x:e.$x,$offset:e.$offset})};var _=function(){function M(t){this.$L=S(t.locale,null,!0),this.parse(t);}var m=M.prototype;return m.parse=function(t){this.$d=function(t){var e=t.date,n=t.utc;if(null===e)return new Date(NaN);if(O.u(e))return new Date;if(e instanceof Date)return new Date(e);if("string"==typeof e&&!/Z$/i.test(e)){var r=e.match(l);if(r){var i=r[2]-1||0,s=(r[7]||"0").substring(0,3);return n?new Date(Date.UTC(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)):new Date(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)}}return new Date(e)}(t),this.$x=t.x||{},this.init();},m.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds();},m.$utils=function(){return O},m.isValid=function(){return !(this.$d.toString()===$)},m.isSame=function(t,e){var n=w(t);return this.startOf(e)<=n&&n<=this.endOf(e)},m.isAfter=function(t,e){return w(t)<this.startOf(e)},m.isBefore=function(t,e){return this.endOf(e)<w(t)},m.$g=function(t,e,n){return O.u(t)?this[e]:this.set(n,t)},m.unix=function(){return Math.floor(this.valueOf()/1e3)},m.valueOf=function(){return this.$d.getTime()},m.startOf=function(t,e){var n=this,r=!!O.u(e)||e,h=O.p(t),$=function(t,e){var i=O.w(n.$u?Date.UTC(n.$y,e,t):new Date(n.$y,e,t),n);return r?i:i.endOf(a)},l=function(t,e){return O.w(n.toDate()[t].apply(n.toDate("s"),(r?[0,0,0,0]:[23,59,59,999]).slice(e)),n)},y=this.$W,M=this.$M,m=this.$D,g="set"+(this.$u?"UTC":"");switch(h){case c:return r?$(1,0):$(31,11);case f:return r?$(1,M):$(0,M+1);case o:var D=this.$locale().weekStart||0,v=(y<D?y+7:y)-D;return $(r?m-v:m+(6-v),M);case a:case d:return l(g+"Hours",0);case u:return l(g+"Minutes",1);case s:return l(g+"Seconds",2);case i:return l(g+"Milliseconds",3);default:return this.clone()}},m.endOf=function(t){return this.startOf(t,!1)},m.$set=function(t,e){var n,o=O.p(t),h="set"+(this.$u?"UTC":""),$=(n={},n[a]=h+"Date",n[d]=h+"Date",n[f]=h+"Month",n[c]=h+"FullYear",n[u]=h+"Hours",n[s]=h+"Minutes",n[i]=h+"Seconds",n[r]=h+"Milliseconds",n)[o],l=o===a?this.$D+(e-this.$W):e;if(o===f||o===c){var y=this.clone().set(d,1);y.$d[$](l),y.init(),this.$d=y.set(d,Math.min(this.$D,y.daysInMonth())).$d;}else $&&this.$d[$](l);return this.init(),this},m.set=function(t,e){return this.clone().$set(t,e)},m.get=function(t){return this[O.p(t)]()},m.add=function(r,h){var d,$=this;r=Number(r);var l=O.p(h),y=function(t){var e=w($);return O.w(e.date(e.date()+Math.round(t*r)),$)};if(l===f)return this.set(f,this.$M+r);if(l===c)return this.set(c,this.$y+r);if(l===a)return y(1);if(l===o)return y(7);var M=(d={},d[s]=e,d[u]=n,d[i]=t,d)[l]||1,m=this.$d.getTime()+r*M;return O.w(m,this)},m.subtract=function(t,e){return this.add(-1*t,e)},m.format=function(t){var e=this,n=this.$locale();if(!this.isValid())return n.invalidDate||$;var r=t||"YYYY-MM-DDTHH:mm:ssZ",i=O.z(this),s=this.$H,u=this.$m,a=this.$M,o=n.weekdays,f=n.months,h=function(t,n,i,s){return t&&(t[n]||t(e,r))||i[n].substr(0,s)},c=function(t){return O.s(s%12||12,t,"0")},d=n.meridiem||function(t,e,n){var r=t<12?"AM":"PM";return n?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:a+1,MM:O.s(a+1,2,"0"),MMM:h(n.monthsShort,a,f,3),MMMM:h(f,a),D:this.$D,DD:O.s(this.$D,2,"0"),d:String(this.$W),dd:h(n.weekdaysMin,this.$W,o,2),ddd:h(n.weekdaysShort,this.$W,o,3),dddd:o[this.$W],H:String(s),HH:O.s(s,2,"0"),h:c(1),hh:c(2),a:d(s,u,!0),A:d(s,u,!1),m:String(u),mm:O.s(u,2,"0"),s:String(this.$s),ss:O.s(this.$s,2,"0"),SSS:O.s(this.$ms,3,"0"),Z:i};return r.replace(y,(function(t,e){return e||l[t]||i.replace(":","")}))},m.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},m.diff=function(r,d,$){var l,y=O.p(d),M=w(r),m=(M.utcOffset()-this.utcOffset())*e,g=this-M,D=O.m(this,M);return D=(l={},l[c]=D/12,l[f]=D,l[h]=D/3,l[o]=(g-m)/6048e5,l[a]=(g-m)/864e5,l[u]=g/n,l[s]=g/e,l[i]=g/t,l)[y]||g,$?D:O.a(D)},m.daysInMonth=function(){return this.endOf(f).$D},m.$locale=function(){return v[this.$L]},m.locale=function(t,e){if(!t)return this.$L;var n=this.clone(),r=S(t,e,!0);return r&&(n.$L=r),n},m.clone=function(){return O.w(this.$d,this)},m.toDate=function(){return new Date(this.valueOf())},m.toJSON=function(){return this.isValid()?this.toISOString():null},m.toISOString=function(){return this.$d.toISOString()},m.toString=function(){return this.$d.toUTCString()},M}(),b=_.prototype;return w.prototype=b,[["$ms",r],["$s",i],["$m",s],["$H",u],["$W",a],["$M",f],["$y",c],["$D",d]].forEach((function(t){b[t[1]]=function(e){return this.$g(e,t[0],t[1])};})),w.extend=function(t,e){return t.$i||(t(e,_,w),t.$i=!0),w},w.locale=S,w.isDayjs=p,w.unix=function(t){return w(1e3*t)},w.en=v[D],w.Ls=v,w.p={},w}));
-});
-
-dayjs_min.extend(relativeTime$1);
-function relativeTime(value, time) {
-    if (time === void 0) { time = "future"; }
-    value = dayjs_min(value);
-    if (time === "future") {
-        return dayjs_min(Date.now()).to(value);
-    }
-    return dayjs_min(value).to(Date.now());
-}
-
-var REGEX_TIME = /^([0-1][0-9]|[2][0-3]):([0-5][0-9])(:([0-5][0-9]))?$/g;
-
-function timeToDate(time) {
-    if (time) {
-        var validTime = time.match(REGEX_TIME) !== null;
-        return validTime
-            ? dayjs_min().format("YYYY-MM-DDT" + time + "Z")
-            : dayjs_min().format("YYYY-MM-DDTHH:mm:ssZ");
-    }
-    return time;
-}
-
-var convertValues = function (value, twoValue) {
-    value = parseNumber(value);
-    twoValue = parseNumber(twoValue);
-    return [value, twoValue];
-};
-var add = function (value, twoValue) {
-    var _a = convertValues(value, twoValue), one = _a[0], two = _a[1];
-    return one + two;
-};
-var subtract = function (value, twoValue) {
-    var _a = convertValues(value, twoValue), one = _a[0], two = _a[1];
-    return one - two;
-};
-var multiply = function (value, twoValue) {
-    var _a = convertValues(value, twoValue), one = _a[0], two = _a[1];
-    return one * two;
-};
-var divide = function (value, twoValue) {
-    var _a = convertValues(value, twoValue), one = _a[0], two = _a[1];
-    return one / two;
-};
-var increment = function (value, increment) {
-    var _a = convertValues(value, increment), _value = _a[0], _increment = _a[1];
-    return _increment > 0 ? Math.round(_value / _increment) * _increment : _value;
-};
-var distribute = function (value, number) {
-    var _a = convertValues(value, number), _valueInit = _a[0], _number = _a[1];
-    var array = [];
-    var index = _number;
-    var _value = divide(_valueInit, number);
-    for (; index > 0; index--) {
-        if (index === 1) {
-            array.push(subtract(_valueInit, multiply(_value, _number - 1)));
-        }
-        else {
-            array.push(_value);
-        }
-    }
-    return array;
-};
-
 var REGEX_CHAR_SPECIAL = /(\W)/g;
 
 var REGEX_CNPJ = /^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/;
@@ -564,6 +324,8 @@ var REGEX_EMAIL = /^[-\w.%+]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i
 var REGEX_NUMBER = /(\d)/g;
 
 var REGEX_PHONE_BR = /^((\()?(\d{2})?(\))?( )?(9)?( )?\d{4}(-)?\d{4})$/;
+
+var REGEX_TIME = /^([0-1][0-9]|[2][0-3]):([0-5][0-9])(:([0-5][0-9]))?$/g;
 
 var REGEX_UPPER_CASE = /([A-Z])/g;
 
@@ -700,6 +462,16 @@ var minSize = function (files, min, type) {
     };
 };
 
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var dayjs_min = createCommonjsModule(function (module, exports) {
+!function(t,e){module.exports=e();}(commonjsGlobal,(function(){var t=1e3,e=6e4,n=36e5,r="millisecond",i="second",s="minute",u="hour",a="day",o="week",f="month",h="quarter",c="year",d="date",$="Invalid Date",l=/^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/,y=/\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,M={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_")},m=function(t,e,n){var r=String(t);return !r||r.length>=e?t:""+Array(e+1-r.length).join(n)+t},g={s:m,z:function(t){var e=-t.utcOffset(),n=Math.abs(e),r=Math.floor(n/60),i=n%60;return (e<=0?"+":"-")+m(r,2,"0")+":"+m(i,2,"0")},m:function t(e,n){if(e.date()<n.date())return -t(n,e);var r=12*(n.year()-e.year())+(n.month()-e.month()),i=e.clone().add(r,f),s=n-i<0,u=e.clone().add(r+(s?-1:1),f);return +(-(r+(n-i)/(s?i-u:u-i))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(t){return {M:f,y:c,w:o,d:a,D:d,h:u,m:s,s:i,ms:r,Q:h}[t]||String(t||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},D="en",v={};v[D]=M;var p=function(t){return t instanceof _},S=function(t,e,n){var r;if(!t)return D;if("string"==typeof t)v[t]&&(r=t),e&&(v[t]=e,r=t);else {var i=t.name;v[i]=t,r=i;}return !n&&r&&(D=r),r||!n&&D},w=function(t,e){if(p(t))return t.clone();var n="object"==typeof e?e:{};return n.date=t,n.args=arguments,new _(n)},O=g;O.l=S,O.i=p,O.w=function(t,e){return w(t,{locale:e.$L,utc:e.$u,x:e.$x,$offset:e.$offset})};var _=function(){function M(t){this.$L=S(t.locale,null,!0),this.parse(t);}var m=M.prototype;return m.parse=function(t){this.$d=function(t){var e=t.date,n=t.utc;if(null===e)return new Date(NaN);if(O.u(e))return new Date;if(e instanceof Date)return new Date(e);if("string"==typeof e&&!/Z$/i.test(e)){var r=e.match(l);if(r){var i=r[2]-1||0,s=(r[7]||"0").substring(0,3);return n?new Date(Date.UTC(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)):new Date(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)}}return new Date(e)}(t),this.$x=t.x||{},this.init();},m.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds();},m.$utils=function(){return O},m.isValid=function(){return !(this.$d.toString()===$)},m.isSame=function(t,e){var n=w(t);return this.startOf(e)<=n&&n<=this.endOf(e)},m.isAfter=function(t,e){return w(t)<this.startOf(e)},m.isBefore=function(t,e){return this.endOf(e)<w(t)},m.$g=function(t,e,n){return O.u(t)?this[e]:this.set(n,t)},m.unix=function(){return Math.floor(this.valueOf()/1e3)},m.valueOf=function(){return this.$d.getTime()},m.startOf=function(t,e){var n=this,r=!!O.u(e)||e,h=O.p(t),$=function(t,e){var i=O.w(n.$u?Date.UTC(n.$y,e,t):new Date(n.$y,e,t),n);return r?i:i.endOf(a)},l=function(t,e){return O.w(n.toDate()[t].apply(n.toDate("s"),(r?[0,0,0,0]:[23,59,59,999]).slice(e)),n)},y=this.$W,M=this.$M,m=this.$D,g="set"+(this.$u?"UTC":"");switch(h){case c:return r?$(1,0):$(31,11);case f:return r?$(1,M):$(0,M+1);case o:var D=this.$locale().weekStart||0,v=(y<D?y+7:y)-D;return $(r?m-v:m+(6-v),M);case a:case d:return l(g+"Hours",0);case u:return l(g+"Minutes",1);case s:return l(g+"Seconds",2);case i:return l(g+"Milliseconds",3);default:return this.clone()}},m.endOf=function(t){return this.startOf(t,!1)},m.$set=function(t,e){var n,o=O.p(t),h="set"+(this.$u?"UTC":""),$=(n={},n[a]=h+"Date",n[d]=h+"Date",n[f]=h+"Month",n[c]=h+"FullYear",n[u]=h+"Hours",n[s]=h+"Minutes",n[i]=h+"Seconds",n[r]=h+"Milliseconds",n)[o],l=o===a?this.$D+(e-this.$W):e;if(o===f||o===c){var y=this.clone().set(d,1);y.$d[$](l),y.init(),this.$d=y.set(d,Math.min(this.$D,y.daysInMonth())).$d;}else $&&this.$d[$](l);return this.init(),this},m.set=function(t,e){return this.clone().$set(t,e)},m.get=function(t){return this[O.p(t)]()},m.add=function(r,h){var d,$=this;r=Number(r);var l=O.p(h),y=function(t){var e=w($);return O.w(e.date(e.date()+Math.round(t*r)),$)};if(l===f)return this.set(f,this.$M+r);if(l===c)return this.set(c,this.$y+r);if(l===a)return y(1);if(l===o)return y(7);var M=(d={},d[s]=e,d[u]=n,d[i]=t,d)[l]||1,m=this.$d.getTime()+r*M;return O.w(m,this)},m.subtract=function(t,e){return this.add(-1*t,e)},m.format=function(t){var e=this,n=this.$locale();if(!this.isValid())return n.invalidDate||$;var r=t||"YYYY-MM-DDTHH:mm:ssZ",i=O.z(this),s=this.$H,u=this.$m,a=this.$M,o=n.weekdays,f=n.months,h=function(t,n,i,s){return t&&(t[n]||t(e,r))||i[n].substr(0,s)},c=function(t){return O.s(s%12||12,t,"0")},d=n.meridiem||function(t,e,n){var r=t<12?"AM":"PM";return n?r.toLowerCase():r},l={YY:String(this.$y).slice(-2),YYYY:this.$y,M:a+1,MM:O.s(a+1,2,"0"),MMM:h(n.monthsShort,a,f,3),MMMM:h(f,a),D:this.$D,DD:O.s(this.$D,2,"0"),d:String(this.$W),dd:h(n.weekdaysMin,this.$W,o,2),ddd:h(n.weekdaysShort,this.$W,o,3),dddd:o[this.$W],H:String(s),HH:O.s(s,2,"0"),h:c(1),hh:c(2),a:d(s,u,!0),A:d(s,u,!1),m:String(u),mm:O.s(u,2,"0"),s:String(this.$s),ss:O.s(this.$s,2,"0"),SSS:O.s(this.$ms,3,"0"),Z:i};return r.replace(y,(function(t,e){return e||l[t]||i.replace(":","")}))},m.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},m.diff=function(r,d,$){var l,y=O.p(d),M=w(r),m=(M.utcOffset()-this.utcOffset())*e,g=this-M,D=O.m(this,M);return D=(l={},l[c]=D/12,l[f]=D,l[h]=D/3,l[o]=(g-m)/6048e5,l[a]=(g-m)/864e5,l[u]=g/n,l[s]=g/e,l[i]=g/t,l)[y]||g,$?D:O.a(D)},m.daysInMonth=function(){return this.endOf(f).$D},m.$locale=function(){return v[this.$L]},m.locale=function(t,e){if(!t)return this.$L;var n=this.clone(),r=S(t,e,!0);return r&&(n.$L=r),n},m.clone=function(){return O.w(this.$d,this)},m.toDate=function(){return new Date(this.valueOf())},m.toJSON=function(){return this.isValid()?this.toISOString():null},m.toISOString=function(){return this.$d.toISOString()},m.toString=function(){return this.$d.toUTCString()},M}(),b=_.prototype;return w.prototype=b,[["$ms",r],["$s",i],["$m",s],["$H",u],["$W",a],["$M",f],["$y",c],["$D",d]].forEach((function(t){b[t[1]]=function(e){return this.$g(e,t[0],t[1])};})),w.extend=function(t,e){return t.$i||(t(e,_,w),t.$i=!0),w},w.locale=S,w.isDayjs=p,w.unix=function(t){return w(1e3*t)},w.en=v[D],w.Ls=v,w.p={},w}));
+});
+
 var isBetween = createCommonjsModule(function (module, exports) {
 !function(e,i){module.exports=i();}(commonjsGlobal,(function(){return function(e,i,t){i.prototype.isBetween=function(e,i,s,f){var n=t(e),o=t(i),r="("===(f=f||"()")[0],u=")"===f[1];return (r?this.isAfter(n,s):!this.isBefore(n,s))&&(u?this.isBefore(o,s):!this.isAfter(o,s))||(r?this.isBefore(n,s):!this.isAfter(n,s))&&(u?this.isAfter(o,s):!this.isBefore(o,s))};}}));
 });
@@ -758,6 +530,9 @@ var Validate = /** @class */ (function () {
         this.isInstanceOf = function (instance) { return isInstanceOf(_this.value, instance); };
         this.notIsInstanceOf = function (instance) { return notIsInstanceOf(_this.value, instance); };
         this.isString = function () { return isString(_this.value); };
+        this.isObject = function () { return isObject(_this.value); };
+        this.isFunction = function () { return isFunction(_this.value); };
+        this.isBoolean = function () { return isBoolean(_this.value); };
         this.isNull = function () { return isNull(_this.value); };
         this.isUndefined = function () { return isUndefined(_this.value); };
         this.isCnpj = function () { return isCnpj(_this.value); };
@@ -768,7 +543,7 @@ var Validate = /** @class */ (function () {
         this.maxHeightFile = function (max) { return __awaiter(_this, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _a = isMore;
+                    _a = isMoreOrEqual;
                     return [4 /*yield*/, getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).height, max])];
             }
@@ -776,7 +551,7 @@ var Validate = /** @class */ (function () {
         this.minHeightFile = function (min) { return __awaiter(_this, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _a = isLess;
+                    _a = isLessOrEqual;
                     return [4 /*yield*/, getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).height, min])];
             }
@@ -784,7 +559,7 @@ var Validate = /** @class */ (function () {
         this.maxWidthFile = function (max) { return __awaiter(_this, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _a = isMore;
+                    _a = isMoreOrEqual;
                     return [4 /*yield*/, getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).width, max])];
             }
@@ -792,7 +567,7 @@ var Validate = /** @class */ (function () {
         this.minWidthFile = function (min) { return __awaiter(_this, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _a = isLess;
+                    _a = isLessOrEqual;
                     return [4 /*yield*/, getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).width, min])];
             }
@@ -839,16 +614,245 @@ var Validate = /** @class */ (function () {
     return Validate;
 }());
 
-var calcOptions = __assign(__assign({}, parseNumberOptions), { precision: 2, increment: 0, round: "round" });
+var getSizeImage = function (file) { return __awaiter(void 0, void 0, void 0, function () {
+    var type, image, base64;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                type = file.type.split("/");
+                if (!validate(file).isFile() && validate(file).isString()) {
+                    file = base64toFile(file, "unnamed.png");
+                }
+                if (validate(type[0]).isDifferent("image")) {
+                    throw new Error("File is not image");
+                }
+                image = new Image();
+                return [4 /*yield*/, fileToBase64(file)];
+            case 1:
+                base64 = _a.sent();
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        image.onerror = function (error) {
+                            reject(error);
+                        };
+                        image.onload = function () {
+                            resolve({
+                                height: image.height,
+                                width: image.width,
+                            });
+                        };
+                        image.src = base64;
+                    })];
+        }
+    });
+}); };
 
-function calc(value, settings) {
-    return new Calc(value, settings);
+function getNode(object, keys) {
+    if (typeof keys === "string") {
+        keys = keys === null || keys === void 0 ? void 0 : keys.split(".");
+    }
+    keys = keys === null || keys === void 0 ? void 0 : keys.filter(function (key) { return key; });
+    if ((keys === null || keys === void 0 ? void 0 : keys.length) === 0) {
+        return object;
+    }
+    var key = keys[0];
+    keys === null || keys === void 0 ? void 0 : keys.shift();
+    if ((keys === null || keys === void 0 ? void 0 : keys.length) === 0) {
+        return object === null || object === void 0 ? void 0 : object[key];
+    }
+    else {
+        return getNode(object === null || object === void 0 ? void 0 : object[key], keys);
+    }
 }
+
+function mergeObject(objectMerge) {
+    var objects = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        objects[_i - 1] = arguments[_i];
+    }
+    if (validate(objects).isFill()) {
+        objects.forEach(function (object) {
+            if (validate(object).isFill()) {
+                merge(objectMerge, object);
+            }
+        });
+    }
+    return objectMerge;
+}
+function merge(objectMerge, object) {
+    return Object.keys(object).reduce(function (prev, key) {
+        if (validate(object[key]).isObject() && validate(object[key].name).isUndefined()) {
+            prev[key] = merge(prev[key], object[key]);
+        }
+        else {
+            prev[key] = object[key];
+        }
+        return prev;
+    }, objectMerge || {});
+}
+
+function sortAsc(object, filter) {
+    var arrayFilterLabel = filter === null || filter === void 0 ? void 0 : filter.split("|");
+    arrayFilterLabel[1];
+    filter = arrayFilterLabel[0];
+    return object.sort(function (a, b) {
+        var node_a = getNode(a, filter === null || filter === void 0 ? void 0 : filter.split("."));
+        var node_b = getNode(b, filter === null || filter === void 0 ? void 0 : filter.split("."));
+        if (typeof node_a === "number" && typeof node_b === "number") {
+            return node_a - node_b;
+        }
+        else if (typeof node_a === "string") {
+            if (node_a.toLocaleUpperCase() < node_b.toLocaleUpperCase()) {
+                return -1;
+            }
+            if (node_b.toLocaleUpperCase() < node_a.toLocaleUpperCase()) {
+                return 1;
+            }
+        }
+        return 0;
+    });
+}
+
+function sortDesc(object, filter) {
+    var arrayFilterLabel = filter === null || filter === void 0 ? void 0 : filter.split("|");
+    arrayFilterLabel[1];
+    filter = arrayFilterLabel[0];
+    return object.sort(function (a, b) {
+        var node_a = getNode(a, filter === null || filter === void 0 ? void 0 : filter.split("."));
+        var node_b = getNode(b, filter === null || filter === void 0 ? void 0 : filter.split("."));
+        if (typeof node_a === "number" && typeof node_b === "number") {
+            var result = node_a - node_b;
+            return result > 0 ? -1 : result == 0 ? 0 : 1;
+        }
+        else if (typeof node_a === "string") {
+            if (node_a.toLocaleUpperCase() > node_b.toLocaleUpperCase()) {
+                return -1;
+            }
+            if (node_b.toLocaleUpperCase() > node_a.toLocaleUpperCase()) {
+                return 1;
+            }
+        }
+        return 0;
+    });
+}
+
+function handleTry(promise) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _, data, error_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 2, , 3]);
+                    _ = promise.toPromise();
+                    if (!isUndefined(_)) {
+                        promise = promise.toPromise();
+                    }
+                    return [4 /*yield*/, promise];
+                case 1:
+                    data = _a.sent();
+                    return [2 /*return*/, [data, null]];
+                case 2:
+                    error_1 = _a.sent();
+                    return [2 /*return*/, [null, error_1]];
+                case 3: return [2 /*return*/];
+            }
+        });
+    });
+}
+
+var parseNumberOptions = {
+    decimal: ",",
+    thousands: ".",
+    error: false,
+};
+function parseNumber(value, options) {
+    options = Object.assign({}, parseNumberOptions, options);
+    if (!isNumeric(value) && isString(value)) {
+        var decimalStr = new RegExp("\\" + (options === null || options === void 0 ? void 0 : options.decimal), "g");
+        var thousandsStr = new RegExp("\\" + (options === null || options === void 0 ? void 0 : options.thousands), "g");
+        value = value.toString().replace(thousandsStr, "").replace(decimalStr, ".");
+        value = Number(value) || 0;
+    }
+    else {
+        if (options === null || options === void 0 ? void 0 : options.error)
+            ;
+    }
+    return Number(value);
+}
+
+var relativeTime$1 = createCommonjsModule(function (module, exports) {
+!function(r,e){module.exports=e();}(commonjsGlobal,(function(){return function(r,e,t){r=r||{};var n=e.prototype,o={future:"in %s",past:"%s ago",s:"a few seconds",m:"a minute",mm:"%d minutes",h:"an hour",hh:"%d hours",d:"a day",dd:"%d days",M:"a month",MM:"%d months",y:"a year",yy:"%d years"};function i(r,e,t,o){return n.fromToBase(r,e,t,o)}t.en.relativeTime=o,n.fromToBase=function(e,n,i,d,u){for(var f,a,s,l=i.$locale().relativeTime||o,h=r.thresholds||[{l:"s",r:44,d:"second"},{l:"m",r:89},{l:"mm",r:44,d:"minute"},{l:"h",r:89},{l:"hh",r:21,d:"hour"},{l:"d",r:35},{l:"dd",r:25,d:"day"},{l:"M",r:45},{l:"MM",r:10,d:"month"},{l:"y",r:17},{l:"yy",d:"year"}],m=h.length,c=0;c<m;c+=1){var y=h[c];y.d&&(f=d?t(e).diff(i,y.d,!0):i.diff(e,y.d,!0));var p=(r.rounding||Math.round)(Math.abs(f));if(s=f>0,p<=y.r||!y.r){p<=1&&c>0&&(y=h[c-1]);var v=l[y.l];u&&(p=u(""+p)),a="string"==typeof v?v.replace("%d",p):v(p,n,y.l,s);break}}if(n)return a;var M=s?l.future:l.past;return "function"==typeof M?M(a):M.replace("%s",a)},n.to=function(r,e){return i(r,e,this,!0)},n.from=function(r,e){return i(r,e,this)};var d=function(r){return r.$u?t.utc():t()};n.toNow=function(r){return this.to(d(this),r)},n.fromNow=function(r){return this.from(d(this),r)};}}));
+});
+
+dayjs_min.extend(relativeTime$1);
+function relativeTime(value, time) {
+    if (time === void 0) { time = "future"; }
+    value = dayjs_min(value);
+    if (time === "future") {
+        return dayjs_min(Date.now()).to(value);
+    }
+    return dayjs_min(value).to(Date.now());
+}
+
+function timeToDate(time) {
+    if (time) {
+        var validTime = time.match(REGEX_TIME) !== null;
+        return validTime
+            ? dayjs_min().format("YYYY-MM-DDT" + time + "Z")
+            : dayjs_min().format("YYYY-MM-DDTHH:mm:ssZ");
+    }
+    return time;
+}
+
+var convertValues = function (value, twoValue) {
+    value = parseNumber(value);
+    twoValue = parseNumber(twoValue);
+    return [value, twoValue];
+};
+var add = function (value, twoValue) {
+    var _a = convertValues(value, twoValue), one = _a[0], two = _a[1];
+    return one + two;
+};
+var subtract = function (value, twoValue) {
+    var _a = convertValues(value, twoValue), one = _a[0], two = _a[1];
+    return one - two;
+};
+var multiply = function (value, twoValue) {
+    var _a = convertValues(value, twoValue), one = _a[0], two = _a[1];
+    return one * two;
+};
+var divide = function (value, twoValue) {
+    var _a = convertValues(value, twoValue), one = _a[0], two = _a[1];
+    return one / two;
+};
+var increment = function (value, increment) {
+    var _a = convertValues(value, increment), _value = _a[0], _increment = _a[1];
+    return _increment > 0 ? Math.round(_value / _increment) * _increment : _value;
+};
+var distribute = function (value, number) {
+    var _a = convertValues(value, number), _valueInit = _a[0], _number = _a[1];
+    var array = [];
+    var index = _number;
+    var _value = divide(_valueInit, number);
+    for (; index > 0; index--) {
+        if (index === 1) {
+            array.push(subtract(_valueInit, multiply(_value, _number - 1)));
+        }
+        else {
+            array.push(_value);
+        }
+    }
+    return array;
+};
+
+var configGlobal = __assign(__assign({}, parseNumberOptions), { precision: 2, increment: 0, round: "round" });
+var calc = function (value, config) {
+    return new Calc(value, config);
+};
 var Calc = /** @class */ (function () {
-    function Calc(value, settings) {
+    function Calc(value, config) {
         var _a;
-        this.settings = Object.assign({}, this.settings, calcOptions, settings);
-        this.precision = Math.pow(10, (_a = this.settings) === null || _a === void 0 ? void 0 : _a.precision);
+        this.config = Object.assign({}, configGlobal, config);
+        this.precision = Math.pow(10, (_a = this.config) === null || _a === void 0 ? void 0 : _a.precision);
         this.save(value);
     }
     Calc.prototype.parse = function (value) {
@@ -856,7 +860,7 @@ var Calc = /** @class */ (function () {
             value = value.valueRaw;
         }
         else {
-            value = parseNumber(value, this.settings);
+            value = parseNumber(value, this.config);
         }
         return value;
     };
@@ -865,17 +869,17 @@ var Calc = /** @class */ (function () {
             this.valueRaw = value.valueRaw;
         }
         else {
-            this.valueRaw = parseNumber(value, this.settings);
+            this.valueRaw = parseNumber(value, this.config);
         }
         this.value = this.roundingNumber(this.valueRaw);
     };
     Calc.prototype.roundingNumber = function (value) {
         value = Number(value) * this.precision;
         value = Number(value.toFixed(4));
-        var mathRound = Math[this.settings.round];
+        var mathRound = Math[this.config.round];
         value = mathRound(value) / this.precision;
-        if (this.settings.increment) {
-            value = increment(value, this.settings.increment) * this.precision;
+        if (this.config.increment) {
+            value = increment(value, this.config.increment) * this.precision;
             value = mathRound(value) / this.precision;
         }
         return value;
@@ -910,6 +914,127 @@ var Calc = /** @class */ (function () {
     };
     return Calc;
 }());
+calc.config = function (config) {
+    Object.assign(configGlobal, config);
+};
+calc.isCalc = function (prop) { return validate(prop).isInstanceOf(Calc); };
 
-export { BIT_SIZES, Calc, REGEX_CHAR_SPECIAL, REGEX_CNPJ, REGEX_CPF, REGEX_CPF_CNPJ, REGEX_EMAIL, REGEX_NUMBER, REGEX_PHONE_BR, REGEX_TIME, REGEX_UPPER_CASE, REGEX_URL, RESOLUTION_HEIGHT, RESOLUTION_WIDTH, Validate, add, base64toFile, calc, calcOptions, contains, distribute, divide, fileToBase64, getNode, getSizeImage, handleTry, increment, isAfterDate, isAllowExtensions, isBeforeDate, isBeforeNumber, isBetweenDate, isBirthDateValidation, isCnpj, isCpf, isCpfOrCnpj, isDate, isDifferent, isDifferentDate, isDifferentNotStrict, isDifferentNumber, isEmpty, isEqual, isEqualDate, isEqualNotStrict, isEqualNumber, isFile, isFill, isFloat, isInstanceOf, isLess, isLessOrEqual, isMore, isMoreOrEqual, isNull, isNumber, isNumeric, isPassword, isRgSp, isString, isUndefined, maxSize, merge, mergeObject, minSize, multiply, notIsInstanceOf, parseNumber, parseNumberOptions, relativeTime, removeAccents, sortAsc, sortDesc, subtract, timeToDate, validate };
+var _themes = {};
+var _config = {
+    use: "dark",
+    _element: document.createElement("style"),
+};
+function theme(themes, config) {
+    return new Theme(themes, config);
+}
+var Theme = /** @class */ (function () {
+    function Theme(themes, config) {
+        mergeObject(_themes, themes);
+        mergeObject(_config, config);
+        if (!document.head.contains(this.element)) {
+            document.head.appendChild(this.element);
+        }
+    }
+    Object.defineProperty(Theme.prototype, "themes", {
+        get: function () {
+            return _themes;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Theme.prototype, "style", {
+        get: function () {
+            return _config._style;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Theme.prototype, "use", {
+        get: function () {
+            return _config.use;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Theme.prototype, "config", {
+        get: function () {
+            return _config;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Theme.prototype, "element", {
+        get: function () {
+            return _config._element;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Theme.prototype, "isDark", {
+        get: function () {
+            return validate(this.use).isEqual("dark");
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Theme.prototype, "isLight", {
+        get: function () {
+            return validate(this.use).isEqual("light");
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Theme.prototype, "isNoPreference", {
+        get: function () {
+            return validate(this.use).isEqual("no-preference");
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Theme.prototype.reset = function () {
+        _themes = {};
+    };
+    Theme.prototype.change = function (theme) {
+        _config.use = theme;
+        this.createStyle();
+    };
+    Theme.prototype.createStyle = function () {
+        _config._style = this.generatorStyle();
+        _config._element.innerHTML = this.style;
+    };
+    Theme.prototype.generatorStyle = function () {
+        var style = ["color-scheme: " + this.use];
+        var colors = _themes[this.use];
+        Object.keys(colors).forEach(function (colorType) {
+            if (validate(colors[colorType]).isString()) {
+                style.push("--color-" + colorType + ": " + colors[colorType]);
+            }
+            else {
+                Object.keys(colors[colorType]).forEach(function (colorName) {
+                    var value = colors[colorType][colorName];
+                    if (validate(colorName).isEqual("default")) {
+                        style.push("--color-" + colorType + ": " + value);
+                    }
+                    else {
+                        style.push("--color-" + colorType + "-" + colorName + ": " + value);
+                    }
+                });
+            }
+        });
+        return ":root{" + style.join(";") + ";}";
+    };
+    return Theme;
+}());
+theme.config = function (config) {
+    mergeObject(_config, config);
+};
+theme.theme = function (themes) {
+    mergeObject(_themes, themes);
+};
+theme.isTheme = function (prop) { return validate(prop).isInstanceOf(Theme); };
+
+var $ = document.querySelector.bind(document);
+var $$ = document.querySelectorAll.bind(document);
+
+export { $, $$, BIT_SIZES, Calc, REGEX_CHAR_SPECIAL, REGEX_CNPJ, REGEX_CPF, REGEX_CPF_CNPJ, REGEX_EMAIL, REGEX_NUMBER, REGEX_PHONE_BR, REGEX_TIME, REGEX_UPPER_CASE, REGEX_URL, RESOLUTION_HEIGHT, RESOLUTION_WIDTH, Theme, Validate, add, base64toFile, calc, contains, distribute, divide, fileToBase64, getNode, getSizeImage, handleTry, increment, isAfterDate, isAllowExtensions, isBeforeDate, isBeforeNumber, isBetweenDate, isBirthDateValidation, isBoolean, isCnpj, isCpf, isCpfOrCnpj, isDate, isDifferent, isDifferentDate, isDifferentNotStrict, isDifferentNumber, isEmpty, isEqual, isEqualDate, isEqualNotStrict, isEqualNumber, isFile, isFill, isFloat, isFunction, isInstanceOf, isLess, isLessOrEqual, isMore, isMoreOrEqual, isNull, isNumber, isNumeric, isObject, isPassword, isRgSp, isString, isUndefined, maxSize, merge, mergeObject, minSize, multiply, notIsInstanceOf, parseNumber, parseNumberOptions, relativeTime, removeAccents, sortAsc, sortDesc, subtract, theme, timeToDate, validate };
 //# sourceMappingURL=utils.es5.js.map

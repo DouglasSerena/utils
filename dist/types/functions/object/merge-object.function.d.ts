@@ -1,2 +1,2 @@
-export declare function mergeObject(objectMerge: object, ...objects: object[]): object;
-export declare function merge(objectMerge: object, object: object): object;
+export declare function mergeObject<T = unknown>(objectMerge: unknown, ...objects: unknown[]): T;
+export declare function merge(objectMerge: unknown, object: unknown): unknown;

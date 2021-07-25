@@ -6,4 +6,3 @@ export interface CalcOptions extends IParseNumberOptions {
     precision?: number;
     increment?: number;
 }
-export declare const calcOptions: CalcOptions;

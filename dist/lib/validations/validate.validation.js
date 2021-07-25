@@ -62,6 +62,9 @@ var Validate = /** @class */ (function () {
         this.isInstanceOf = function (instance) { return common_1.isInstanceOf(_this.value, instance); };
         this.notIsInstanceOf = function (instance) { return common_1.notIsInstanceOf(_this.value, instance); };
         this.isString = function () { return common_1.isString(_this.value); };
+        this.isObject = function () { return common_1.isObject(_this.value); };
+        this.isFunction = function () { return common_1.isFunction(_this.value); };
+        this.isBoolean = function () { return common_1.isBoolean(_this.value); };
         this.isNull = function () { return common_1.isNull(_this.value); };
         this.isUndefined = function () { return common_1.isUndefined(_this.value); };
         this.isCnpj = function () { return common_1.isCnpj(_this.value); };
@@ -72,7 +75,7 @@ var Validate = /** @class */ (function () {
         this.maxHeightFile = function (max) { return __awaiter(_this, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _a = number_validation_1.isMore;
+                    _a = number_validation_1.isMoreOrEqual;
                     return [4 /*yield*/, functions_1.getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).height, max])];
             }
@@ -80,7 +83,7 @@ var Validate = /** @class */ (function () {
         this.minHeightFile = function (min) { return __awaiter(_this, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _a = number_validation_1.isLess;
+                    _a = number_validation_1.isLessOrEqual;
                     return [4 /*yield*/, functions_1.getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).height, min])];
             }
@@ -88,7 +91,7 @@ var Validate = /** @class */ (function () {
         this.maxWidthFile = function (max) { return __awaiter(_this, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _a = number_validation_1.isMore;
+                    _a = number_validation_1.isMoreOrEqual;
                     return [4 /*yield*/, functions_1.getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).width, max])];
             }
@@ -96,7 +99,7 @@ var Validate = /** @class */ (function () {
         this.minWidthFile = function (min) { return __awaiter(_this, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _a = number_validation_1.isLess;
+                    _a = number_validation_1.isLessOrEqual;
                     return [4 /*yield*/, functions_1.getSizeImage(this.value)];
                 case 1: return [2 /*return*/, _a.apply(void 0, [(_b.sent()).width, min])];
             }

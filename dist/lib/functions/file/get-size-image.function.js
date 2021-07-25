@@ -37,8 +37,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getSizeImage = void 0;
-var common_validation_1 = require("../../validations/common/common.validation");
-var file_validation_1 = require("../../validations/file/file.validation");
+var validations_1 = require("../../validations");
+var base64_to_file_function_1 = require("./base64-to-file.function");
 var file_to_base64_function_1 = require("./file-to-base64.function");
 var getSizeImage = function (file) { return __awaiter(void 0, void 0, void 0, function () {
     var type, image, base64;
@@ -46,10 +46,10 @@ var getSizeImage = function (file) { return __awaiter(void 0, void 0, void 0, fu
         switch (_a.label) {
             case 0:
                 type = file.type.split("/");
-                if (!file_validation_1.isFile(file)) {
-                    throw new Error("file is not instance of File");
+                if (!validations_1.validate(file).isFile() && validations_1.validate(file).isString()) {
+                    file = base64_to_file_function_1.base64toFile(file, "unnamed.png");
                 }
-                if (common_validation_1.isDifferent(type[0], "image")) {
+                if (validations_1.validate(type[0]).isDifferent("image")) {
                     throw new Error("File is not image");
                 }
                 image = new Image();

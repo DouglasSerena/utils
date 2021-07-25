@@ -1,11 +1,15 @@
 import { AnyCalc, CalcOptions } from "./calc.type";
-export declare function calc(value: AnyCalc, settings?: CalcOptions): Calc;
+export declare const calc: {
+    (value: AnyCalc, config?: CalcOptions): Calc;
+    config(config: CalcOptions): void;
+    isCalc(prop: any): boolean;
+};
 export declare class Calc {
     value: number;
     valueRaw: number;
-    settings: CalcOptions;
     precision: number;
-    constructor(value: AnyCalc, settings?: CalcOptions);
+    config: CalcOptions;
+    constructor(value: AnyCalc, config?: CalcOptions);
     private parse;
     private save;
     private roundingNumber;
