@@ -1,3 +1,4 @@
+import { contains, IContainsOption } from "./contains.validation";
 import { isCnpj } from "./is-cnpj.validation";
 import { isCpf } from "./is-cpf.validation";
 import { isEmpty } from "./is-empty.validation";
@@ -11,6 +12,9 @@ export type Typeof =
   | "undefined"
   | "object"
   | "function";
+
+export const noContains = (value: any, compare: any, options?: IContainsOption) =>
+  !contains(value, compare, options);
 
 export const isEqual = (value: any, compare: any): boolean => value === compare;
 export const isDifferent = (value: any, compare: any): boolean => value !== compare;
@@ -27,10 +31,12 @@ export const notIsInstanceof = (value: any, instance: any) => !isInstanceof(valu
 export const isFalse = (value: any) => !value;
 export const isTrue = (value: any) => !!value;
 
-export const isString = (value: any) => typeof value === "string";
-export const isObject = (value: any) => typeof value === "object";
-export const isFunction = (value: any) => typeof value === "function";
-export const isBoolean = (value: any) => typeof value === "boolean";
+export const isString = (value: any) => typeof value === "string" || isInstanceof(value, String);
+export const isObject = (value: any) => typeof value === "object" || isInstanceof(value, Object);
+export const isArray = (value: any) => typeof value === "object" && isInstanceof(value, Array);
+export const isFunction = (value: any) =>
+  typeof value === "function" || isInstanceof(value, Function);
+export const isBoolean = (value: any) => typeof value === "boolean" || isInstanceof(value, Boolean);
 export const isNull = (value: any): boolean => value === null;
 export const isUndefined = (value: any): boolean => typeof value === "undefined";
 

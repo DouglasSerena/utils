@@ -20,4 +20,4 @@ __exportStar(require("./phone-br.regex"), exports);
 __exportStar(require("./time.regex"), exports);
 __exportStar(require("./upper-case.regex"), exports);
 __exportStar(require("./url.regex"), exports);
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvcmVnZXgvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7O0FBQUEsdURBQXFDO0FBQ3JDLCtDQUE2QjtBQUM3QixtREFBaUM7QUFDakMsOENBQTRCO0FBQzVCLGdEQUE4QjtBQUM5QixpREFBK0I7QUFDL0IsbURBQWlDO0FBQ2pDLCtDQUE2QjtBQUM3QixxREFBbUM7QUFDbkMsOENBQTRCIn0=

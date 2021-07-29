@@ -63,6 +63,22 @@ describe("Function validate common", () => {
     expect(validate("").isString()).toBe(true);
     expect(validate(0).isString()).toBe(false);
   });
+  it("Is array", () => {
+    expect(validate([]).isArray()).toBe(true);
+    expect(validate({}).isArray()).toBe(false);
+  });
+  it("Is object", () => {
+    expect(validate({}).isObject()).toBe(true);
+    expect(validate("").isObject()).toBe(false);
+  });
+  it("Is boolean", () => {
+    expect(validate(false).isBoolean()).toBe(true);
+    expect(validate("").isBoolean()).toBe(false);
+  });
+  it("Is function", () => {
+    expect(validate(() => {}).isFunction()).toBe(true);
+    expect(validate("").isFunction()).toBe(false);
+  });
   it("Is null", () => {
     expect(validate(null).isNull()).toBe(true);
     expect(validate("").isNull()).toBe(false);

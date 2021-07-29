@@ -2004,6 +2004,11 @@ ignore@^5.1.4:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
   integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
 
+imask@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/imask/-/imask-6.1.0.tgz#8dcf4c44c51c4297f691349b925b7d5b21edff1c"
+  integrity sha512-IuElVZpc7iuGw+CXfwoUZYpGdoD5H7cGo3S93gZPgjTTWfY5XAXCFL3g3b/ZJBZ18RG2dFF2kxAuuFlXMjq7oQ==
+
 import-fresh@^3.0.0, import-fresh@^3.2.1:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
@@ -3511,6 +3516,11 @@ signal-exit@^3.0.2, signal-exit@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
+
+simple-mask-money@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/simple-mask-money/-/simple-mask-money-3.0.1.tgz#f96dbe641f0cfa5a0458017a1b92b0402e78bd25"
+  integrity sha512-EdQsBiOE0MhWCpCkUzUm7vbxPviTn/FWXQV6kmYggFLBlBDdWbJGyithizmwdeBFQiunPBZruU2xoX2H8Qlv9w==
 
 sisteransi@^1.0.5:
   version "1.0.5"

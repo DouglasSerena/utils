@@ -12,7 +12,7 @@ export interface IColors {
   [key: string]: string;
 }
 
-export interface IThemeConfig {
+export interface IConfigTheme {
   use?: ColorScheme;
   prefix?: string;
   _style?: string;

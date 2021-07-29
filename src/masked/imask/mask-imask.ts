@@ -1,0 +1,70 @@
+import IMask, { AnyMaskedOptions, InputMask, MaskElement } from "imask";
+import { validate } from "../../validations/validate.validation";
+import { IServiceMask } from "../masked.type";
+import { IConfigMaskIMask } from "./mask-imask.type";
+
+export function maskIMask(
+  pattern: string | AnyMaskedOptions,
+  config?: IConfigMaskIMask
+): MaskIMask {
+  return new MaskIMask(pattern, config);
+}
+
+export class MaskIMask implements IServiceMask {
+  public element: HTMLElement | MaskElement;
+  public inputMask: InputMask<AnyMaskedOptions>;
+  private pattern: string;
+  private config: IConfigMaskIMask;
+
+  constructor(pattern: string | IConfigMaskIMask, config?: IConfigMaskIMask) {
+    this.config = Object.assign({}, this.config, config);
+
+    if (validate(pattern).isString()) {
+      this.pattern = pattern as string;
+      const patterns = this.pattern.split("||").sort((one, two) => one.length - two.length);
+      this.config.mask = validate(patterns.length).isMore(1)
+        ? patterns.map((pattern) => ({ mask: pattern }))
+        : patterns[0];
+    } else {
+      Object.assign(this.config, pattern);
+    }
+  }
+
+  bind(element: HTMLElement, config?: IConfigMaskIMask): MaskIMask {
+    config = Object.assign({}, this.config, config);
+    this.element = element;
+
+    this.inputMask = IMask(element, config as any);
+    this.update(this.inputMask.value);
+
+    return this;
+  }
+
+  update(value: string): MaskIMask {
+    if (this.element && value) {
+      this.inputMask.value = this.mask(value, this.config);
+      this.inputMask.updateValue();
+    }
+    return this;
+  }
+
+  mask(value: string, config?: IConfigMaskIMask): string {
+    config = Object.assign({}, this.config, config);
+
+    const imask = this.createMask(value, config);
+    return imask.value;
+  }
+
+  unmask(value: string, config?: IConfigMaskIMask): string {
+    config = Object.assign({}, this.config, config);
+
+    const imask = this.createMask(value, config);
+    return imask.unmaskedValue;
+  }
+
+  private createMask(value: string, config?: IConfigMaskIMask): IMask.MaskedDynamic {
+    const createMask = IMask.createMask({ ...config } as any);
+    createMask.resolve(value);
+    return createMask as IMask.MaskedDynamic;
+  }
+}

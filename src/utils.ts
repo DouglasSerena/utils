@@ -3,6 +3,12 @@ export * from "./calc/calc";
 export * from "./calc/math.calc";
 export * from "./calc/calc.type";
 
+// MASK
+export * from "./masked/masked";
+export * from "./masked/masked.type";
+export * from "./masked/imask/mask-imask";
+export * from "./masked/simple-mask-money/mask-simple-mask-money";
+
 // THEME
 export * from "./theme/theme";
 export * from "./theme/theme.type";

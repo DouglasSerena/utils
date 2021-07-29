@@ -1,9 +1,9 @@
 import { add, distribute, divide, increment, multiply, subtract } from "./math.calc";
-import { AnyCalc, ICalcOptions } from "./calc.type";
+import { AnyCalc, IConfigCalc } from "./calc.type";
 import { validate } from "../validations/validate.validation";
 import { parseNumber } from "../functions/parse-number.function";
 
-const _config: ICalcOptions = {
+const _config: IConfigCalc = {
   decimal: ",",
   thousands: ".",
   error: false,
@@ -12,7 +12,7 @@ const _config: ICalcOptions = {
   round: "round",
 };
 
-export function calc(value: AnyCalc | Calc, config?: ICalcOptions): Calc {
+export function calc(value: AnyCalc | Calc, config?: IConfigCalc): Calc {
   return new Calc(value, config);
 }
 
@@ -20,9 +20,9 @@ export class Calc {
   value: number;
   valueRaw: number;
   precision: number;
-  config: ICalcOptions;
+  config: IConfigCalc;
 
-  constructor(value: AnyCalc | Calc, config?: ICalcOptions) {
+  constructor(value: AnyCalc | Calc, config?: IConfigCalc) {
     this.config = Object.assign({}, _config, config);
     this.precision = Math.pow(10, this.config?.precision);
 
@@ -99,9 +99,16 @@ export class Calc {
     );
     return [...result, rest];
   }
+
+  public toString(): string {
+    return this.value.toString();
+  }
+  public toJson(): number {
+    return this.value;
+  }
 }
 
-calc.config = (config: ICalcOptions) => {
+calc.config = (config: IConfigCalc) => {
   Object.assign(_config, config);
 };
 calc.isCalc = (prop: any): boolean => validate(prop).isInstanceof(Calc);

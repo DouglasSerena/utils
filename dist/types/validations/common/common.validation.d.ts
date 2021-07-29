@@ -1,4 +1,6 @@
+import { IContainsOption } from "./contains.validation";
 export declare type Typeof = "string" | "number" | "bigint" | "boolean" | "symbol" | "undefined" | "object" | "function";
+export declare const noContains: (value: any, compare: any, options?: IContainsOption) => boolean;
 export declare const isEqual: (value: any, compare: any) => boolean;
 export declare const isDifferent: (value: any, compare: any) => boolean;
 export declare const isEqualNotStrict: (value: any, compare: any) => boolean;
@@ -11,6 +13,7 @@ export declare const isFalse: (value: any) => boolean;
 export declare const isTrue: (value: any) => boolean;
 export declare const isString: (value: any) => boolean;
 export declare const isObject: (value: any) => boolean;
+export declare const isArray: (value: any) => boolean;
 export declare const isFunction: (value: any) => boolean;
 export declare const isBoolean: (value: any) => boolean;
 export declare const isNull: (value: any) => boolean;

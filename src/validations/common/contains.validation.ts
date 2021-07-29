@@ -12,6 +12,7 @@ export function contains(
   options?: IContainsOption
 ): boolean {
   if (!value) return false;
+  value = value.toString();
 
   options = Object.assign(
     {},
@@ -41,5 +42,7 @@ export function contains(
     }
   }
 
-  return value?.match(compare) !== null;
+  const match = value?.match(compare);
+
+  return !!match;
 }

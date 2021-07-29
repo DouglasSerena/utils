@@ -2,10 +2,10 @@ import { getNode } from "../functions/object/get-node.function";
 import { mergeObject } from "../functions/object/merge-object.function";
 import { themeSystem } from "../functions/theme-system.function";
 import { validate } from "../validations/validate.validation";
-import { ColorScheme, IColors, ITheme, IThemeConfig } from "./theme.type";
+import { ColorScheme, IColors, ITheme, IConfigTheme } from "./theme.type";
 
 let _themes: ITheme = {};
-let _config: IThemeConfig = {
+let _config: IConfigTheme = {
   prefix: "color",
   use: themeSystem() || "light",
   disableSystemBasedColorShift: false,
@@ -18,7 +18,7 @@ window?.matchMedia?.("(prefers-color-scheme: dark)")?.addEventListener("change",
   }
 });
 
-export function theme(themes?: ITheme, config?: IThemeConfig): Theme {
+export function theme(themes?: ITheme, config?: IConfigTheme): Theme {
   return new Theme(themes, config);
 }
 
@@ -35,7 +35,7 @@ export class Theme {
   public get use(): ColorScheme {
     return _config.use;
   }
-  public get config(): IThemeConfig {
+  public get config(): IConfigTheme {
     return _config;
   }
   public get element(): HTMLStyleElement {
@@ -45,7 +45,7 @@ export class Theme {
     return themeSystem() || "light";
   }
 
-  constructor(themes?: ITheme, config?: IThemeConfig) {
+  constructor(themes?: ITheme, config?: IConfigTheme) {
     mergeObject(_themes, themes);
     mergeObject(_config, config);
 
@@ -72,7 +72,7 @@ export class Theme {
       prefix: "color",
       disableChangeScheme: false,
       _element: _config._element,
-    } as IThemeConfig;
+    } as IConfigTheme;
   }
 
   change(theme: ColorScheme): void {
@@ -131,7 +131,7 @@ export class Theme {
   }
 }
 
-theme.config = (config: IThemeConfig): void => {
+theme.config = (config: IConfigTheme): void => {
   mergeObject(_config, config);
 };
 theme.theme = (themes: ITheme): void => {
