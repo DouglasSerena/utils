@@ -1,5 +1,8 @@
+import { contains } from "./common/contains.validation";
+
 export type NumberRange = { start?: number; end: number };
 
+export const isNegative = (value: string) => contains(value, "-");
 export const isEqualNumber = (value: any, compare: any): boolean => value === compare;
 export const isDifferentNumber = (value: any, compare: any): boolean => value !== compare;
 export const isNumeric = (value: any): boolean => !isNaN(parseInt(value)) && isFinite(value);

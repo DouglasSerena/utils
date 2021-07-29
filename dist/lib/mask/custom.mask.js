@@ -1,0 +1,90 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CUSTOM_MASKS = void 0;
+exports.CUSTOM_MASKS = {
+    TEL: {
+        type: "IMASK",
+        config: {
+            mask: [{ mask: "(00) 0000-0000" }, { mask: "(00) 0 0000-0000" }],
+        },
+    },
+    CPF: {
+        type: "IMASK",
+        config: {
+            mask: "000.000.000-00",
+        },
+    },
+    CNPJ: {
+        type: "IMASK",
+        config: {
+            mask: "00.000.000/0000-00",
+        },
+    },
+    CPF_CNPJ: {
+        type: "IMASK",
+        config: {
+            mask: [{ mask: "000.000.000-00" }, { mask: "00.000.000/0000-00" }],
+        },
+    },
+    RG: {
+        type: "IMASK",
+        config: {
+            mask: [{ mask: "00.000.000-0" }, { mask: "00000000000000" }],
+        },
+    },
+    ESTADUAL: {
+        type: "IMASK",
+        config: {
+            mask: "00.0.000.0000000-0",
+        },
+    },
+    RG_ESTADUAL: {
+        type: "IMASK",
+        config: {
+            mask: [{ mask: "00.000.000-0" }, { mask: "00.0.000.0000000-0" }, { mask: "00000000000000" }],
+        },
+    },
+    CEP: {
+        type: "IMASK",
+        config: {
+            mask: "00000-000",
+        },
+    },
+    CURRENCY: {
+        type: "SIMPLE_MASK_MONEY",
+        config: {
+            cursor: "end",
+            fractionDigits: 2,
+            decimalSeparator: ".",
+            thousandsSeparator: ",",
+        },
+    },
+    CURRENCY_BRL: {
+        type: "SIMPLE_MASK_MONEY",
+        config: {
+            cursor: "end",
+            fractionDigits: 2,
+            decimalSeparator: ",",
+            thousandsSeparator: ".",
+        },
+    },
+    AMOUNT: {
+        type: "SIMPLE_MASK_MONEY",
+        config: {
+            cursor: "end",
+            fractionDigits: 3,
+            decimalSeparator: ".",
+            thousandsSeparator: "",
+        },
+    },
+    PERCENT: {
+        type: "SIMPLE_MASK_MONEY",
+        config: {
+            cursor: "end",
+            fractionDigits: 2,
+            decimalSeparator: ",",
+            thousandsSeparator: "",
+        },
+    },
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLm1hc2suanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvbWFzay9jdXN0b20ubWFzay50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFFYSxRQUFBLFlBQVksR0FBbUM7SUFDMUQsR0FBRyxFQUFFO1FBQ0gsSUFBSSxFQUFFLE9BQU87UUFDYixNQUFNLEVBQUU7WUFDTixJQUFJLEVBQUUsQ0FBQyxFQUFFLElBQUksRUFBRSxnQkFBZ0IsRUFBRSxFQUFFLEVBQUUsSUFBSSxFQUFFLGtCQUFrQixFQUFFLENBQUM7U0FDakU7S0FDRjtJQUNELEdBQUcsRUFBRTtRQUNILElBQUksRUFBRSxPQUFPO1FBQ2IsTUFBTSxFQUFFO1lBQ04sSUFBSSxFQUFFLGdCQUFnQjtTQUN2QjtLQUNGO0lBQ0QsSUFBSSxFQUFFO1FBQ0osSUFBSSxFQUFFLE9BQU87UUFDYixNQUFNLEVBQUU7WUFDTixJQUFJLEVBQUUsb0JBQW9CO1NBQzNCO0tBQ0Y7SUFDRCxRQUFRLEVBQUU7UUFDUixJQUFJLEVBQUUsT0FBTztRQUNiLE1BQU0sRUFBRTtZQUNOLElBQUksRUFBRSxDQUFDLEVBQUUsSUFBSSxFQUFFLGdCQUFnQixFQUFFLEVBQUUsRUFBRSxJQUFJLEVBQUUsb0JBQW9CLEVBQUUsQ0FBQztTQUNuRTtLQUNGO0lBQ0QsRUFBRSxFQUFFO1FBQ0YsSUFBSSxFQUFFLE9BQU87UUFDYixNQUFNLEVBQUU7WUFDTixJQUFJLEVBQUUsQ0FBQyxFQUFFLElBQUksRUFBRSxjQUFjLEVBQUUsRUFBRSxFQUFFLElBQUksRUFBRSxnQkFBZ0IsRUFBRSxDQUFDO1NBQzdEO0tBQ0Y7SUFDRCxRQUFRLEVBQUU7UUFDUixJQUFJLEVBQUUsT0FBTztRQUNiLE1BQU0sRUFBRTtZQUNOLElBQUksRUFBRSxvQkFBb0I7U0FDM0I7S0FDRjtJQUNELFdBQVcsRUFBRTtRQUNYLElBQUksRUFBRSxPQUFPO1FBQ2IsTUFBTSxFQUFFO1lBQ04sSUFBSSxFQUFFLENBQUMsRUFBRSxJQUFJLEVBQUUsY0FBYyxFQUFFLEVBQUUsRUFBRSxJQUFJLEVBQUUsb0JBQW9CLEVBQUUsRUFBRSxFQUFFLElBQUksRUFBRSxnQkFBZ0IsRUFBRSxDQUFDO1NBQzdGO0tBQ0Y7SUFDRCxHQUFHLEVBQUU7UUFDSCxJQUFJLEVBQUUsT0FBTztRQUNiLE1BQU0sRUFBRTtZQUNOLElBQUksRUFBRSxXQUFXO1NBQ2xCO0tBQ0Y7SUFDRCxRQUFRLEVBQUU7UUFDUixJQUFJLEVBQUUsbUJBQW1CO1FBQ3pCLE1BQU0sRUFBRTtZQUNOLE1BQU0sRUFBRSxLQUFLO1lBQ2IsY0FBYyxFQUFFLENBQUM7WUFDakIsZ0JBQWdCLEVBQUUsR0FBRztZQUNyQixrQkFBa0IsRUFBRSxHQUFHO1NBQ3hCO0tBQ0Y7SUFDRCxZQUFZLEVBQUU7UUFDWixJQUFJLEVBQUUsbUJBQW1CO1FBQ3pCLE1BQU0sRUFBRTtZQUNOLE1BQU0sRUFBRSxLQUFLO1lBQ2IsY0FBYyxFQUFFLENBQUM7WUFDakIsZ0JBQWdCLEVBQUUsR0FBRztZQUNyQixrQkFBa0IsRUFBRSxHQUFHO1NBQ3hCO0tBQ0Y7SUFDRCxNQUFNLEVBQUU7UUFDTixJQUFJLEVBQUUsbUJBQW1CO1FBQ3pCLE1BQU0sRUFBRTtZQUNOLE1BQU0sRUFBRSxLQUFLO1lBQ2IsY0FBYyxFQUFFLENBQUM7WUFDakIsZ0JBQWdCLEVBQUUsR0FBRztZQUNyQixrQkFBa0IsRUFBRSxFQUFFO1NBQ3ZCO0tBQ0Y7SUFDRCxPQUFPLEVBQUU7UUFDUCxJQUFJLEVBQUUsbUJBQW1CO1FBQ3pCLE1BQU0sRUFBRTtZQUNOLE1BQU0sRUFBRSxLQUFLO1lBQ2IsY0FBYyxFQUFFLENBQUM7WUFDakIsZ0JBQWdCLEVBQUUsR0FBRztZQUNyQixrQkFBa0IsRUFBRSxFQUFFO1NBQ3ZCO0tBQ0Y7Q0FDRixDQUFDIn0=

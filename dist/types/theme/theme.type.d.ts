@@ -17,7 +17,7 @@ export interface IColors {
     default?: string;
     [key: string]: string;
 }
-export interface IThemeConfig {
+export interface IConfigTheme {
     use?: ColorScheme;
     prefix?: string;
     _style?: string;

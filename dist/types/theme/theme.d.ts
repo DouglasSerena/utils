@@ -1,7 +1,7 @@
-import { ColorScheme, ITheme, IThemeConfig } from "./theme.type";
-export declare function theme(themes?: ITheme, config?: IThemeConfig): Theme;
+import { ColorScheme, ITheme, IConfigTheme } from "./theme.type";
+export declare function theme(themes?: ITheme, config?: IConfigTheme): Theme;
 export declare namespace theme {
-    var config: (config: IThemeConfig) => void;
+    var config: (config: IConfigTheme) => void;
     var theme: (themes: ITheme) => void;
     var isTheme: (prop: any) => boolean;
 }
@@ -10,10 +10,10 @@ export declare class Theme {
     get prefix(): string;
     get style(): string;
     get use(): ColorScheme;
-    get config(): IThemeConfig;
+    get config(): IConfigTheme;
     get element(): HTMLStyleElement;
     get themeSystem(): "dark" | "light";
-    constructor(themes?: ITheme, config?: IThemeConfig);
+    constructor(themes?: ITheme, config?: IConfigTheme);
     get isDark(): boolean;
     get isLight(): boolean;
     get isNoPreference(): boolean;

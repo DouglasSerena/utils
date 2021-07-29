@@ -2,6 +2,7 @@ export declare type NumberRange = {
     start?: number;
     end: number;
 };
+export declare const isNegative: (value: string) => boolean;
 export declare const isEqualNumber: (value: any, compare: any) => boolean;
 export declare const isDifferentNumber: (value: any, compare: any) => boolean;
 export declare const isNumeric: (value: any) => boolean;

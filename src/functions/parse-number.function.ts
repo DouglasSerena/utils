@@ -1,27 +1,37 @@
-import { isString } from "../validations/common/common.validation";
-import { isNumeric } from "../validations/number.validation";
+import { validate } from "../validations/validate.validation";
 
-const _config: IParseNumberOptions = {
-  decimal: ",",
-  thousands: ".",
-  error: false,
-};
-
-export interface IParseNumberOptions {
+export interface IConfigParseNumber {
   decimal?: string;
   thousands?: string;
   error?: boolean;
 }
 
-export function parseNumber(value: number | string, config?: IParseNumberOptions): number {
+const _config: IConfigParseNumber = {
+  decimal: ".",
+  thousands: null,
+  error: false,
+};
+
+export function parseNumber(value: number | string, config?: IConfigParseNumber): number {
   config = Object.assign({}, _config, config);
-  if (!isNumeric(value) && isString(value)) {
+  if (!validate(value).isNumeric() && validate(value).isString()) {
+    const isNegative = validate(value).isNegative();
     const decimalStr = new RegExp(`\\${config?.decimal}`, "g");
-    const thousandsStr = new RegExp(`\\${config?.thousands}`, "g");
+    if (config.thousands) {
+      const thousandsStr = new RegExp(`\\${config?.thousands}`, "g");
+      value = value.toString().replace(thousandsStr, "");
+    }
 
-    value = value.toString().replace(thousandsStr, "").replace(decimalStr, ".");
+    value = value.toString().replace(decimalStr, ".");
 
-    value = Number(value) || 0;
+    let [prefix, sufixa] = value.split(".");
+    prefix = prefix?.replace(/\D/g, "");
+    sufixa = sufixa?.replace(/\D/g, "");
+
+    value = Number(`${prefix}.${sufixa}`) || 0;
+    if (isNegative) {
+      value = -value;
+    }
   } else {
     if (config?.error) new Error("Invalid Input.");
   }

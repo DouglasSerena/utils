@@ -1,6 +1,7 @@
 import { OpUnitType } from "dayjs";
 import { getSizeImage } from "../functions/file/get-size-image.function";
 import {
+  isArray,
   isBoolean,
   isCpfOrCnpj,
   isDifferent,
@@ -17,6 +18,7 @@ import {
   isTrue,
   isTypeof,
   isUndefined,
+  noContains,
   notIsInstanceof,
   Typeof,
 } from "./common/common.validation";
@@ -51,6 +53,7 @@ import {
   isLessOrEqual,
   isMore,
   isMoreOrEqual,
+  isNegative,
   isNumber,
   isNumeric,
   NumberRange,
@@ -66,6 +69,8 @@ export class Validate {
   // COMMON
   public contains = (pattern: string | RegExp, options?: IContainsOption): boolean =>
     contains(this.value, pattern, options);
+  public noContains = (pattern: string | RegExp, options?: IContainsOption): boolean =>
+    noContains(this.value, pattern, options);
 
   public testPattern = (pattern: string | RegExp): boolean => testPattern(this.value, pattern);
   public isPassword = (disabled?: IPasswordOptionsDisabled, minLength?: number): boolean =>
@@ -84,6 +89,7 @@ export class Validate {
   public isInstanceof = (instance: unknown): boolean => isInstanceof(this.value, instance);
   public notIsInstanceOf = (instance: unknown): boolean => notIsInstanceof(this.value, instance);
   public isString = (): boolean => isString(this.value);
+  public isArray = (): boolean => isArray(this.value);
   public isObject = (): boolean => isObject(this.value);
   public isFunction = (): boolean => isFunction(this.value);
   public isBoolean = (): boolean => isBoolean(this.value);
@@ -118,6 +124,8 @@ export class Validate {
     isAllowExtensions(this.value, extensions).valid;
 
   // VALIDATIONS NUMBER
+  public isNaN = (): boolean => isNaN(parseInt(this.value));
+  public isNegative = (): boolean => isNegative(this.value);
   public isNumeric = (): boolean => isNumeric(this.value);
   public isNumber = (): boolean => isNumber(this.value);
   public isFloat = (): boolean => isFloat(this.value);

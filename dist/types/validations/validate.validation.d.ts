@@ -10,6 +10,7 @@ export declare class Validate {
     value: any;
     constructor(value: any);
     contains: (pattern: string | RegExp, options?: IContainsOption) => boolean;
+    noContains: (pattern: string | RegExp, options?: IContainsOption) => boolean;
     testPattern: (pattern: string | RegExp) => boolean;
     isPassword: (disabled?: IPasswordOptionsDisabled, minLength?: number) => boolean;
     isTypeof: (type: Typeof) => boolean;
@@ -24,6 +25,7 @@ export declare class Validate {
     isInstanceof: (instance: unknown) => boolean;
     notIsInstanceOf: (instance: unknown) => boolean;
     isString: () => boolean;
+    isArray: () => boolean;
     isObject: () => boolean;
     isFunction: () => boolean;
     isBoolean: () => boolean;
@@ -40,6 +42,8 @@ export declare class Validate {
     maxSizeFile: (max: number, type?: BitSizesKeys) => boolean;
     minSizeFile: (min: number, type?: BitSizesKeys) => boolean;
     isAllowExtensionsFile: (extensions: string[]) => boolean;
+    isNaN: () => boolean;
+    isNegative: () => boolean;
     isNumeric: () => boolean;
     isNumber: () => boolean;
     isFloat: () => boolean;
