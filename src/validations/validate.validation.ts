@@ -34,8 +34,8 @@ import {
   isAfterDate,
   isBeforeDate,
   isBetweenDate,
-  isBirthDateValidation,
-  isDate,
+  isBirthDateValid,
+  isDateValid,
   isDifferentDate,
   isEqualDate,
   MaxMin,
@@ -59,8 +59,11 @@ import {
   NumberRange,
 } from "./number.validation";
 
-export function validate(value: any): Validate {
+export function validate(value: unknown): Validate {
   return new Validate(value);
+}
+export function v(value: unknown): Validate {
+  return validate(value);
 }
 
 export class Validate {
@@ -69,10 +72,12 @@ export class Validate {
   // COMMON
   public contains = (pattern: string | RegExp, options?: IContainsOption): boolean =>
     contains(this.value, pattern, options);
+
   public noContains = (pattern: string | RegExp, options?: IContainsOption): boolean =>
     noContains(this.value, pattern, options);
 
   public testPattern = (pattern: string | RegExp): boolean => testPattern(this.value, pattern);
+
   public isPassword = (disabled?: IPasswordOptionsDisabled, minLength?: number): boolean =>
     isPassword(this.value, disabled, minLength);
 
@@ -138,7 +143,7 @@ export class Validate {
   public isMoreOrEqual = (value: number): boolean => isMoreOrEqual(this.value, value);
 
   // VALIDATION DATE
-  public isDate = (): boolean => isDate(this.value);
+  public isDateValid = (): boolean => isDateValid(this.value);
   public isAfterDate = (date: DateAny, options?: OpUnitType): boolean =>
     isAfterDate(this.value, date, options);
 
@@ -151,8 +156,7 @@ export class Validate {
     d?: "()" | "[]" | "[)" | "(]"
   ): boolean => isBetweenDate(this.value, range, options, d);
 
-  public isBirthDateValidation = (year?: MaxMin): boolean =>
-    isBirthDateValidation(this.value, year);
+  public isBirthDateValid = (year?: MaxMin): boolean => isBirthDateValid(this.value, year);
 
   public isEqualDate = (date: DateAny, options?: OpUnitType): boolean =>
     isEqualDate(this.value, date, options);

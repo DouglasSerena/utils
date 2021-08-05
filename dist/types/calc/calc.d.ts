@@ -2,7 +2,7 @@ import { AnyCalc, IConfigCalc } from "./calc.type";
 export declare function calc(value: AnyCalc | Calc, config?: IConfigCalc): Calc;
 export declare namespace calc {
     var config: (config: IConfigCalc) => void;
-    var isCalc: (prop: any) => boolean;
+    var isCalc: (prop: unknown) => prop is Calc;
 }
 export declare class Calc {
     value: number;

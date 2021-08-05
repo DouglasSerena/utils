@@ -3,4 +3,4 @@ export interface IContainsOption {
     caseSensitive?: boolean;
     removeSpace?: boolean;
 }
-export declare function contains(value: string, compare: string | RegExp, options?: IContainsOption): boolean;
+export declare function contains<T = string>(value: T, compare: string | RegExp, options?: IContainsOption): boolean;

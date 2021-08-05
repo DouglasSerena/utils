@@ -31,4 +31,4 @@ export interface IFileInvalid<Error = ErrosFile> {
   mimeType?: string;
 }
 
-export const isFile = (file: any) => isInstanceof(file, File);
+export const isFile = (file: unknown): file is File => isInstanceof(file, File);

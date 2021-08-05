@@ -13,32 +13,53 @@ export type Typeof =
   | "object"
   | "function";
 
-export const noContains = (value: any, compare: any, options?: IContainsOption) =>
-  !contains(value, compare, options);
+export const noContains = <T = string>(
+  value: T,
+  compare: string | RegExp,
+  options?: IContainsOption
+): boolean => !contains(value, compare, options);
 
-export const isEqual = (value: any, compare: any): boolean => value === compare;
-export const isDifferent = (value: any, compare: any): boolean => value !== compare;
+export const isEqual = (value: unknown, compare: unknown): boolean => value === compare;
+export const isDifferent = (value: unknown, compare: unknown): boolean => value !== compare;
 
-export const isEqualNotStrict = (value: any, compare: any): boolean => value == compare;
-export const isDifferentNotStrict = (value: any, compare: any): boolean => value != compare;
+export const isEqualNotStrict = (value: unknown, compare: unknown): boolean => value == compare;
 
-export const isFill = <T = any>(item: T | Array<T>): boolean => !isEmpty<T>(item);
+export const isDifferentNotStrict = (value: unknown, compare: unknown): boolean => value != compare;
 
-export const isTypeof = (value: any, type: Typeof) => typeof value === type;
-export const isInstanceof = (value: any, instance: any) => value instanceof instance;
-export const notIsInstanceof = (value: any, instance: any) => !isInstanceof(value, instance);
+export const isFill = <T = unknown>(item: T | Array<T>): boolean => !isEmpty<T>(item);
 
-export const isFalse = (value: any) => !value;
-export const isTrue = (value: any) => !!value;
+export const isTypeof = <GuardType = unknown>(value: unknown, type: Typeof): value is GuardType =>
+  typeof value === type;
 
-export const isString = (value: any) => typeof value === "string" || isInstanceof(value, String);
-export const isObject = (value: any) => typeof value === "object" || isInstanceof(value, Object);
-export const isArray = (value: any) => typeof value === "object" && isInstanceof(value, Array);
-export const isFunction = (value: any) =>
-  typeof value === "function" || isInstanceof(value, Function);
-export const isBoolean = (value: any) => typeof value === "boolean" || isInstanceof(value, Boolean);
-export const isNull = (value: any): boolean => value === null;
-export const isUndefined = (value: any): boolean => typeof value === "undefined";
+export const isInstanceof = <T>(value: unknown, instance: T): value is T[keyof T] =>
+  value instanceof (instance as any);
+
+export const notIsInstanceof = <U, T>(value: U, instance: T): value is Exclude<U, T[keyof T]> =>
+  !isInstanceof(value, instance);
+
+export const isFalse = (value: unknown): boolean => !value;
+
+export const isTrue = (value: unknown): boolean => !!value;
+
+export const isString = (value: unknown): value is string =>
+  isTypeof(value, "string") || isInstanceof(value, String);
+
+export const isObject = <T>(value: T): value is T =>
+  isTypeof(value, "object") || isInstanceof(value, Object);
+
+export const isArray = (value: unknown): value is [] =>
+  isTypeof(value, "object") && isInstanceof(value, Array);
+
+export const isFunction = (value: unknown): value is typeof Function =>
+  isTypeof(value, "function") || isInstanceof(value, Function);
+
+export const isBoolean = (value: unknown): value is boolean =>
+  isTypeof(value, "boolean") || isInstanceof(value, Boolean);
+
+export const isNull = (value: unknown): value is null => value === null;
+
+export const isUndefined = (value: unknown): value is undefined =>
+  isTypeof(value, "undefined") || value === undefined;
 
 export const isCpfOrCnpj = (value: string): boolean => {
   value = value.replace(/\D/g, "");

@@ -8,11 +8,10 @@ export declare type MaxMin = {
     min?: string | number;
     max?: string | number;
 };
-declare const isDate: (value: DateAny) => boolean;
-declare const isAfterDate: (date: DateAny, dataAfter: DateAny, options?: dayjs.OpUnitType) => boolean;
-declare const isBeforeDate: (date: DateAny, dataBefore: DateAny, options?: dayjs.OpUnitType) => boolean;
-declare const isBetweenDate: (date: DateAny, range: DateRange, options?: dayjs.OpUnitType, d?: "()" | "[]" | "[)" | "(]") => boolean;
-declare const isBirthDateValidation: (birchDay: DateAny, year: MaxMin) => boolean;
-declare const isEqualDate: (date: DateAny, dateDifferent: DateAny, options?: dayjs.OpUnitType) => boolean;
-declare const isDifferentDate: (date: DateAny, dateDifferent: DateAny, options?: dayjs.OpUnitType) => boolean;
-export { isDate, isAfterDate, isBeforeDate, isBetweenDate, isBirthDateValidation, isDifferentDate, isEqualDate, };
+export declare const isDateValid: (value: DateAny) => boolean;
+export declare const isAfterDate: (date: DateAny, dataAfter: DateAny, options?: dayjs.OpUnitType) => boolean;
+export declare const isBeforeDate: (date: DateAny, dataBefore: DateAny, options?: dayjs.OpUnitType) => boolean;
+export declare const isBetweenDate: (date: DateAny, range: DateRange, options?: dayjs.OpUnitType, d?: "()" | "[]" | "[)" | "(]") => boolean;
+export declare const isBirthDateValid: (birchDay: DateAny, year: MaxMin) => boolean;
+export declare const isEqualDate: (date: DateAny, dateDifferent: DateAny, options?: dayjs.OpUnitType) => boolean;
+export declare const isDifferentDate: (date: DateAny, dateDifferent: DateAny, options?: dayjs.OpUnitType) => boolean;

@@ -21,7 +21,7 @@ export const isAllowExtensions = (files: AnyFile, extensions: string[]): IReturn
     files = [files as File];
   }
 
-  for (const file of Array.from(files as FileList)) {
+  for (const file of Array.from(files)) {
     let type = [];
 
     if (notIsInstanceof(file, File)) {

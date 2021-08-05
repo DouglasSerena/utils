@@ -137,4 +137,4 @@ theme.config = (config: IConfigTheme): void => {
 theme.theme = (themes: ITheme): void => {
   mergeObject(_themes, themes);
 };
-theme.isTheme = (prop: any): boolean => validate(prop).isInstanceof(Theme);
+theme.isTheme = (prop: unknown): prop is Theme => validate(prop).isInstanceof(Theme);

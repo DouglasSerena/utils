@@ -32,7 +32,7 @@ export const maxSize = (files: AnyFile, max: number, type: BitSizesKeys = "KB"):
     files = [files as File];
   }
 
-  for (const file of Array.from(files as FileList)) {
+  for (const file of Array.from(files)) {
     if (!isFile(file)) {
       filesInvalid.push({ error: "NOT_FILE" });
     }

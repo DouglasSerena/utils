@@ -111,4 +111,4 @@ export class Calc {
 calc.config = (config: IConfigCalc) => {
   Object.assign(_config, config);
 };
-calc.isCalc = (prop: any): boolean => validate(prop).isInstanceof(Calc);
+calc.isCalc = (prop: unknown): prop is Calc => validate(prop).isInstanceof(Calc);

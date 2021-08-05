@@ -39,22 +39,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.handleTry = void 0;
 var common_validation_1 = require("../validations/common/common.validation");
 function handleTry(promise) {
+    var _a;
     return __awaiter(this, void 0, void 0, function () {
         var _, data, error_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    _ = promise.toPromise();
+                    _b.trys.push([0, 2, , 3]);
+                    _ = (_a = promise === null || promise === void 0 ? void 0 : promise.toPromise) === null || _a === void 0 ? void 0 : _a.call(promise);
                     if (!common_validation_1.isUndefined(_)) {
                         promise = promise.toPromise();
                     }
                     return [4 /*yield*/, promise];
                 case 1:
-                    data = _a.sent();
+                    data = _b.sent();
                     return [2 /*return*/, [data, null]];
                 case 2:
-                    error_1 = _a.sent();
+                    error_1 = _b.sent();
                     return [2 /*return*/, [null, error_1]];
                 case 3: return [2 /*return*/];
             }
@@ -62,4 +63,4 @@ function handleTry(promise) {
     });
 }
 exports.handleTry = handleTry;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaGFuZGxlLXRyeS5mdW5jdGlvbi5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9mdW5jdGlvbnMvaGFuZGxlLXRyeS5mdW5jdGlvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSw2RUFBc0U7QUFFdEUsU0FBc0IsU0FBUyxDQUM3QixPQUF5Qjs7Ozs7OztvQkFHakIsQ0FBQyxHQUFHLE9BQU8sQ0FBQyxTQUFTLEVBQUUsQ0FBQztvQkFDOUIsSUFBSSxDQUFDLCtCQUFXLENBQUMsQ0FBQyxDQUFDLEVBQUU7d0JBQ25CLE9BQU8sR0FBRyxPQUFPLENBQUMsU0FBUyxFQUFFLENBQUM7cUJBQy9CO29CQUNZLHFCQUFNLE9BQU8sRUFBQTs7b0JBQXBCLElBQUksR0FBRyxTQUFhO29CQUMxQixzQkFBTyxDQUFDLElBQUksRUFBRSxJQUFJLENBQUMsRUFBQzs7O29CQUVwQixzQkFBTyxDQUFDLElBQUksRUFBRSxPQUFLLENBQUMsRUFBQzs7Ozs7Q0FFeEI7QUFiRCw4QkFhQyJ9
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaGFuZGxlLXRyeS5mdW5jdGlvbi5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9mdW5jdGlvbnMvaGFuZGxlLXRyeS5mdW5jdGlvbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSw2RUFBc0U7QUFFdEUsU0FBc0IsU0FBUyxDQUM3QixPQUF5Qjs7Ozs7Ozs7b0JBR2pCLENBQUMsR0FBRyxNQUFBLE9BQU8sYUFBUCxPQUFPLHVCQUFQLE9BQU8sQ0FBRSxTQUFTLCtDQUFsQixPQUFPLENBQWUsQ0FBQztvQkFDakMsSUFBSSxDQUFDLCtCQUFXLENBQUMsQ0FBQyxDQUFDLEVBQUU7d0JBQ25CLE9BQU8sR0FBRyxPQUFPLENBQUMsU0FBUyxFQUFFLENBQUM7cUJBQy9CO29CQUNZLHFCQUFNLE9BQU8sRUFBQTs7b0JBQXBCLElBQUksR0FBRyxTQUFhO29CQUMxQixzQkFBTyxDQUFDLElBQUksRUFBRSxJQUFJLENBQUMsRUFBQzs7O29CQUVwQixzQkFBTyxDQUFDLElBQUksRUFBRSxPQUFLLENBQUMsRUFBQzs7Ozs7Q0FFeEI7QUFiRCw4QkFhQyJ9
