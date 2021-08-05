@@ -5,7 +5,8 @@ import { IPasswordOptionsDisabled } from "./common/is-password.validation";
 import { DateRange, DateAny, MaxMin } from "./date.validation";
 import { BitSizesKeys } from "./file/file.validation";
 import { NumberRange } from "./number.validation";
-export declare function validate(value: any): Validate;
+export declare function validate(value: unknown): Validate;
+export declare function v(value: unknown): Validate;
 export declare class Validate {
     value: any;
     constructor(value: any);
@@ -54,11 +55,11 @@ export declare class Validate {
     isLess: (value: number) => boolean;
     isMore: (value: number) => boolean;
     isMoreOrEqual: (value: number) => boolean;
-    isDate: () => boolean;
+    isDateValid: () => boolean;
     isAfterDate: (date: DateAny, options?: OpUnitType) => boolean;
     isBeforeDate: (date: DateAny, options?: OpUnitType) => boolean;
     isBetweenDate: (range: DateRange, options?: OpUnitType, d?: "()" | "[]" | "[)" | "(]") => boolean;
-    isBirthDateValidation: (year?: MaxMin) => boolean;
+    isBirthDateValid: (year?: MaxMin) => boolean;
     isEqualDate: (date: DateAny, options?: OpUnitType) => boolean;
     isDifferentDate: (date: DateAny, options?: OpUnitType) => boolean;
 }

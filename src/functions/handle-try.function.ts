@@ -4,7 +4,7 @@ export async function handleTry<T = any>(
   promise: Promise<T> | any
 ): Promise<[T | null, any | null]> {
   try {
-    const _ = promise.toPromise();
+    const _ = promise?.toPromise?.();
     if (!isUndefined(_)) {
       promise = promise.toPromise();
     }

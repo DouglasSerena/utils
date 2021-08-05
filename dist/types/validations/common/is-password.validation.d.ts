@@ -3,4 +3,4 @@ export interface IPasswordOptionsDisabled {
     charSpecial?: boolean;
     number?: boolean;
 }
-export declare function isPassword(value: string, disabled?: IPasswordOptionsDisabled, minLength?: number): boolean;
+export declare function isPassword<T = string>(value: T, disabled?: IPasswordOptionsDisabled, minLength?: number): boolean;

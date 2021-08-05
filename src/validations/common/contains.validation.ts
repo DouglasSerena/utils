@@ -6,13 +6,13 @@ export interface IContainsOption {
   removeSpace?: boolean;
 }
 
-export function contains(
-  value: string,
+export function contains<T = string>(
+  value: T,
   compare: string | RegExp,
   options?: IContainsOption
 ): boolean {
   if (!value) return false;
-  value = value.toString();
+  let _value = value.toString();
 
   options = Object.assign(
     {},
@@ -24,25 +24,25 @@ export function contains(
     options
   );
   if (options?.removeAccents) {
-    value = removeAccents(value);
+    _value = removeAccents(_value);
     if (typeof compare === "string") {
       compare = removeAccents(compare);
     }
   }
   if (!options?.caseSensitive) {
-    value = value.toLowerCase();
+    _value = _value.toLowerCase();
     if (typeof compare === "string") {
       compare = compare.toLowerCase();
     }
   }
   if (options?.removeSpace) {
-    value = value.replace(/ +/g, "");
+    _value = _value.replace(/ +/g, "");
     if (typeof compare === "string") {
       compare = compare.replace(/ +/g, "");
     }
   }
 
-  const match = value?.match(compare);
+  const match = _value?.match(compare);
 
   return !!match;
 }

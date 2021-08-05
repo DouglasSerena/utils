@@ -7,21 +7,22 @@ export interface IPasswordOptionsDisabled {
   number?: boolean;
 }
 
-export function isPassword(
-  value: string,
+export function isPassword<T = string>(
+  value: T,
   disabled?: IPasswordOptionsDisabled,
   minLength = 9
 ): boolean {
   if (!value) return false;
+  const _value = value.toString();
 
   const resultUpperCase =
-    disabled?.charUpperCase || contains(value, REGEX_UPPER_CASE, { caseSensitive: true });
+    disabled?.charUpperCase || contains(_value, REGEX_UPPER_CASE, { caseSensitive: true });
 
-  const resultMinLength = value?.length >= minLength;
+  const resultMinLength = _value?.length >= minLength;
 
-  const resultCharSpecial = disabled?.charSpecial || contains(value, REGEX_CHAR_SPECIAL);
+  const resultCharSpecial = disabled?.charSpecial || contains(_value, REGEX_CHAR_SPECIAL);
 
-  const resultNumber = disabled?.number || contains(value, REGEX_NUMBER);
+  const resultNumber = disabled?.number || contains(_value, REGEX_NUMBER);
 
   return resultUpperCase && resultMinLength && resultCharSpecial && resultNumber;
 }

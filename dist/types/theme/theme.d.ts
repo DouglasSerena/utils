@@ -3,7 +3,7 @@ export declare function theme(themes?: ITheme, config?: IConfigTheme): Theme;
 export declare namespace theme {
     var config: (config: IConfigTheme) => void;
     var theme: (themes: ITheme) => void;
-    var isTheme: (prop: any) => boolean;
+    var isTheme: (prop: unknown) => prop is Theme;
 }
 export declare class Theme {
     get themes(): ITheme;

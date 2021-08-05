@@ -27,4 +27,4 @@ export interface IFileInvalid<Error = ErrosFile> {
     filename?: string;
     mimeType?: string;
 }
-export declare const isFile: (file: any) => boolean;
+export declare const isFile: (file: unknown) => file is File;

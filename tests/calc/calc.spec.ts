@@ -94,5 +94,8 @@ describe("Function calc", () => {
 
     result = calc("76", { increment: 0.05 }).distribute("3");
     expect(result).toEqual([25.35, 25.35, 25.3]);
+
+    result = calc("6115.95", { increment: 0.05 }).distribute("1");
+    expect(result).toEqual([6115.95]);
   });
 });
