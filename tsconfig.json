@@ -7,9 +7,9 @@
     "declaration": true,
     "inlineSourceMap": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "declarationDir": "dist/types",
     "outDir": "dist/lib",
+    "allowSyntheticDefaultImports": true,
   },
   "include": [
     "src/**/*.ts",

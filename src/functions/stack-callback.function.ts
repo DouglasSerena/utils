@@ -19,10 +19,10 @@ window["cancelIdleCallback"] =
     clearTimeout(id);
   };
 
-export function cancelTask(taskId: number): void {
-  window["cancelIdleCallback"](taskId);
+export function cancelStackCallback(stackId: number): void {
+  window["cancelIdleCallback"](stackId);
 }
-export function task(
+export function stackCallback(
   handler: (options?: { didTimeout: boolean; timeRemaining: () => number }) => void
 ): number {
   return window["requestIdleCallback"](handler);

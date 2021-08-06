@@ -14,7 +14,6 @@ export interface ITheme {
     };
 }
 export interface IColors {
-    default?: string;
     [key: string]: string;
 }
 export interface IConfigTheme {
