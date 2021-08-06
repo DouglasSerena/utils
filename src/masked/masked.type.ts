@@ -8,7 +8,7 @@ export interface IServiceMask {
   update(value: string): IServiceMask;
   bind(el: unknown, config?: unknown): IServiceMask;
   unmask(value: string, config?: unknown): unknown;
-  mask(value: string, config?: unknown): string;
+  mask(value: string | number, config?: unknown): string;
 }
 
 export interface IMaskCustom {

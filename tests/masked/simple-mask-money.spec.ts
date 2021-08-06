@@ -27,6 +27,7 @@ describe(`Class ${MaskSimpleMaskMoney.name}`, () => {
       thousandsSeparator: "",
       decimalSeparator: ".",
     });
+    expect(mask.mask(10)).toBe("0.010");
     expect(mask.mask("123456")).toBe("123.456");
     expect(mask.unmask("123.456")).toBe(123.456);
   });

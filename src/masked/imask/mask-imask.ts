@@ -48,10 +48,10 @@ export class MaskIMask implements IServiceMask {
     return this;
   }
 
-  mask(value: string, config?: IConfigMaskIMask): string {
+  mask(value: string | number, config?: IConfigMaskIMask): string {
     config = Object.assign({}, this.config, config);
 
-    const imask = this.createMask(value, config);
+    const imask = this.createMask(value.toString(), config);
     return imask.value;
   }
 
