@@ -1,29 +1,6 @@
-window["requestIdleCallback"] =
-  window["requestIdleCallback"] ||
-  function (handler: (data: { didTimeout: boolean; timeRemaining: () => number }) => void) {
-    const startTime = Date.now();
-
-    return setTimeout(function () {
-      handler({
-        didTimeout: false,
-        timeRemaining: function () {
-          return Math.max(0, 50.0 - (Date.now() - startTime));
-        },
-      });
-    }, 1);
-  };
-
-window["cancelIdleCallback"] =
-  window["cancelIdleCallback"] ||
-  function (id: number) {
-    clearTimeout(id);
-  };
-
 export function cancelStackCallback(stackId: number): void {
-  window["cancelIdleCallback"](stackId);
+  clearTimeout(stackId);
 }
-export function stackCallback(
-  handler: (options?: { didTimeout: boolean; timeRemaining: () => number }) => void
-): number {
-  return window["requestIdleCallback"](handler);
+export function stackCallback(handler: () => void, time = 0): number {
+  return setTimeout(() => handler(), time) as any;
 }

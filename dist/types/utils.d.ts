@@ -21,6 +21,7 @@ export * from "./functions/parse-number.function";
 export * from "./functions/relative-time.function";
 export * from "./functions/remove-accents.function";
 export * from "./functions/time-to-date.function";
+export * from "./functions/stack-callback.function";
 export * from "./regex/char-special.regex";
 export * from "./regex/cnpj.regex";
 export * from "./regex/cpf-cnpj.regex";
