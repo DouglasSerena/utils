@@ -1,7 +1,7 @@
 # utils
 
 ## Documentação
-[https://douglas-serena.github.io/utils/modules.html](https://douglasserena.github.io/utils/modules.html)
+[https://douglas-serena.github.io/utils/modules.html](https://douglas-serena.github.io/utils/modules.html)
 
 ## Contribuir
 - Para contribuir faça um fork do projeto e adicione um pull request para ser revisado.
@@ -9,3 +9,4 @@
 
 ## Erros comuns
 - Erro no dayjs, se você estiver usando dayjs e typescript você deve adicionar no tsconfig a seguinte linha: "allowSyntheticDefaultImports": true
+
