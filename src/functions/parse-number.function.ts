@@ -1,9 +1,9 @@
 import { validate } from "../validations/validate.validation";
 
 export interface IConfigParseNumber {
-  decimal?: string;
-  thousands?: string;
-  error?: boolean;
+  decimal: string;
+  thousands: string;
+  error: boolean;
 }
 
 const _config: IConfigParseNumber = {
@@ -12,7 +12,7 @@ const _config: IConfigParseNumber = {
   error: false,
 };
 
-export function parseNumber(value: number | string, config?: IConfigParseNumber): number {
+export function parseNumber(value: number | string, config?: Partial<IConfigParseNumber>): number {
   config = Object.assign({}, _config, config);
   if (!validate(value).isNumeric() && validate(value).isString()) {
     const isNegative = validate(value).isNegative();

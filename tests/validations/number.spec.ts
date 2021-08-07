@@ -19,6 +19,8 @@ describe("Function validate date", () => {
   it("Is float", () => {
     expect(validate(2).isFloat()).toBe(false);
     expect(validate(2.2).isFloat()).toBe(true);
+    expect(validate("2").isFloat()).toBe(false);
+    expect(validate("2.2").isFloat()).toBe(true);
   });
 
   it("Is negative", () => {

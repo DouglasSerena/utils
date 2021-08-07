@@ -13,7 +13,8 @@ export const isNumeric = (value: any): boolean => !isNaN(parseInt(value)) && isF
 export const isNumber = (value: unknown): value is number =>
   !isNaN(parseInt(value as string)) && isFinite(value as number) && typeof value === "number";
 
-export const isFloat = (value: unknown): boolean => isNumeric(value) && !Number.isInteger(value);
+export const isFloat = (value: unknown): boolean =>
+  isNumeric(value) && !Number.isInteger(Number(value));
 
 export const isMore = (value: unknown, compare: unknown): boolean => value > compare;
 

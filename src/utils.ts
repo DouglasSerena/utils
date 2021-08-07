@@ -3,6 +3,10 @@ export * from "./calc/calc";
 export * from "./calc/math.calc";
 export * from "./calc/calc.type";
 
+// DEBOUNCE
+export * from "./debounce/debounce";
+export * from "./debounce/debounce.type";
+
 // MASK
 export * from "./masked/masked";
 export * from "./masked/masked.type";
@@ -31,6 +35,7 @@ export * from "./functions/parse-number.function";
 export * from "./functions/relative-time.function";
 export * from "./functions/remove-accents.function";
 export * from "./functions/time-to-date.function";
+export * from "./functions/stack-callback.function";
 
 // REGEX
 export * from "./regex/char-special.regex";

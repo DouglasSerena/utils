@@ -12,7 +12,7 @@ const _config: IConfigCalc = {
   round: "round",
 };
 
-export function calc(value: AnyCalc | Calc, config?: IConfigCalc): Calc {
+export function calc(value: AnyCalc | Calc, config?: Partial<IConfigCalc>): Calc {
   return new Calc(value, config);
 }
 
@@ -22,7 +22,7 @@ export class Calc {
   precision: number;
   config: IConfigCalc;
 
-  constructor(value: AnyCalc | Calc, config?: IConfigCalc) {
+  constructor(value: AnyCalc | Calc, config?: Partial<IConfigCalc>) {
     this.config = Object.assign({}, _config, config);
     this.precision = Math.pow(10, this.config?.precision);
 
@@ -108,7 +108,7 @@ export class Calc {
   }
 }
 
-calc.config = (config: IConfigCalc) => {
+calc.config = (config: Partial<IConfigCalc>) => {
   Object.assign(_config, config);
 };
 calc.isCalc = (prop: unknown): prop is Calc => validate(prop).isInstanceof(Calc);

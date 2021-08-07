@@ -49,7 +49,7 @@ export class MaskSimpleMaskMoney implements IServiceMask {
     return this;
   }
 
-  mask(value: string, config?: ISimpleMaskMoneyConfig): string {
+  mask(value: string | number, config?: ISimpleMaskMoneyConfig): string {
     config = Object.assign({}, this.config, config);
     return SimpleMaskMoney.formatToMask(value, config);
   }
