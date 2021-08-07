@@ -1,7 +1,7 @@
 # utils
 
 ## Documentação
-[https://douglasserena.github.io/utils/modules.html](https://douglasserena.github.io/utils/modules.html)
+[https://douglas-serena.github.io/utils/modules.html](https://douglasserena.github.io/utils/modules.html)
 
 ## Contribuir
 - Para contribuir faça um fork do projeto e adicione um pull request para ser revisado.
