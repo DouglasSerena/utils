@@ -11,7 +11,7 @@ export function maskIMask(
 }
 
 export class MaskIMask implements IServiceMask {
-  public element: HTMLElement | MaskElement;
+  public element: HTMLElement;
   public inputMask: InputMask<AnyMaskedOptions>;
   private pattern: string;
   private config: IConfigMaskIMask;
@@ -34,15 +34,21 @@ export class MaskIMask implements IServiceMask {
     config = Object.assign({}, this.config, config);
     this.element = element;
 
-    this.inputMask = IMask(element, config as any);
+    this.inputMask = IMask(this.element, config as any);
     this.update(this.inputMask.value);
 
     return this;
   }
 
-  update(value: string): MaskIMask {
+  update(value?: string, config?: IConfigMaskIMask): MaskIMask {
+    config = Object.assign({}, this.config, config);
+
+    if (!value) {
+      value =
+        this.element instanceof HTMLInputElement ? this.element.value : this.element.textContent;
+    }
     if (this.element && value) {
-      this.inputMask.value = this.mask(value, this.config);
+      this.inputMask.value = this.mask(value, config);
       this.inputMask.updateValue();
     }
     return this;

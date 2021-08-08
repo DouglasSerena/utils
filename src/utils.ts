@@ -11,7 +11,7 @@ export * from "./debounce/debounce.type";
 export * from "./masked/masked";
 export * from "./masked/masked.type";
 export * from "./masked/imask/mask-imask";
-export * from "./masked/simple-mask-money/mask-simple-mask-money";
+export * from "./masked/vanilla-masker/vanilla-masker";
 
 // THEME
 export * from "./theme/theme";
@@ -30,12 +30,14 @@ export * from "./functions/object/sort-desc.function";
 
 export * from "./functions/theme-system.function";
 export * from "./functions/dom.function";
+export * from "./functions/sleep.function";
 export * from "./functions/handle-try.function";
 export * from "./functions/parse-number.function";
 export * from "./functions/relative-time.function";
 export * from "./functions/remove-accents.function";
 export * from "./functions/time-to-date.function";
 export * from "./functions/stack-callback.function";
+export * from "./functions/idle-callback.function";
 
 // REGEX
 export * from "./regex/char-special.regex";

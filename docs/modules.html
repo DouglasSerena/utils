@@ -65,6 +65,8 @@
 							<h3>Namespaces</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-namespace"><a href="modules/calc.html" class="tsd-kind-icon">calc</a></li>
+								<li class="tsd-kind-namespace"><a href="modules/debounce.html" class="tsd-kind-icon">debounce</a></li>
+								<li class="tsd-kind-namespace"><a href="modules/maskVanillaMasker.html" class="tsd-kind-icon">mask<wbr>Vanilla<wbr>Masker</a></li>
 								<li class="tsd-kind-namespace"><a href="modules/masked.html" class="tsd-kind-icon">masked</a></li>
 								<li class="tsd-kind-namespace"><a href="modules/theme.html" class="tsd-kind-icon">theme</a></li>
 							</ul>
@@ -73,8 +75,9 @@
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-class"><a href="classes/Calc.html" class="tsd-kind-icon">Calc</a></li>
+								<li class="tsd-kind-class"><a href="classes/Debounce.html" class="tsd-kind-icon">Debounce</a></li>
 								<li class="tsd-kind-class"><a href="classes/MaskIMask.html" class="tsd-kind-icon">MaskIMask</a></li>
-								<li class="tsd-kind-class"><a href="classes/MaskSimpleMaskMoney.html" class="tsd-kind-icon">Mask<wbr>Simple<wbr>Mask<wbr>Money</a></li>
+								<li class="tsd-kind-class"><a href="classes/MaskVanillaMasker.html" class="tsd-kind-icon">Mask<wbr>Vanilla<wbr>Masker</a></li>
 								<li class="tsd-kind-class"><a href="classes/Theme.html" class="tsd-kind-icon">Theme</a></li>
 								<li class="tsd-kind-class"><a href="classes/Validate.html" class="tsd-kind-icon">Validate</a></li>
 							</ul>
@@ -84,6 +87,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface"><a href="interfaces/IColors.html" class="tsd-kind-icon">IColors</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/IConfigCalc.html" class="tsd-kind-icon">IConfig<wbr>Calc</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/IConfigDebounce.html" class="tsd-kind-icon">IConfig<wbr>Debounce</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/IConfigParseNumber.html" class="tsd-kind-icon">IConfig<wbr>Parse<wbr>Number</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/IConfigTheme.html" class="tsd-kind-icon">IConfig<wbr>Theme</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/IContainsOption.html" class="tsd-kind-icon">IContains<wbr>Option</a></li>
@@ -141,14 +145,17 @@
 								<li class="tsd-kind-function"><a href="modules.html#add" class="tsd-kind-icon">add</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#base64toFile" class="tsd-kind-icon">base64to<wbr>File</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#calc" class="tsd-kind-icon">calc</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#cancelIdleCallback" class="tsd-kind-icon">cancel<wbr>Idle<wbr>Callback</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#cancelStackCallback" class="tsd-kind-icon">cancel<wbr>Stack<wbr>Callback</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#contains" class="tsd-kind-icon">contains</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#debounce" class="tsd-kind-icon">debounce</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#distribute" class="tsd-kind-icon">distribute</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#divide" class="tsd-kind-icon">divide</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#fileToBase64" class="tsd-kind-icon">file<wbr>ToBase64</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#getNode" class="tsd-kind-icon">get<wbr>Node</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#getSizeImage" class="tsd-kind-icon">get<wbr>Size<wbr>Image</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#handleTry" class="tsd-kind-icon">handle<wbr>Try</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#idleCallback" class="tsd-kind-icon">idle<wbr>Callback</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#increment" class="tsd-kind-icon">increment</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#isAfterDate" class="tsd-kind-icon">is<wbr>After<wbr>Date</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#isAllowExtensions" class="tsd-kind-icon">is<wbr>Allow<wbr>Extensions</a></li>
@@ -193,7 +200,7 @@
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#isTypeof" class="tsd-kind-icon">is<wbr>Typeof</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#isUndefined" class="tsd-kind-icon">is<wbr>Undefined</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#maskIMask" class="tsd-kind-icon">maskIMask</a></li>
-								<li class="tsd-kind-function"><a href="modules.html#maskSimpleMaskMoney" class="tsd-kind-icon">mask<wbr>Simple<wbr>Mask<wbr>Money</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#maskVanillaMasker" class="tsd-kind-icon">mask<wbr>Vanilla<wbr>Masker</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#masked" class="tsd-kind-icon">masked</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#maxSize" class="tsd-kind-icon">max<wbr>Size</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#merge" class="tsd-kind-icon">merge</a></li>
@@ -205,6 +212,7 @@
 								<li class="tsd-kind-function"><a href="modules.html#parseNumber" class="tsd-kind-icon">parse<wbr>Number</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#relativeTime" class="tsd-kind-icon">relative<wbr>Time</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#removeAccents" class="tsd-kind-icon">remove<wbr>Accents</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#sleep" class="tsd-kind-icon">sleep</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#sortAsc" class="tsd-kind-icon">sort<wbr>Asc</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#sortDesc" class="tsd-kind-icon">sort<wbr>Desc</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#stackCallback" class="tsd-kind-icon">stack<wbr>Callback</a></li>
@@ -228,7 +236,7 @@
 					<div class="tsd-signature tsd-kind-icon">Any<wbr>Calc<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/calc/calc.type.ts#L3">calc/calc.type.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/calc/calc.type.ts#L3">calc/calc.type.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -238,7 +246,7 @@
 					<div class="tsd-signature tsd-kind-icon">Any<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">File</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">FileList</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">File</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/file.validation.ts#L3">validations/file/file.validation.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/file.validation.ts#L3">validations/file/file.validation.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -248,7 +256,7 @@
 					<div class="tsd-signature tsd-kind-icon">Bit<wbr>Sizes<wbr>Keys<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;B&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;KB&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;MB&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;GB&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;TB&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/file.validation.ts#L4">validations/file/file.validation.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/file.validation.ts#L4">validations/file/file.validation.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -258,17 +266,17 @@
 					<div class="tsd-signature tsd-kind-icon">Color<wbr>Scheme<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;dark&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;light&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;no-preference&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/theme/theme.type.ts#L1">theme/theme.type.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/theme/theme.type.ts#L1">theme/theme.type.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="ConfigMask" class="tsd-anchor"></a>
 					<h3>Config<wbr>Mask</h3>
-					<div class="tsd-signature tsd-kind-icon">Config<wbr>Mask<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AnyMaskedOptions</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ISimpleMaskMoneyConfig</span></div>
+					<div class="tsd-signature tsd-kind-icon">Config<wbr>Mask<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AnyMaskedOptions</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">MoneyOptions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/masked/masked.type.ts#L4">masked/masked.type.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/masked/masked.type.ts#L4">masked/masked.type.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -278,7 +286,7 @@
 					<div class="tsd-signature tsd-kind-icon">Date<wbr>Any<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">dayjs.Dayjs</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/date.validation.ts#L10">validations/date.validation.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/date.validation.ts#L10">validations/date.validation.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -288,7 +296,7 @@
 					<div class="tsd-signature tsd-kind-icon">Date<wbr>Range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>end<span class="tsd-signature-symbol">: </span><a href="modules.html#DateAny" class="tsd-signature-type" data-tsd-kind="Type alias">DateAny</a><span class="tsd-signature-symbol">; </span>start<span class="tsd-signature-symbol">: </span><a href="modules.html#DateAny" class="tsd-signature-type" data-tsd-kind="Type alias">DateAny</a><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/date.validation.ts#L11">validations/date.validation.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/date.validation.ts#L11">validations/date.validation.ts:11</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -309,7 +317,7 @@
 					<div class="tsd-signature tsd-kind-icon">Erros<wbr>File<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;NOT_FILE&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/file.validation.ts#L27">validations/file/file.validation.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/file.validation.ts#L27">validations/file/file.validation.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -319,7 +327,7 @@
 					<div class="tsd-signature tsd-kind-icon">Erros<wbr>Max<wbr>Size<span class="tsd-signature-symbol">:</span> <a href="modules.html#ErrosFile" class="tsd-signature-type" data-tsd-kind="Type alias">ErrosFile</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;SIZE&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/max-size.validation.ts#L13">validations/file/max-size.validation.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/max-size.validation.ts#L13">validations/file/max-size.validation.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -329,7 +337,7 @@
 					<div class="tsd-signature tsd-kind-icon">Erros<wbr>Min<wbr>Size<span class="tsd-signature-symbol">:</span> <a href="modules.html#ErrosFile" class="tsd-signature-type" data-tsd-kind="Type alias">ErrosFile</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;SIZE&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/min-size.validation.ts#L13">validations/file/min-size.validation.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/min-size.validation.ts#L13">validations/file/min-size.validation.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -339,7 +347,7 @@
 					<div class="tsd-signature tsd-kind-icon">Max<wbr>Min<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>max<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>min<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/date.validation.ts#L12">validations/date.validation.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/date.validation.ts#L12">validations/date.validation.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -360,7 +368,7 @@
 					<div class="tsd-signature tsd-kind-icon">Number<wbr>Range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>end<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>start<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L3">validations/number.validation.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L3">validations/number.validation.ts:3</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -381,7 +389,7 @@
 					<div class="tsd-signature tsd-kind-icon">Typeof<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;string&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;number&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;bigint&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;boolean&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;symbol&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;undefined&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;object&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;function&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L6">validations/common/common.validation.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L6">validations/common/common.validation.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -394,7 +402,7 @@
 					<div class="tsd-signature tsd-kind-icon">BIT_<wbr>SIZES<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>B<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>GB<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>KB<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>MB<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>TB<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/file.validation.ts#L5">validations/file/file.validation.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/file.validation.ts#L5">validations/file/file.validation.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -424,7 +432,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEX_<wbr>CHAR_<wbr>SPECIAL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/regex/char-special.regex.ts#L1">regex/char-special.regex.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/regex/char-special.regex.ts#L1">regex/char-special.regex.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -434,7 +442,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEX_<wbr>CNPJ<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/regex/cnpj.regex.ts#L1">regex/cnpj.regex.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/regex/cnpj.regex.ts#L1">regex/cnpj.regex.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -444,7 +452,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEX_<wbr>CPF<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/regex/cpf.regex.ts#L1">regex/cpf.regex.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/regex/cpf.regex.ts#L1">regex/cpf.regex.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -454,7 +462,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEX_<wbr>CPF_<wbr>CNPJ<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/regex/cpf-cnpj.regex.ts#L1">regex/cpf-cnpj.regex.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/regex/cpf-cnpj.regex.ts#L1">regex/cpf-cnpj.regex.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -464,7 +472,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEX_<wbr>EMAIL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/regex/email.regex.ts#L1">regex/email.regex.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/regex/email.regex.ts#L1">regex/email.regex.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -474,7 +482,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEX_<wbr>NUMBER<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/regex/number.regex.ts#L1">regex/number.regex.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/regex/number.regex.ts#L1">regex/number.regex.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -484,7 +492,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEX_<wbr>PHONE_<wbr>BR<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/regex/phone-br.regex.ts#L1">regex/phone-br.regex.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/regex/phone-br.regex.ts#L1">regex/phone-br.regex.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -494,7 +502,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEX_<wbr>TIME<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/regex/time.regex.ts#L1">regex/time.regex.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/regex/time.regex.ts#L1">regex/time.regex.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -504,7 +512,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEX_<wbr>UPPER_<wbr>CASE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/regex/upper-case.regex.ts#L1">regex/upper-case.regex.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/regex/upper-case.regex.ts#L1">regex/upper-case.regex.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -514,7 +522,7 @@
 					<div class="tsd-signature tsd-kind-icon">REGEX_<wbr>URL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/regex/url.regex.ts#L1">regex/url.regex.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/regex/url.regex.ts#L1">regex/url.regex.ts:1</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -524,7 +532,7 @@
 					<div class="tsd-signature tsd-kind-icon">RESOLUTION_<wbr>HEIGHT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>FULL_HD<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>HD<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>HD_MORE<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>QUAD_HD<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>UHD<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/file.validation.ts#L19">validations/file/file.validation.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/file.validation.ts#L19">validations/file/file.validation.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -554,7 +562,7 @@
 					<div class="tsd-signature tsd-kind-icon">RESOLUTION_<wbr>WIDTH<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>FULL_HD<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>HD<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>HD_MORE<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>QUAD_HD<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>UHD<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/file.validation.ts#L12">validations/file/file.validation.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/file.validation.ts#L12">validations/file/file.validation.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -593,7 +601,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/dom.function.ts#L1">functions/dom.function.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/dom.function.ts#L1">functions/dom.function.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -613,7 +621,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/dom.function.ts#L1">functions/dom.function.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/dom.function.ts#L1">functions/dom.function.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -633,7 +641,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/dom.function.ts#L1">functions/dom.function.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/dom.function.ts#L1">functions/dom.function.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -664,7 +672,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/dom.function.ts#L2">functions/dom.function.ts:2</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/dom.function.ts#L2">functions/dom.function.ts:2</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -684,7 +692,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/dom.function.ts#L2">functions/dom.function.ts:2</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/dom.function.ts#L2">functions/dom.function.ts:2</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -704,7 +712,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/dom.function.ts#L2">functions/dom.function.ts:2</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/dom.function.ts#L2">functions/dom.function.ts:2</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -733,7 +741,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/calc/math.calc.ts#L9">calc/math.calc.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/calc/math.calc.ts#L9">calc/math.calc.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -759,7 +767,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/file/base64-to-file.function.ts#L1">functions/file/base64-to-file.function.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/file/base64-to-file.function.ts#L1">functions/file/base64-to-file.function.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -779,13 +787,13 @@
 					<a name="calc" class="tsd-anchor"></a>
 					<h3>calc</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">calc<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="modules.html#AnyCalc" class="tsd-signature-type" data-tsd-kind="Type alias">AnyCalc</a><span class="tsd-signature-symbol"> | </span><a href="classes/Calc.html" class="tsd-signature-type" data-tsd-kind="Class">Calc</a>, config<span class="tsd-signature-symbol">?: </span><a href="interfaces/IConfigCalc.html" class="tsd-signature-type" data-tsd-kind="Interface">IConfigCalc</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/Calc.html" class="tsd-signature-type" data-tsd-kind="Class">Calc</a></li>
+						<li class="tsd-signature tsd-kind-icon">calc<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><a href="modules.html#AnyCalc" class="tsd-signature-type" data-tsd-kind="Type alias">AnyCalc</a><span class="tsd-signature-symbol"> | </span><a href="classes/Calc.html" class="tsd-signature-type" data-tsd-kind="Class">Calc</a>, config<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/IConfigCalc.html" class="tsd-signature-type" data-tsd-kind="Interface">IConfigCalc</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/Calc.html" class="tsd-signature-type" data-tsd-kind="Class">Calc</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/calc/calc.ts#L15">calc/calc.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/calc/calc.ts#L15">calc/calc.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -794,10 +802,33 @@
 									<h5>value: <a href="modules.html#AnyCalc" class="tsd-signature-type" data-tsd-kind="Type alias">AnyCalc</a><span class="tsd-signature-symbol"> | </span><a href="classes/Calc.html" class="tsd-signature-type" data-tsd-kind="Class">Calc</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> config: <a href="interfaces/IConfigCalc.html" class="tsd-signature-type" data-tsd-kind="Interface">IConfigCalc</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> config: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/IConfigCalc.html" class="tsd-signature-type" data-tsd-kind="Interface">IConfigCalc</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="classes/Calc.html" class="tsd-signature-type" data-tsd-kind="Class">Calc</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="cancelIdleCallback" class="tsd-anchor"></a>
+					<h3>cancel<wbr>Idle<wbr>Callback</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">cancel<wbr>Idle<wbr>Callback<span class="tsd-signature-symbol">(</span>stackId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/idle-callback.function.ts#L22">functions/idle-callback.function.ts:22</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>stackId: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -811,7 +842,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/stack-callback.function.ts#L22">functions/stack-callback.function.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/stack-callback.function.ts#L1">functions/stack-callback.function.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -834,7 +865,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/contains.validation.ts#L9">validations/common/contains.validation.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/contains.validation.ts#L9">validations/common/contains.validation.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -860,6 +891,44 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="debounce" class="tsd-anchor"></a>
+					<h3>debounce</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">debounce<span class="tsd-signature-symbol">(</span>callbackOrTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, time<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/Debounce.html" class="tsd-signature-type" data-tsd-kind="Class">Debounce</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/debounce/debounce.ts#L8">debounce/debounce.ts:8</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> callbackOrTime: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> time: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="classes/Debounce.html" class="tsd-signature-type" data-tsd-kind="Class">Debounce</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="distribute" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> distribute</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -869,7 +938,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/calc/math.calc.ts#L35">calc/math.calc.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/calc/math.calc.ts#L35">calc/math.calc.ts:35</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -895,7 +964,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/calc/math.calc.ts#L24">calc/math.calc.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/calc/math.calc.ts#L24">calc/math.calc.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -921,7 +990,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/file/file-to-base64.function.ts#L1">functions/file/file-to-base64.function.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/file/file-to-base64.function.ts#L1">functions/file/file-to-base64.function.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -944,7 +1013,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/object/get-node.function.ts#L1">functions/object/get-node.function.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/object/get-node.function.ts#L1">functions/object/get-node.function.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -976,7 +1045,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/file/get-size-image.function.ts#L6">functions/file/get-size-image.function.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/file/get-size-image.function.ts#L6">functions/file/get-size-image.function.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -999,7 +1068,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/handle-try.function.ts#L3">functions/handle-try.function.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/handle-try.function.ts#L3">functions/handle-try.function.ts:3</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1019,6 +1088,68 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="idleCallback" class="tsd-anchor"></a>
+					<h3>idle<wbr>Callback</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">idle<wbr>Callback<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>didTimeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeRemaining<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/idle-callback.function.ts#L25">functions/idle-callback.function.ts:25</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>handler: <span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>didTimeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeRemaining<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>didTimeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeRemaining<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-symbol">{ </span>didTimeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeRemaining<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
+															<ul class="tsd-parameters">
+																<li class="tsd-parameter">
+																	<h5>did<wbr>Timeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+																</li>
+																<li class="tsd-parameter">
+																	<h5>time<wbr>Remaining<span class="tsd-signature-symbol">: </span>function</h5>
+																	<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
+																		<li class="tsd-signature tsd-kind-icon">time<wbr>Remaining<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+																	</ul>
+																	<ul class="tsd-descriptions">
+																		<li class="tsd-description">
+																			<aside class="tsd-sources">
+																				<ul>
+																					<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/idle-callback.function.ts#L26">functions/idle-callback.function.ts:26</a></li>
+																				</ul>
+																			</aside>
+																			<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+																		</li>
+																	</ul>
+																</li>
+															</ul>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="increment" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> increment</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -1028,7 +1159,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/calc/math.calc.ts#L29">calc/math.calc.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/calc/math.calc.ts#L29">calc/math.calc.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1054,7 +1185,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/date.validation.ts#L16">validations/date.validation.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/date.validation.ts#L16">validations/date.validation.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1083,7 +1214,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/is-allow-extension.validation.ts#L16">validations/file/is-allow-extension.validation.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/is-allow-extension.validation.ts#L16">validations/file/is-allow-extension.validation.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1109,7 +1240,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L50">validations/common/common.validation.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L50">validations/common/common.validation.ts:50</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1132,7 +1263,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/date.validation.ts#L22">validations/date.validation.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/date.validation.ts#L22">validations/date.validation.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1161,7 +1292,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L26">validations/number.validation.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L27">validations/number.validation.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1187,7 +1318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/date.validation.ts#L28">validations/date.validation.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/date.validation.ts#L28">validations/date.validation.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1219,7 +1350,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/date.validation.ts#L41">validations/date.validation.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/date.validation.ts#L41">validations/date.validation.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1245,7 +1376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L56">validations/common/common.validation.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L56">validations/common/common.validation.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1268,7 +1399,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/is-cnpj.validation.ts#L1">validations/common/is-cnpj.validation.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/is-cnpj.validation.ts#L1">validations/common/is-cnpj.validation.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1291,7 +1422,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/is-cpf.validation.ts#L1">validations/common/is-cpf.validation.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/is-cpf.validation.ts#L1">validations/common/is-cpf.validation.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1314,7 +1445,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L64">validations/common/common.validation.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L64">validations/common/common.validation.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1337,7 +1468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/date.validation.ts#L14">validations/date.validation.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/date.validation.ts#L14">validations/date.validation.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1360,7 +1491,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L23">validations/common/common.validation.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L23">validations/common/common.validation.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1386,7 +1517,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/date.validation.ts#L61">validations/date.validation.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/date.validation.ts#L61">validations/date.validation.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1415,7 +1546,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L27">validations/common/common.validation.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L27">validations/common/common.validation.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1441,7 +1572,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L9">validations/number.validation.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L9">validations/number.validation.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1467,7 +1598,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/is-empty.validation.ts#L1">validations/common/is-empty.validation.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/is-empty.validation.ts#L1">validations/common/is-empty.validation.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1496,7 +1627,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L22">validations/common/common.validation.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L22">validations/common/common.validation.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1522,7 +1653,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/date.validation.ts#L55">validations/date.validation.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/date.validation.ts#L55">validations/date.validation.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1551,7 +1682,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L25">validations/common/common.validation.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L25">validations/common/common.validation.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1577,7 +1708,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L7">validations/number.validation.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L7">validations/number.validation.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1603,7 +1734,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L40">validations/common/common.validation.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L40">validations/common/common.validation.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1626,7 +1757,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/file.validation.ts#L34">validations/file/file.validation.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/file.validation.ts#L34">validations/file/file.validation.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1649,7 +1780,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L29">validations/common/common.validation.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L29">validations/common/common.validation.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1678,7 +1809,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L16">validations/number.validation.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L16">validations/number.validation.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1701,7 +1832,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L53">validations/common/common.validation.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L53">validations/common/common.validation.ts:53</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1724,7 +1855,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L34">validations/common/common.validation.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L34">validations/common/common.validation.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1756,7 +1887,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L22">validations/number.validation.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L23">validations/number.validation.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1782,7 +1913,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L24">validations/number.validation.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L25">validations/number.validation.ts:25</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1808,7 +1939,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L18">validations/number.validation.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L19">validations/number.validation.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1834,7 +1965,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L20">validations/number.validation.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L21">validations/number.validation.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1860,7 +1991,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L5">validations/number.validation.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L5">validations/number.validation.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1883,7 +2014,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L59">validations/common/common.validation.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L59">validations/common/common.validation.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1906,7 +2037,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L13">validations/number.validation.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L13">validations/number.validation.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1929,7 +2060,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/number.validation.ts#L11">validations/number.validation.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/number.validation.ts#L11">validations/number.validation.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1952,7 +2083,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L47">validations/common/common.validation.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L47">validations/common/common.validation.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1981,7 +2112,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/is-password.validation.ts#L10">validations/common/is-password.validation.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/is-password.validation.ts#L10">validations/common/is-password.validation.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2016,7 +2147,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/is-rg-sp.validation.ts#L1">validations/common/is-rg-sp.validation.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/is-rg-sp.validation.ts#L1">validations/common/is-rg-sp.validation.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2039,7 +2170,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L44">validations/common/common.validation.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L44">validations/common/common.validation.ts:44</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2062,7 +2193,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L42">validations/common/common.validation.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L42">validations/common/common.validation.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2085,7 +2216,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L31">validations/common/common.validation.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L31">validations/common/common.validation.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2117,7 +2248,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L61">validations/common/common.validation.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L61">validations/common/common.validation.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2140,7 +2271,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/masked/imask/mask-imask.ts#L6">masked/imask/mask-imask.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/masked/imask/mask-imask.ts#L6">masked/imask/mask-imask.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2157,25 +2288,25 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
-					<a name="maskSimpleMaskMoney" class="tsd-anchor"></a>
-					<h3>mask<wbr>Simple<wbr>Mask<wbr>Money</h3>
+					<a name="maskVanillaMasker" class="tsd-anchor"></a>
+					<h3>mask<wbr>Vanilla<wbr>Masker</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">mask<wbr>Simple<wbr>Mask<wbr>Money<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ISimpleMaskMoneyConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/MaskSimpleMaskMoney.html" class="tsd-signature-type" data-tsd-kind="Class">MaskSimpleMaskMoney</a></li>
+						<li class="tsd-signature tsd-kind-icon">mask<wbr>Vanilla<wbr>Masker<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">MoneyOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/MaskVanillaMasker.html" class="tsd-signature-type" data-tsd-kind="Class">MaskVanillaMasker</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/masked/simple-mask-money/mask-simple-mask-money.ts#L6">masked/simple-mask-money/mask-simple-mask-money.ts:6</a></li>
+									<li>Defined in masked/vanilla-masker/vanilla-masker.ts:12</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> config: <span class="tsd-signature-type">ISimpleMaskMoneyConfig</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> config: <span class="tsd-signature-type">MoneyOptions</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="classes/MaskSimpleMaskMoney.html" class="tsd-signature-type" data-tsd-kind="Class">MaskSimpleMaskMoney</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="classes/MaskVanillaMasker.html" class="tsd-signature-type" data-tsd-kind="Class">MaskVanillaMasker</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -2189,7 +2320,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/masked/masked.ts#L8">masked/masked.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/masked/masked.ts#L8">masked/masked.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2215,7 +2346,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/max-size.validation.ts#L24">validations/file/max-size.validation.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/max-size.validation.ts#L24">validations/file/max-size.validation.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2244,7 +2375,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/object/merge-object.function.ts#L14">functions/object/merge-object.function.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/object/merge-object.function.ts#L14">functions/object/merge-object.function.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2270,7 +2401,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/object/merge-object.function.ts#L3">functions/object/merge-object.function.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/object/merge-object.function.ts#L3">functions/object/merge-object.function.ts:3</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2302,7 +2433,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/file/min-size.validation.ts#L24">validations/file/min-size.validation.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/file/min-size.validation.ts#L24">validations/file/min-size.validation.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2331,7 +2462,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/calc/math.calc.ts#L19">calc/math.calc.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/calc/math.calc.ts#L19">calc/math.calc.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2357,7 +2488,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L16">validations/common/common.validation.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L16">validations/common/common.validation.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2392,7 +2523,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/common.validation.ts#L37">validations/common/common.validation.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/common.validation.ts#L37">validations/common/common.validation.ts:37</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2421,13 +2552,13 @@
 					<a name="parseNumber" class="tsd-anchor"></a>
 					<h3>parse<wbr>Number</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">parse<wbr>Number<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, config<span class="tsd-signature-symbol">?: </span><a href="interfaces/IConfigParseNumber.html" class="tsd-signature-type" data-tsd-kind="Interface">IConfigParseNumber</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">parse<wbr>Number<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, config<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/IConfigParseNumber.html" class="tsd-signature-type" data-tsd-kind="Interface">IConfigParseNumber</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/parse-number.function.ts#L15">functions/parse-number.function.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/parse-number.function.ts#L15">functions/parse-number.function.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2436,7 +2567,7 @@
 									<h5>value: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> config: <a href="interfaces/IConfigParseNumber.html" class="tsd-signature-type" data-tsd-kind="Interface">IConfigParseNumber</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> config: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/IConfigParseNumber.html" class="tsd-signature-type" data-tsd-kind="Interface">IConfigParseNumber</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -2453,7 +2584,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/relative-time.function.ts#L6">functions/relative-time.function.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/relative-time.function.ts#L6">functions/relative-time.function.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2479,7 +2610,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/remove-accents.function.ts#L1">functions/remove-accents.function.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/remove-accents.function.ts#L1">functions/remove-accents.function.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2493,6 +2624,29 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="sleep" class="tsd-anchor"></a>
+					<h3>sleep</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">sleep<span class="tsd-signature-symbol">(</span>time<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in functions/sleep.function.ts:1</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>time: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 250</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="sortAsc" class="tsd-anchor"></a>
 					<h3>sort<wbr>Asc</h3>
 					<ul class="tsd-signatures tsd-kind-function">
@@ -2502,7 +2656,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/object/sort-asc.function.ts#L3">functions/object/sort-asc.function.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/object/sort-asc.function.ts#L3">functions/object/sort-asc.function.ts:3</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2528,7 +2682,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/object/sort-desc.function.ts#L3">functions/object/sort-desc.function.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/object/sort-desc.function.ts#L3">functions/object/sort-desc.function.ts:3</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2548,58 +2702,34 @@
 					<a name="stackCallback" class="tsd-anchor"></a>
 					<h3>stack<wbr>Callback</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">stack<wbr>Callback<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>didTimeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeRemaining<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">stack<wbr>Callback<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, time<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/stack-callback.function.ts#L25">functions/stack-callback.function.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/stack-callback.function.ts#L4">functions/stack-callback.function.ts:4</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>handler: <span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>didTimeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeRemaining<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<h5>handler: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>didTimeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeRemaining<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
 												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-symbol">{ </span>didTimeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>timeRemaining<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
-															<ul class="tsd-parameters">
-																<li class="tsd-parameter">
-																	<h5>did<wbr>Timeout<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-																</li>
-																<li class="tsd-parameter">
-																	<h5>time<wbr>Remaining<span class="tsd-signature-symbol">: </span>function</h5>
-																	<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-type-literal">
-																		<li class="tsd-signature tsd-kind-icon">time<wbr>Remaining<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-																	</ul>
-																	<ul class="tsd-descriptions">
-																		<li class="tsd-description">
-																			<aside class="tsd-sources">
-																				<ul>
-																					<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/stack-callback.function.ts#L26">functions/stack-callback.function.ts:26</a></li>
-																				</ul>
-																			</aside>
-																			<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-																		</li>
-																	</ul>
-																</li>
-															</ul>
-														</li>
-													</ul>
 													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 												</li>
 											</ul>
 										</li>
 									</ul>
+								</li>
+								<li>
+									<h5>time: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -2616,7 +2746,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/calc/math.calc.ts#L14">calc/math.calc.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/calc/math.calc.ts#L14">calc/math.calc.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2642,7 +2772,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/common/test-pattern.validation.ts#L3">validations/common/test-pattern.validation.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/common/test-pattern.validation.ts#L3">validations/common/test-pattern.validation.ts:3</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2668,7 +2798,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/theme/theme.ts#L21">theme/theme.ts:21</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/theme/theme.ts#L21">theme/theme.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2694,7 +2824,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/theme-system.function.ts#L1">functions/theme-system.function.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/theme-system.function.ts#L1">functions/theme-system.function.ts:1</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">&quot;dark&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;light&quot;</span></h4>
@@ -2711,7 +2841,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/functions/time-to-date.function.ts#L4">functions/time-to-date.function.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/functions/time-to-date.function.ts#L4">functions/time-to-date.function.ts:4</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2734,7 +2864,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/validate.validation.ts#L65">validations/validate.validation.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/validate.validation.ts#L65">validations/validate.validation.ts:65</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2757,7 +2887,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/a6cf2ec/src/validations/validate.validation.ts#L62">validations/validate.validation.ts:62</a></li>
+									<li>Defined in <a href="https://github.com/DouglasSerena/utils/blob/03e477d/src/validations/validate.validation.ts#L62">validations/validate.validation.ts:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2782,6 +2912,12 @@
 						<a href="modules/calc.html">calc</a>
 					</li>
 					<li class=" tsd-kind-namespace">
+						<a href="modules/debounce.html">debounce</a>
+					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="modules/maskVanillaMasker.html">mask<wbr>Vanilla<wbr>Masker</a>
+					</li>
+					<li class=" tsd-kind-namespace">
 						<a href="modules/masked.html">masked</a>
 					</li>
 					<li class=" tsd-kind-namespace">
@@ -2795,10 +2931,13 @@
 						<a href="classes/Calc.html" class="tsd-kind-icon">Calc</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/Debounce.html" class="tsd-kind-icon">Debounce</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/MaskIMask.html" class="tsd-kind-icon">MaskIMask</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/MaskSimpleMaskMoney.html" class="tsd-kind-icon">Mask<wbr>Simple<wbr>Mask<wbr>Money</a>
+						<a href="classes/MaskVanillaMasker.html" class="tsd-kind-icon">Mask<wbr>Vanilla<wbr>Masker</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/Theme.html" class="tsd-kind-icon">Theme</a>
@@ -2811,6 +2950,9 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/IConfigCalc.html" class="tsd-kind-icon">IConfig<wbr>Calc</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/IConfigDebounce.html" class="tsd-kind-icon">IConfig<wbr>Debounce</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/IConfigParseNumber.html" class="tsd-kind-icon">IConfig<wbr>Parse<wbr>Number</a>
@@ -2939,10 +3081,16 @@
 						<a href="modules.html#calc" class="tsd-kind-icon">calc</a>
 					</li>
 					<li class=" tsd-kind-function">
+						<a href="modules.html#cancelIdleCallback" class="tsd-kind-icon">cancel<wbr>Idle<wbr>Callback</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#cancelStackCallback" class="tsd-kind-icon">cancel<wbr>Stack<wbr>Callback</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="modules.html#contains" class="tsd-kind-icon">contains</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#debounce" class="tsd-kind-icon">debounce</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#distribute" class="tsd-kind-icon">distribute</a>
@@ -2961,6 +3109,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="modules.html#handleTry" class="tsd-kind-icon">handle<wbr>Try</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#idleCallback" class="tsd-kind-icon">idle<wbr>Callback</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#increment" class="tsd-kind-icon">increment</a>
@@ -3095,7 +3246,7 @@
 						<a href="modules.html#maskIMask" class="tsd-kind-icon">maskIMask</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="modules.html#maskSimpleMaskMoney" class="tsd-kind-icon">mask<wbr>Simple<wbr>Mask<wbr>Money</a>
+						<a href="modules.html#maskVanillaMasker" class="tsd-kind-icon">mask<wbr>Vanilla<wbr>Masker</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#masked" class="tsd-kind-icon">masked</a>
@@ -3129,6 +3280,9 @@
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#removeAccents" class="tsd-kind-icon">remove<wbr>Accents</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#sleep" class="tsd-kind-icon">sleep</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#sortAsc" class="tsd-kind-icon">sort<wbr>Asc</a>

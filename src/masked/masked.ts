@@ -3,19 +3,19 @@ import { SimpleMaskMoneyConfig } from "simple-mask-money";
 import { CUSTOM_MASKS } from "./custom.masked";
 import { MaskIMask } from "./imask/mask-imask";
 import { ConfigMask, IMaskCustom, IServiceMask } from "./masked.type";
-import { MaskSimpleMaskMoney } from "./simple-mask-money/mask-simple-mask-money";
+import { MaskVanillaMasker } from "./vanilla-masker/vanilla-masker";
 
-export function masked(pattern: string, config?: ConfigMask): IServiceMask {
+export function masked(pattern: string, config?: Partial<ConfigMask>): IServiceMask {
   const custoMaskKeys = Object.keys(CUSTOM_MASKS);
-  if (custoMaskKeys.includes(pattern)) {
-    const CUSTOM_MASK = CUSTOM_MASKS[pattern];
+  if (custoMaskKeys.includes(pattern?.toUpperCase())) {
+    const CUSTOM_MASK = CUSTOM_MASKS[pattern?.toUpperCase()];
 
-    if (CUSTOM_MASK.type === "IMASK") {
+    if (CUSTOM_MASK.type === "MASK") {
       config = Object.assign({}, CUSTOM_MASK.config, config);
       return new MaskIMask(config as AnyMaskedOptions);
     } else {
       config = Object.assign({}, CUSTOM_MASK.config, config);
-      return new MaskSimpleMaskMoney(config as SimpleMaskMoneyConfig);
+      return new MaskVanillaMasker(config as SimpleMaskMoneyConfig);
     }
   }
 

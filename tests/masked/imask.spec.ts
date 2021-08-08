@@ -1,16 +1,5 @@
-import { MaskIMask, maskIMask } from "./../../src/utils";
-
-function writeAll(element: HTMLElement, value: string | number) {
-  const event = document.createEvent("HTMLEvents");
-  event.initEvent("input", false, true);
-  if (element instanceof HTMLInputElement) {
-    element.value = element.value + value;
-    element.dispatchEvent(event);
-  } else {
-    element.textContent = element.textContent + value;
-    element.dispatchEvent(event);
-  }
-}
+import { MaskIMask, maskIMask, sleep, stackCallback } from "./../../src/utils";
+import { writeAll } from "./../mocks/write-all";
 
 describe(`Class ${MaskIMask.name}`, () => {
   it("Mask with string 'format' & 'unformed'", () => {
@@ -48,6 +37,16 @@ describe(`Class ${MaskIMask.name}`, () => {
     const mask = maskIMask("000.000.000-00");
     mask.bind(input);
     writeAll(input, "3125743232");
+    expect((mask.element as HTMLInputElement).value).toBe("312.574.323-2");
+  });
+
+  it("Mask bind input text update", async () => {
+    const input = document.createElement("input");
+    const mask = maskIMask("000.000.000-00");
+    mask.bind(input);
+    await sleep();
+    input.value = "3125743232";
+    mask.update();
     expect((mask.element as HTMLInputElement).value).toBe("312.574.323-2");
   });
 });
