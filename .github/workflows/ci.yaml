@@ -34,5 +34,5 @@ jobs:
         with:
           node-version: 12.x
 
-      - run: npm Install
+      - run: npm install
       - run: npm run docs
