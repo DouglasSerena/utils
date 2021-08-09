@@ -38,6 +38,7 @@ jobs:
       - run: npm run docs
 
       - uses: EndBug/add-and-commit@v7
-        add: 'docs'
-        branch: docs
-        message: 'docs\: New docs'
+        with:
+          add: 'docs'
+          branch: docs
+          message: 'docs\: New docs'
