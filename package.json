@@ -1,6 +1,6 @@
 {
   "name": "@douglas-serena/utils",
-  "version": "0.1.12",
+  "version": "0.1.14",
   "main": "dist/utils.umd.js",
   "module": "dist/utils.es5.js",
   "typings": "dist/types/utils.d.ts",
@@ -22,7 +22,7 @@
     "test:coverage": "jest --coverage",
     "docs": "typedoc src/utils.ts",
     "build:ts": "tsc --module commonjs && rollup -c rollup.config.ts",
-    "build": "npm run test && npm run build:ts && npm run docs"
+    "build": "npm run test && npm run build:ts"
   },
   "devDependencies": {
     "@types/inputmask": "^5.0.1",

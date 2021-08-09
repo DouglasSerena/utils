@@ -140,10 +140,10 @@ export const CUSTOM_MASKS: { [key: string]: IMaskCustom } = {
     config: {
       mask: Date,
       lazy: false,
-      pattern: "DD/MM/YYYY H:mm",
+      pattern: "DD/MM/YYYY H:mm A",
       blocks: BLOCKS_DATE,
-      format: (date) => dayjs(date).format("DD/MM/YYYY H:mm"),
-      parse: (str) => dayjs(str, "DD/MM/YYYY H:mm").toDate(),
+      format: (date) => dayjs(date).format("DD/MM/YYYY H:mm A"),
+      parse: (str) => dayjs(str, "DD/MM/YYYY H:mm A").toDate(),
     },
   },
   MONTH: {
@@ -155,6 +155,28 @@ export const CUSTOM_MASKS: { [key: string]: IMaskCustom } = {
       blocks: BLOCKS_DATE,
       format: (date) => dayjs(date).format("MM/YYYY"),
       parse: (str) => dayjs(str, "MM/YYYY").toDate(),
+    },
+  },
+  TIME: {
+    type: "MASK",
+    config: {
+      mask: Date,
+      lazy: false,
+      pattern: "HH:mm",
+      blocks: BLOCKS_DATE,
+      format: (date) => dayjs(date).format("HH:mm"),
+      parse: (str) => dayjs(str, "HH:mm").toDate(),
+    },
+  },
+  TIME_12: {
+    type: "MASK",
+    config: {
+      mask: Date,
+      lazy: false,
+      pattern: "H:mm A",
+      blocks: BLOCKS_DATE,
+      format: (date) => dayjs(date).format("H:mm A"),
+      parse: (str) => dayjs(str, "H:mm A").toDate(),
     },
   },
   CURRENCY: {
