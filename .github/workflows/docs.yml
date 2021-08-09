@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  tests:
+  docs:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,5 +18,8 @@ jobs:
         with:
           node-version: 12.x
 
-      - run: npm install
-      - run: npm run test
+      - run: git checkout docs
+      - run: npm Install
+      - run: git add .
+      - run: git commit -m "docs:\ New Docs"
+      - run: git push

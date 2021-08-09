@@ -1,17 +1,17 @@
 import { AnyMaskedOptions } from "imask";
-import { ISimpleMaskMoneyConfig } from "./simple-mask-money/mask-simple-mask-money.type";
+import { MoneyOptions } from "./vanilla-masker/vanilla-masker.type";
 
-export type ConfigMask = AnyMaskedOptions | ISimpleMaskMoneyConfig;
+export type ConfigMask = AnyMaskedOptions | MoneyOptions;
 
 export interface IServiceMask {
   element: unknown;
-  update(value: string): IServiceMask;
+  update(value?: string, config?: unknown): IServiceMask;
   bind(el: unknown, config?: unknown): IServiceMask;
   unmask(value: string, config?: unknown): unknown;
   mask(value: string | number, config?: unknown): string;
 }
 
 export interface IMaskCustom {
-  type: "IMASK" | "SIMPLE_MASK_MONEY";
+  type: "MASK" | "MASK_MONEY";
   config: ConfigMask;
 }

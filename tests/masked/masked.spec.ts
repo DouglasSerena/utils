@@ -1,16 +1,6 @@
 import { masked } from "../../src/utils";
-
-function writeAll(element: HTMLElement, value: string | number) {
-  const event = document.createEvent("HTMLEvents");
-  event.initEvent("input", false, true);
-  if (element instanceof HTMLInputElement) {
-    element.value = element.value + value;
-    element.dispatchEvent(event);
-  } else {
-    element.textContent = element.textContent + value;
-    element.dispatchEvent(event);
-  }
-}
+import { writeAll } from "../mocks/write-all";
+import { writeOnePerOne } from "../mocks/write-one-per-one";
 
 describe("Function masked", () => {
   it("Mask with string 'format' & 'unformed'", () => {
@@ -25,7 +15,7 @@ describe("Function masked", () => {
     expect(mask.unmask("(11) 9 3215-2532")).toBe("11932152532");
   });
 
-  it("Mask with mask custom with update 'format' & 'unformed'", () => {
+  it("Mask with mask TEL bind input", () => {
     const input = document.createElement("input");
     const mask = masked("TEL");
     mask.bind(input);
@@ -35,11 +25,68 @@ describe("Function masked", () => {
     expect(input.value).toBe("(11) 9 3215-2532");
   });
 
-  it("Mask with mask custom with update 'format' & 'unformed'", () => {
+  it("Mask with mask CURRENCY bind input", () => {
     const input = document.createElement("input");
-    const mask = masked("TEL");
+    const mask = masked("CURRENCY");
     mask.bind(input);
-    writeAll(input, "11932152532");
-    expect(input.value).toBe("(11) 9 3215-2532");
+    input.value = "1000";
+    mask.update();
+    expect(input.value).toBe("10.00");
+  });
+
+  it("Mask with mask CURRENCY", () => {
+    const input = document.createElement("input");
+    const mask = masked("CURRENCY");
+    mask.bind(input);
+    writeOnePerOne(input, "1000");
+    expect(input.value).toBe("10.00");
+  });
+
+  it("Mask with mask AMOUNT", () => {
+    const input = document.createElement("input");
+    const mask = masked("AMOUNT");
+    mask.bind(input);
+    writeOnePerOne(input, "1000");
+    expect(input.value).toBe("1.000");
+  });
+
+  it("Mask with mask percent", () => {
+    const input = document.createElement("input");
+    const mask = masked("percent");
+    mask.bind(input);
+    writeOnePerOne(input, "100000");
+    expect(input.value).toBe("1\u200B000,00");
+  });
+
+  it("Mask with mask PERCENT", () => {
+    const input = document.createElement("input");
+    const mask = masked("PERCENT");
+    mask.bind(input);
+    writeOnePerOne(input, "1000");
+    expect(input.value).toBe("10,00");
+  });
+
+  it("Mask with mask DATE", () => {
+    const input = document.createElement("input");
+    const mask = masked("DATE", { lazy: true });
+    mask.bind(input);
+    writeAll(input, "31122001");
+    expect(input.value).toBe("31/12/2001");
+  });
+
+  it("Mask with mask DATE TIME", () => {
+    const input = document.createElement("input");
+    const mask = masked("DATE_TIME", { lazy: true });
+    mask.bind(input);
+    writeAll(input, "311220011230");
+    expect(input.value).toBe("31/12/2001 12:30");
+  });
+
+  it("Mask with mask MONTH", () => {
+    const input = document.createElement("input");
+    const mask = masked("MONTH", { lazy: true });
+    mask.bind(input);
+    writeAll(input, "122001");
+    expect(input.value).toBe("12/2001");
   });
 });
