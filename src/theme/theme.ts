@@ -1,7 +1,13 @@
 import { getNode } from "../functions/object/get-node.function";
 import { mergeObject } from "../functions/object/merge-object.function";
 import { themeSystem } from "../functions/theme-system.function";
-import { validate } from "../validations/validate.validation";
+import {
+  isEqual,
+  isFalse,
+  isInstanceof,
+  isObject,
+  isString,
+} from "../validations/common/common.validation";
 import { ColorScheme, IColors, ITheme, IConfigTheme } from "./theme.type";
 
 let _themes: ITheme = {};
@@ -13,7 +19,7 @@ let _config: IConfigTheme = {
 };
 
 window?.matchMedia?.("(prefers-color-scheme: dark)")?.addEventListener("change", (event) => {
-  if (validate(_config.disableSystemBasedColorShift).isFalse()) {
+  if (isFalse(_config.disableSystemBasedColorShift)) {
     theme().change(themeSystem() || "light");
   }
 });
@@ -55,13 +61,13 @@ export class Theme {
   }
 
   public get isDark(): boolean {
-    return validate(this.use).isEqual("dark");
+    return isEqual(this.use, "dark");
   }
   public get isLight(): boolean {
-    return validate(this.use).isEqual("light");
+    return isEqual(this.use, "light");
   }
   public get isNoPreference(): boolean {
-    return validate(this.use).isEqual("no-preference");
+    return isEqual(this.use, "no-preference");
   }
 
   reset(): void {
@@ -93,7 +99,7 @@ export class Theme {
       nodes.unshift(this.use);
     }
     const color = getNode<IColors | string>(this.themes, nodes);
-    if (validate(color).isObject()) {
+    if (isObject(color)) {
       return (color as IColors).default;
     }
     return color as string;
@@ -103,10 +109,10 @@ export class Theme {
     let style = [`color-scheme: ${this.use}`];
     const colors = _themes[this.use];
 
-    if (validate(_themes.global).isObject()) {
+    if (isObject(_themes.global)) {
       style = style.concat(this.generatorStyleContent(_themes.global));
     }
-    if (validate(colors).isObject()) {
+    if (isObject(colors)) {
       style = style.concat(this.generatorStyleContent(colors));
     }
 
@@ -114,12 +120,12 @@ export class Theme {
   }
   private generatorStyleContent(colors: { [key: string]: string | IColors }) {
     return Object.keys(colors).reduce((prev, colorType) => {
-      if (validate(colors[colorType]).isString()) {
+      if (isString(colors[colorType])) {
         prev.push(`--${this.prefix}-${colorType}: ${colors[colorType]}`);
       } else {
         Object.keys(colors[colorType]).forEach((colorName) => {
           const value = colors[colorType][colorName];
-          if (validate(colorName).isEqual("default")) {
+          if (isEqual(colorName, "default")) {
             prev.push(`--${this.prefix}-${colorType}: ${value}`);
           } else {
             prev.push(`--${this.prefix}-${colorType}-${colorName}: ${value}`);
@@ -137,4 +143,4 @@ theme.config = (config: IConfigTheme): void => {
 theme.theme = (themes: ITheme): void => {
   mergeObject(_themes, themes);
 };
-theme.isTheme = (prop: unknown): prop is Theme => validate(prop).isInstanceof(Theme);
+theme.isTheme = (prop: unknown): prop is Theme => isInstanceof(prop, Theme);

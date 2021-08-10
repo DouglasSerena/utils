@@ -1,51 +1,51 @@
 import dayjs from "dayjs";
-import { validate } from "./../../src/validations/validate.validation";
+import {
+  isAfterDate,
+  isBeforeDate,
+  isBetweenDate,
+  isBirthDateValid,
+  isDateValid,
+  isDifferentDate,
+  isEqualDate,
+} from "../../src/utils";
 
 describe("Function validate date", () => {
   it("Is date", () => {
-    expect(validate("2021-06-05").isDateValid()).toBe(true);
-    expect(validate(new Date()).isDateValid()).toBe(true);
-    expect(validate(dayjs()).isDateValid()).toBe(true);
-    expect(validate(2).isDateValid()).toBe(true);
+    expect(isDateValid("2021-06-05")).toBe(true);
+    expect(isDateValid(new Date())).toBe(true);
+    expect(isDateValid(dayjs())).toBe(true);
+    expect(isDateValid(2)).toBe(true);
   });
 
   it("Is after date", () => {
-    expect(validate("99999-01-01").isAfterDate(new Date())).toBe(true);
-    expect(validate("0001-01-01").isAfterDate(new Date())).toBe(false);
+    expect(isAfterDate("99999-01-01", new Date())).toBe(true);
+    expect(isAfterDate("0001-01-01", new Date())).toBe(false);
   });
 
   it("Is before date", () => {
-    expect(validate("0001-01-01").isBeforeDate(new Date())).toBe(true);
-    expect(validate("99999-01-01").isBeforeDate(new Date())).toBe(false);
+    expect(isBeforeDate("0001-01-01", new Date())).toBe(true);
+    expect(isBeforeDate("99999-01-01", new Date())).toBe(false);
   });
 
   it("Is between date", () => {
-    expect(validate("0001-01-02").isBetweenDate({ start: "0001-01-01", end: new Date() })).toBe(
-      true
-    );
-    expect(validate("0001-01-03").isBetweenDate({ start: "0001-01-01", end: "0001-01-02" })).toBe(
-      false
-    );
+    expect(isBetweenDate("0001-01-02", { start: "0001-01-01", end: new Date() })).toBe(true);
+    expect(isBetweenDate("0001-01-03", { start: "0001-01-01", end: "0001-01-02" })).toBe(false);
   });
 
   it("Is between date", () => {
-    expect(validate(dayjs().subtract(18, "years")).isBirthDateValid({ min: 18 })).toBe(true);
-    expect(validate(dayjs().subtract(18, "years")).isBirthDateValid({ max: 10 })).toBe(false);
-    expect(validate(dayjs().subtract(101, "years")).isBirthDateValid({ min: 18, max: 100 })).toBe(
-      false
-    );
-    expect(validate(dayjs().subtract(21, "years")).isBirthDateValid({ min: 18, max: 100 })).toBe(
-      true
-    );
+    expect(isBirthDateValid(dayjs().subtract(18, "years"), { min: 18 })).toBe(true);
+    expect(isBirthDateValid(dayjs().subtract(18, "years"), { max: 10 })).toBe(false);
+    expect(isBirthDateValid(dayjs().subtract(101, "years"), { min: 18, max: 100 })).toBe(false);
+    expect(isBirthDateValid(dayjs().subtract(21, "years"), { min: 18, max: 100 })).toBe(true);
   });
 
   it("Is equal date", () => {
-    expect(validate(dayjs()).isEqualDate(new Date())).toBe(true);
-    expect(validate(dayjs().add(1, "day")).isEqualDate(dayjs())).toBe(false);
+    expect(isEqualDate(dayjs(), new Date())).toBe(true);
+    expect(isEqualDate(dayjs().add(1, "day"), dayjs())).toBe(false);
   });
 
   it("Is different date", () => {
-    expect(validate(dayjs().add(1, "day")).isDifferentDate(dayjs())).toBe(true);
-    expect(validate(dayjs()).isDifferentDate(new Date())).toBe(false);
+    expect(isDifferentDate(dayjs().add(1, "day"), dayjs())).toBe(true);
+    expect(isDifferentDate(dayjs(), new Date())).toBe(false);
   });
 });

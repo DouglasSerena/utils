@@ -7,21 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  tests:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-
-      - run: npm install
-      - run: npm run test
-
-  docs:
+  main:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,13 +15,22 @@ jobs:
         with:
           ref: docs
 
+          
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/node_modules
+
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
 
-      - run: npm install
-      - run: npm run docs
+      - run: yarn install
+      - run: yarn run test
+      - run: yarn run docs
 
       - uses: EndBug/add-and-commit@v7
         with:

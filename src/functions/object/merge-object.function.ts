@@ -1,9 +1,9 @@
-import { validate } from "../../validations/validate.validation";
+import { isFill, isObject, isUndefined } from "../../validations/common/common.validation";
 
 export function mergeObject<T = unknown>(objectMerge: unknown, ...objects: unknown[]): T {
-  if (validate(objects).isFill()) {
+  if (isFill(objects)) {
     objects.forEach((object) => {
-      if (validate(object).isFill()) {
+      if (isFill(object)) {
         merge(objectMerge, object);
       }
     });
@@ -13,7 +13,7 @@ export function mergeObject<T = unknown>(objectMerge: unknown, ...objects: unkno
 
 export function merge(objectMerge: unknown, object: unknown): unknown {
   return Object.keys(object).reduce((prev, key) => {
-    if (validate(object[key]).isObject() && validate(object[key].name).isUndefined()) {
+    if (isObject(object[key]) && isUndefined(object[key].name)) {
       prev[key] = merge(prev[key], object[key]);
     } else {
       prev[key] = object[key];

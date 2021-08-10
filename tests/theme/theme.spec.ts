@@ -1,4 +1,4 @@
-import { theme, validate } from "./../../src/utils";
+import { contains, theme } from "./../../src/utils";
 
 describe("Function theme", () => {
   it("Create theme", () => {
@@ -115,7 +115,7 @@ describe("Function theme", () => {
     }).createStyle();
 
     expect(document.body.className).toContain("theme-light");
-    expect(validate(document.body.className).contains("theme-dark")).toBe(false);
+    expect(contains(document.body.className, "theme-dark")).toBe(false);
   });
 
   it("is theme", () => {

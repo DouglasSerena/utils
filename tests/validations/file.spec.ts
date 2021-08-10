@@ -1,4 +1,4 @@
-import { validate, base64toFile } from "./../../src/utils";
+import { base64toFile, isAllowExtensions, isFile, maxSize, minSize } from "./../../src/utils";
 import path from "path";
 import fs from "fs";
 
@@ -13,20 +13,20 @@ describe("Validation File", () => {
 
   it("Is File", () => {
     const file = new File([], "");
-    expect(validate(file).isFile()).toBe(true);
+    expect(isFile(file)).toBe(true);
   });
   it("Is allow extensions", () => {
-    expect(validate(file).isAllowExtensionsFile(["png"])).toBe(true);
-    expect(validate(file).isAllowExtensionsFile(["jpg"])).toBe(false);
+    expect(isAllowExtensions(file, ["png"]).valid).toBe(true);
+    expect(isAllowExtensions(file, ["jpg"]).valid).toBe(false);
   });
   it("Max size", () => {
-    expect(validate(file).maxSizeFile(1000)).toBe(true);
-    expect(validate(file).maxSizeFile(100)).toBe(false);
+    expect(maxSize(file, 1000).valid).toBe(true);
+    expect(maxSize(file, 100).valid).toBe(false);
   });
 
   it("Min size", () => {
-    expect(validate(file).minSizeFile(100)).toBe(true);
-    expect(validate(file).minSizeFile(1000)).toBe(false);
+    expect(minSize(file, 100).valid).toBe(true);
+    expect(minSize(file, 1000).valid).toBe(false);
   });
 
   // it("Min Height", () => {

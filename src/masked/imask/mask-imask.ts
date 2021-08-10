@@ -1,5 +1,6 @@
-import IMask, { AnyMaskedOptions, InputMask, MaskElement } from "imask";
-import { validate } from "../../validations/validate.validation";
+import IMask, { AnyMaskedOptions, InputMask } from "imask";
+import { isString } from "../../validations/common/common.validation";
+import { isMore } from "../../validations/number.validation";
 import { IServiceMask } from "../masked.type";
 import { IConfigMaskIMask } from "./mask-imask.type";
 
@@ -19,10 +20,10 @@ export class MaskIMask implements IServiceMask {
   constructor(pattern: string | IConfigMaskIMask, config?: IConfigMaskIMask) {
     this.config = Object.assign({}, this.config, config);
 
-    if (validate(pattern).isString()) {
+    if (isString(pattern)) {
       this.pattern = pattern as string;
       const patterns = this.pattern.split("||").sort((one, two) => one.length - two.length);
-      this.config.mask = validate(patterns.length).isMore(1)
+      this.config.mask = isMore(patterns.length, 1)
         ? patterns.map((pattern) => ({ mask: pattern }))
         : patterns[0];
     } else {
