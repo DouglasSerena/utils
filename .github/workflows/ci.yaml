@@ -7,11 +7,21 @@ on:
     branches: [main]
 
 jobs:
-  tests:
+  main:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: docs
+
+          
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/node_modules
 
       - name: Install Node.js
         uses: actions/setup-node@v1

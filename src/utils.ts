@@ -67,6 +67,5 @@ export * from "./validations/file/is-allow-extension.validation";
 export * from "./validations/file/max-size.validation";
 export * from "./validations/file/min-size.validation";
 
-export * from "./validations/validate.validation";
 export * from "./validations/date.validation";
 export * from "./validations/number.validation";

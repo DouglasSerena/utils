@@ -1,4 +1,5 @@
-import { validate } from "../validations/validate.validation";
+import { isString } from "../validations/common/common.validation";
+import { isNegative, isNumeric } from "../validations/number.validation";
 
 export interface IConfigParseNumber {
   decimal: string;
@@ -14,8 +15,8 @@ const _config: IConfigParseNumber = {
 
 export function parseNumber(value: number | string, config?: Partial<IConfigParseNumber>): number {
   config = Object.assign({}, _config, config);
-  if (!validate(value).isNumeric() && validate(value).isString()) {
-    const isNegative = validate(value).isNegative();
+  if (!isNumeric(value) && isString(value)) {
+    const negative = isNegative(value);
     const decimalStr = new RegExp(`\\${config?.decimal}`, "g");
     if (config.thousands) {
       const thousandsStr = new RegExp(`\\${config?.thousands}`, "g");
@@ -29,7 +30,7 @@ export function parseNumber(value: number | string, config?: Partial<IConfigPars
     sufixa = sufixa?.replace(/\D/g, "");
 
     value = Number(`${prefix}.${sufixa}`) || 0;
-    if (isNegative) {
+    if (negative) {
       value = -value;
     }
   } else {

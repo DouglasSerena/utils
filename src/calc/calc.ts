@@ -1,7 +1,7 @@
 import { add, distribute, divide, increment, multiply, subtract } from "./math.calc";
 import { AnyCalc, IConfigCalc } from "./calc.type";
-import { validate } from "../validations/validate.validation";
 import { parseNumber } from "../functions/parse-number.function";
+import { isInstanceof } from "../validations/common/common.validation";
 
 const _config: IConfigCalc = {
   decimal: ",",
@@ -30,8 +30,8 @@ export class Calc {
   }
 
   private parse(value: AnyCalc | Calc) {
-    if (validate(value).isInstanceof(Calc)) {
-      value = (value as Calc).valueRaw;
+    if (isInstanceof(value, Calc)) {
+      value = value.valueRaw;
     } else {
       value = parseNumber(value as string, this.config);
     }
@@ -39,8 +39,8 @@ export class Calc {
   }
 
   private save(value: AnyCalc | Calc): void {
-    if (validate(value).isInstanceof(Calc)) {
-      this.valueRaw = (value as Calc).valueRaw;
+    if (isInstanceof(value, Calc)) {
+      this.valueRaw = value.valueRaw;
     } else {
       this.valueRaw = parseNumber(value as string, this.config);
     }
@@ -111,4 +111,4 @@ export class Calc {
 calc.config = (config: Partial<IConfigCalc>) => {
   Object.assign(_config, config);
 };
-calc.isCalc = (prop: unknown): prop is Calc => validate(prop).isInstanceof(Calc);
+calc.isCalc = (prop: unknown): prop is Calc => isInstanceof(prop, Calc);
