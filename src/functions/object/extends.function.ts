@@ -1,6 +1,6 @@
-import { isFill, isObject, isUndefined } from "../../validations/common/common.validation";
+import { isArray, isFill, isObject, isUndefined } from "../../validations/common/common.validation";
 
-export function mergeObject<T = unknown>(objectMerge: unknown, ...objects: unknown[]): T {
+export function $extends<T = any>(objectMerge: unknown, ...objects: unknown[]): T {
   if (isFill(objects)) {
     objects.forEach((object) => {
       if (isFill(object)) {
@@ -13,7 +13,7 @@ export function mergeObject<T = unknown>(objectMerge: unknown, ...objects: unkno
 
 export function merge(objectMerge: unknown, object: unknown): unknown {
   return Object.keys(object).reduce((prev, key) => {
-    if (isObject(object[key]) && isUndefined(object[key].name)) {
+    if (isObject(object[key]) && !isArray(object[key]) && isUndefined(object[key].name)) {
       prev[key] = merge(prev[key], object[key]);
     } else {
       prev[key] = object[key];
