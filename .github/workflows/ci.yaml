@@ -15,14 +15,6 @@ jobs:
         with:
           ref: docs
 
-          
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-
       - name: Install Node.js
         uses: actions/setup-node@v1
         with:
@@ -37,3 +29,8 @@ jobs:
           add: 'docs'
           branch: docs
           message: 'docs\: New docs'
+
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
