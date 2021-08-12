@@ -1,5 +1,5 @@
 import { getNode } from "../functions/object/get-node.function";
-import { mergeObject } from "../functions/object/merge-object.function";
+import { $extends } from "../functions/object/extends.function";
 import { themeSystem } from "../functions/theme-system.function";
 import {
   isEqual,
@@ -52,8 +52,8 @@ export class Theme {
   }
 
   constructor(themes?: ITheme, config?: IConfigTheme) {
-    mergeObject(_themes, themes);
-    mergeObject(_config, config);
+    $extends(_themes, themes);
+    $extends(_config, config);
 
     if (!document.head.contains(this.element)) {
       document.head.appendChild(this.element);
@@ -138,9 +138,9 @@ export class Theme {
 }
 
 theme.config = (config: IConfigTheme): void => {
-  mergeObject(_config, config);
+  $extends(_config, config);
 };
 theme.theme = (themes: ITheme): void => {
-  mergeObject(_themes, themes);
+  $extends(_themes, themes);
 };
 theme.isTheme = (prop: unknown): prop is Theme => isInstanceof(prop, Theme);

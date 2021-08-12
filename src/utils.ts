@@ -24,7 +24,7 @@ export * from "./functions/file/file-to-base64.function";
 export * from "./functions/file/get-size-image.function";
 // // OBJECT
 export * from "./functions/object/get-node.function";
-export * from "./functions/object/merge-object.function";
+export * from "./functions/object/extends.function";
 export * from "./functions/object/sort-asc.function";
 export * from "./functions/object/sort-desc.function";
 
