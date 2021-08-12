@@ -2,7 +2,7 @@ name: Create docs
 
 on:
   push:
-    branches: [main]
+    branches: [docs]
 
 jobs:
   docs:
