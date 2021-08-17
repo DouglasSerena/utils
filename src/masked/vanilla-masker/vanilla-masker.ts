@@ -67,7 +67,7 @@ export class MaskVanillaMasker implements IServiceMask {
       value = parseNumber(value).toFixed(config.precision);
     }
 
-    return VMasker.toMoney(value, config);
+    return VMasker.toMoney(value, { ...config, delimiter: "-" }).replace(/-/g, config.delimiter);
   }
 
   unmask(value: string | number, config?: MoneyOptions): number {

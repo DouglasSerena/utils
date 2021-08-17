@@ -1,5 +1,5 @@
 import { add, distribute, divide, increment, multiply, subtract } from "./math.calc";
-import { AnyCalc, IConfigCalc } from "./calc.type";
+import { AnyCalc as CalcAny, IConfigCalc } from "./calc.type";
 import { parseNumber } from "../functions/parse-number.function";
 import { isInstanceof } from "../validations/common/common.validation";
 
@@ -12,7 +12,7 @@ const _config: IConfigCalc = {
   round: "round",
 };
 
-export function calc(value: AnyCalc | Calc, config?: Partial<IConfigCalc>): Calc {
+export function calc(value: CalcAny | Calc, config?: Partial<IConfigCalc>): Calc {
   return new Calc(value, config);
 }
 
@@ -22,14 +22,14 @@ export class Calc {
   precision: number;
   config: IConfigCalc;
 
-  constructor(value: AnyCalc | Calc, config?: Partial<IConfigCalc>) {
+  constructor(value: CalcAny | Calc, config?: Partial<IConfigCalc>) {
     this.config = Object.assign({}, _config, config);
     this.precision = Math.pow(10, this.config?.precision);
 
     this.save(value);
   }
 
-  private parse(value: AnyCalc | Calc) {
+  private parse(value: CalcAny | Calc) {
     if (isInstanceof(value, Calc)) {
       value = value.valueRaw;
     } else {
@@ -38,7 +38,7 @@ export class Calc {
     return value;
   }
 
-  private save(value: AnyCalc | Calc): void {
+  private save(value: CalcAny | Calc): void {
     if (isInstanceof(value, Calc)) {
       this.valueRaw = value.valueRaw;
     } else {
@@ -62,35 +62,35 @@ export class Calc {
     return value;
   }
 
-  public add(value: AnyCalc | Calc): Calc {
+  public add(value: CalcAny | Calc): Calc {
     this.valueRaw = add(this.valueRaw, this.parse(value));
     this.value = this.roundingNumber(this.valueRaw);
 
     return this;
   }
 
-  public subtract(value: AnyCalc | Calc): Calc {
+  public subtract(value: CalcAny | Calc): Calc {
     this.valueRaw = subtract(this.valueRaw, this.parse(value));
     this.value = this.roundingNumber(this.valueRaw);
 
     return this;
   }
 
-  public multiply(value: AnyCalc | Calc): Calc {
+  public multiply(value: CalcAny | Calc): Calc {
     this.valueRaw = multiply(this.valueRaw, this.parse(value));
     this.value = this.roundingNumber(this.valueRaw);
 
     return this;
   }
 
-  public divide(value: AnyCalc | Calc): Calc {
+  public divide(value: CalcAny | Calc): Calc {
     this.valueRaw = divide(this.valueRaw, this.parse(value));
     this.value = this.roundingNumber(this.valueRaw);
 
     return this;
   }
 
-  public distribute(value: AnyCalc | Calc): number[] {
+  public distribute(value: CalcAny | Calc): number[] {
     const result = distribute(this.valueRaw, this.parse(value)).map((value) => {
       return this.roundingNumber(value);
     });

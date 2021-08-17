@@ -29,25 +29,25 @@ describe("Function masked", () => {
     const input = document.createElement("input");
     const mask = masked("CURRENCY");
     mask.bind(input);
-    input.value = "1000";
+    input.value = "100000";
     mask.update();
-    expect(input.value).toBe("10.00");
+    expect(input.value).toBe("1,000.00");
   });
 
   it("Mask with mask CURRENCY", () => {
     const input = document.createElement("input");
     const mask = masked("CURRENCY");
     mask.bind(input);
-    writeOnePerOne(input, "1000");
-    expect(input.value).toBe("10.00");
+    writeOnePerOne(input, "100000");
+    expect(input.value).toBe("1,000.00");
   });
 
   it("Mask with mask AMOUNT", () => {
     const input = document.createElement("input");
     const mask = masked("AMOUNT");
     mask.bind(input);
-    writeOnePerOne(input, "1000");
-    expect(input.value).toBe("1.000");
+    writeOnePerOne(input, "1000000");
+    expect(input.value).toBe("1000.000");
   });
 
   it("Mask with mask percent", () => {
@@ -55,7 +55,7 @@ describe("Function masked", () => {
     const mask = masked("percent");
     mask.bind(input);
     writeOnePerOne(input, "100000");
-    expect(input.value).toBe("1\u200B000,00");
+    expect(input.value).toBe("1000,00");
   });
 
   it("Mask with mask PERCENT", () => {

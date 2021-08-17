@@ -40,7 +40,7 @@ describe("Function validate date", () => {
   });
 
   it("Is equal date", () => {
-    expect(isEqualDate(dayjs(), new Date())).toBe(true);
+    expect(isEqualDate(dayjs().toDate(), new Date())).toBe(true);
     expect(isEqualDate(dayjs().add(1, "day"), dayjs())).toBe(false);
   });
 
