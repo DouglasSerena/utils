@@ -199,7 +199,7 @@ export const CUSTOM_MASKS: { [key: string]: IMaskCustom } = {
     type: "MASK_MONEY",
     config: {
       precision: 3,
-      delimiter: "\u200B",
+      delimiter: "",
       separator: ".",
     },
   },
@@ -207,7 +207,7 @@ export const CUSTOM_MASKS: { [key: string]: IMaskCustom } = {
     type: "MASK_MONEY",
     config: {
       precision: 2,
-      delimiter: "\u200B",
+      delimiter: "",
       separator: ",",
     },
   },

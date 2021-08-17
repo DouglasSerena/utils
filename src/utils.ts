@@ -28,16 +28,17 @@ export * from "./functions/object/extends.function";
 export * from "./functions/object/sort-asc.function";
 export * from "./functions/object/sort-desc.function";
 
-export * from "./functions/theme-system.function";
 export * from "./functions/dom.function";
 export * from "./functions/sleep.function";
 export * from "./functions/handle-try.function";
+export * from "./functions/theme-system.function";
+export * from "./functions/time-to-date.function";
 export * from "./functions/parse-number.function";
+export * from "./functions/idle-callback.function";
 export * from "./functions/relative-time.function";
 export * from "./functions/remove-accents.function";
-export * from "./functions/time-to-date.function";
 export * from "./functions/stack-callback.function";
-export * from "./functions/idle-callback.function";
+export * from "./functions/pick-text-color-based-color";
 
 // REGEX
 export * from "./regex/char-special.regex";
