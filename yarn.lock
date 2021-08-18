@@ -3900,10 +3900,10 @@ typescript@^3.9.5, typescript@^3.9.7:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.10.tgz#70f3910ac7a51ed6bef79da7800690b19bf778b8"
   integrity sha512-w6fIxVE/H1PkLKcCPsFqKE7Kv7QUwhU8qQY2MueZXWx5cPZdwFupLgKK3vntcK98BtNHZtAF4LA/yl2a7k8R6Q==
 
-typescript@^4.3.5:
-  version "4.3.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.5.tgz#4d1c37cc16e893973c45a06886b7113234f119f4"
-  integrity sha512-DqQgihaQ9cUrskJo9kIyW/+g0Vxsk8cDtZ52a3NGh0YNTfpUSArXSohyUGnvbPazEPLu398C0UxmKSOrPumUzA==
+typescript@^4.5.0-dev.20210818:
+  version "4.5.0-dev.20210818"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.5.0-dev.20210818.tgz#1e2ce8afe90da5db4cc40f0a3a28a8ce30412f6c"
+  integrity sha512-zsQSS2DBSBSneBOFjAF45DaD76dK4Oxl5rrkdgetxUptRmrAPMq+Dy6lFe20mpUK4NIROEvZ7ozk7EA3+75g2w==
 
 uglify-js@^3.1.4:
   version "3.14.0"

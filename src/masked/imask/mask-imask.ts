@@ -58,14 +58,14 @@ export class MaskIMask implements IServiceMask {
   mask(value: string | number, config?: IConfigMaskIMask): string {
     config = Object.assign({}, this.config, config);
 
-    const imask = this.createMask(value.toString(), config);
+    const imask = this.createMask(value?.toString() || "", config);
     return imask.value;
   }
 
-  unmask(value: string, config?: IConfigMaskIMask): string {
+  unmask(value: string | number, config?: IConfigMaskIMask): string {
     config = Object.assign({}, this.config, config);
 
-    const imask = this.createMask(value, config);
+    const imask = this.createMask(value?.toString() || "", config);
     return imask.unmaskedValue;
   }
 

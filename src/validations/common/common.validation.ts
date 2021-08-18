@@ -31,6 +31,11 @@ export const isFill = <T = unknown>(item: T | Array<T>): boolean => !isEmpty<T>(
 export const isTypeof = <GuardType = unknown>(value: unknown, type: Typeof): value is GuardType =>
   typeof value === type;
 
+export const notIsTypeof = <GuardType = unknown, T = unknown>(
+  value: T,
+  type: Typeof
+): value is Exclude<T, GuardType> => !isTypeof<GuardType>(value, type);
+
 export const isInstanceof = <T>(value: unknown, instance: T): value is T[keyof T] =>
   value instanceof (instance as any);
 

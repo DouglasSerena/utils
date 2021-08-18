@@ -1,6 +1,6 @@
 window["requestIdleCallback"] =
   window["requestIdleCallback"] ||
-  function (handler: (data: { didTimeout: boolean; timeRemaining: () => number }) => void) {
+  (function (handler: (data: { didTimeout: boolean; timeRemaining: () => number }) => void) {
     const startTime = Date.now();
 
     return setTimeout(function () {
@@ -11,7 +11,7 @@ window["requestIdleCallback"] =
         },
       });
     }, 1);
-  };
+  } as any);
 
 window["cancelIdleCallback"] =
   window["cancelIdleCallback"] ||

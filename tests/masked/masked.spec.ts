@@ -15,6 +15,22 @@ describe("Function masked", () => {
     expect(mask.unmask("(11) 9 3215-2532")).toBe("11932152532");
   });
 
+  it("Mask with config mask send by pattern (imaks) 'format' & 'unformed'", () => {
+    const mask = masked({ mask: "(00) 0 0000-0000" });
+    expect(mask.mask("11932152532")).toBe("(11) 9 3215-2532");
+    expect(mask.unmask("(11) 9 3215-2532")).toBe("11932152532");
+  });
+
+  it("Mask with config mask send by pattern (money) 'format' & 'unformed'", () => {
+    const mask = masked({ separator: ",", delimiter: "." });
+    expect(mask.mask(100.4)).toBe("100,40");
+    expect(mask.unmask("100,40")).toBe(100.4);
+    expect(mask.mask("1030.2")).toBe("1.030,20");
+    expect(mask.unmask("1.030,20")).toBe(1030.2);
+    expect(mask.mask("100.000,02")).toBe("100.000,02");
+    expect(mask.unmask("100.000,02")).toBe(100000.02);
+  });
+
   it("Mask with mask TEL bind input", () => {
     const input = document.createElement("input");
     const mask = masked("TEL");
