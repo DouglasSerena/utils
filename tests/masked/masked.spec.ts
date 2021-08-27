@@ -10,7 +10,7 @@ describe("Function masked", () => {
   });
 
   it("Mask with mask custom 'format' & 'unformed'", () => {
-    const mask = masked("TEL");
+    const mask = masked("TEL", { lazy: false });
     expect(mask.mask("11932152532")).toBe("(11) 9 3215-2532");
     expect(mask.unmask("(11) 9 3215-2532")).toBe("11932152532");
   });

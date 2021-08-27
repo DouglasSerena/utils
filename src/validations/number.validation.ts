@@ -1,4 +1,4 @@
-import { contains } from "./common/contains.validation";
+import { contains } from "../functions/contains.function";
 
 export type NumberRange = { start?: number; end: number };
 

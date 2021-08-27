@@ -1,4 +1,4 @@
-import { removeAccents } from "../../functions/remove-accents.function";
+import { removeAccents } from "./remove-accents.function";
 
 export interface IContainsOption {
   removeAccents?: boolean;

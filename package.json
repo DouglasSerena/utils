@@ -1,8 +1,9 @@
 {
   "name": "@douglas-serena/utils",
-  "version": "0.2.4",
+  "version": "0.2.7",
   "main": "dist/utils.umd.js",
   "module": "dist/utils.es5.js",
+  "browser": "dist/utils.browser.js",
   "typings": "dist/types/utils.d.ts",
   "license": "MIT",
   "repository": {
@@ -37,6 +38,7 @@
     "madge": "^5.0.1",
     "rollup": "^2.53.3",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-external-globals": "^0.6.1",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-sourcemaps": "^0.6.3",

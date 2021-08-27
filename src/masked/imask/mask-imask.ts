@@ -24,7 +24,7 @@ export class MaskIMask implements IServiceMask {
       this.pattern = pattern as string;
       const patterns = this.pattern.split("||").sort((one, two) => one.length - two.length);
       this.config.mask = isMore(patterns.length, 1)
-        ? patterns.map((pattern) => ({ mask: pattern }))
+        ? patterns.map((pattern) => Object.assign({}, this.config, { mask: pattern }))
         : patterns[0];
     } else {
       Object.assign(this.config, pattern);

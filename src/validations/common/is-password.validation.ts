@@ -1,5 +1,5 @@
 import { REGEX_CHAR_SPECIAL, REGEX_NUMBER, REGEX_UPPER_CASE } from "../../regex";
-import { contains } from "./contains.validation";
+import { contains } from "../../functions/contains.function";
 
 export interface IPasswordOptionsDisabled {
   charUpperCase?: boolean;

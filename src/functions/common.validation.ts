@@ -1,7 +1,7 @@
-import { contains, IContainsOption } from "../../functions/contains.function";
-import { isCnpj } from "./is-cnpj.validation";
-import { isCpf } from "./is-cpf.validation";
-import { isEmpty } from "./is-empty.validation";
+import { isCnpj } from "../validations/common/is-cnpj.validation";
+import { isCpf } from "../validations/common/is-cpf.validation";
+import { isEmpty } from "../validations/common/is-empty.validation";
+import { contains, IContainsOption } from "./contains.function";
 
 export type Typeof =
   | "string"
@@ -31,6 +31,9 @@ export const isFill = <T = unknown>(item: T | Array<T>): boolean => !isEmpty<T>(
 export const isTypeof = <GuardType = unknown>(value: unknown, type: Typeof): value is GuardType =>
   typeof value === type;
 
+export const wasFound = (value: number): boolean => value > -1;
+export const wasNotFound = (value: number): boolean => value === -1;
+
 export const notIsTypeof = <GuardType = unknown, T = unknown>(
   value: T,
   type: Typeof
@@ -43,10 +46,10 @@ export const notIsInstanceof = <U, T>(value: U, instance: T): value is Exclude<U
   !isInstanceof(value, instance);
 
 export const isTruthy = (value: unknown): boolean => !!value;
-export const isFalsy = (value: unknown): boolean => !value;
+export const isFalsy = (value: unknown): boolean => !!value;
 
-export const isTrue = (value: unknown): boolean => isTruthy(value);
 export const isFalse = (value: unknown): boolean => isFalsy(value);
+export const isTrue = (value: unknown): boolean => isTruthy(value);
 
 export const isString = (value: unknown): value is string =>
   isTypeof(value, "string") || isInstanceof(value, String);
@@ -54,10 +57,10 @@ export const isString = (value: unknown): value is string =>
 export const isObject = <T>(value: T): value is T =>
   isTypeof(value, "object") || isInstanceof(value, Object);
 
-export const isArray = (value: unknown): value is [] =>
+export const isArray = <T = unknown>(value: T): value is T =>
   isTypeof(value, "object") && isInstanceof(value, Array);
 
-export const isFunction = (value: unknown): value is typeof Function =>
+export const isFunction = <T = unknown>(value: unknown): value is T =>
   isTypeof(value, "function") || isInstanceof(value, Function);
 
 export const isBoolean = (value: unknown): value is boolean =>

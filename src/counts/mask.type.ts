@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { MaskedEnum, MaskedRange } from "imask";
-import { IMaskCustom } from "./masked.type";
+import { IMaskCustom } from "./../masked/masked.type";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
 dayjs.extend(customParseFormat);

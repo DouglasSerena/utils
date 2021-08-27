@@ -3,6 +3,7 @@ import { IConfigDebounce } from "./debounce.type";
 
 const _config: IConfigDebounce = {
   time: 250,
+  _lastRef: 0,
 };
 
 export function debounce(callbackOrTime?: () => void | number, time?: number): Debounce {
@@ -11,28 +12,32 @@ export function debounce(callbackOrTime?: () => void | number, time?: number): D
 
 export class Debounce {
   config: IConfigDebounce;
-  ref: number;
 
   constructor(callbackOrTime?: () => void | number, time?: number) {
     if (typeof callbackOrTime === "function") {
-      this.config = Object.assign({}, { time }, _config);
+      this.config = Object.assign({}, _config);
+      if (time) {
+        Object.assign(this.config, { time });
+      }
       this.run(callbackOrTime);
     } else {
-      this.config = Object.assign({}, { time: callbackOrTime }, _config);
+      this.config = Object.assign({}, _config);
+      if (callbackOrTime) {
+        Object.assign(this.config, { callbackOrTime });
+      }
     }
   }
 
   run(callback: () => void, time?: number): Debounce {
-    this.config = Object.assign({}, { time }, _config);
-
     this.cancel();
-    this.ref = stackCallback(callback, this.config.time);
+    this.config._lastRef = stackCallback(callback, time || this.config.time);
     return this;
   }
 
   cancel(): Debounce {
-    if (this.ref) {
-      cancelStackCallback(this.ref);
+    if (this.config._lastRef) {
+      cancelStackCallback(this.config._lastRef);
+      this.config._lastRef = undefined;
     }
     return this;
   }
