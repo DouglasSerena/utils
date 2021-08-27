@@ -10,6 +10,7 @@ import {
   isEmpty,
   isEqual,
   isEqualNotStrict,
+  isFalsy,
   isFill,
   isFunction,
   isInstanceof,
@@ -17,6 +18,7 @@ import {
   isObject,
   isPassword,
   isString,
+  isTruthy,
   isTypeof,
   isUndefined,
   notIsInstanceof,
@@ -104,6 +106,20 @@ describe("Function validate common", () => {
   it("Is function", () => {
     expect(isFunction(() => false)).toBe(true);
     expect(isFunction("")).toBe(false);
+  });
+  it("Is falsy", () => {
+    expect(isFalsy(" ")).toBe(false);
+    expect(isFalsy(0)).toBe(true);
+    expect(isFalsy("")).toBe(true);
+    expect(isFalsy(null)).toBe(true);
+    expect(isFalsy(undefined)).toBe(true);
+  });
+  it("Is truthy", () => {
+    expect(isTruthy(" ")).toBe(true);
+    expect(isTruthy(0)).toBe(false);
+    expect(isTruthy("")).toBe(false);
+    expect(isTruthy(null)).toBe(false);
+    expect(isTruthy(undefined)).toBe(false);
   });
   it("Is null", () => {
     expect(isNull(null)).toBe(true);

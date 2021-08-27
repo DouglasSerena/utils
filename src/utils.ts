@@ -3,6 +3,11 @@ export * from "./calc/calc";
 export * from "./calc/math.calc";
 export * from "./calc/calc.type";
 
+// CONST
+export * from "./counts/input-mode.type";
+export * from "./counts/input.type";
+export * from "./counts/mask.type";
+
 // DEBOUNCE
 export * from "./debounce/debounce";
 export * from "./debounce/debounce.type";
@@ -56,7 +61,7 @@ export * from "./regex/url.regex";
 // // COMMON
 export * from "./validations/common/common.validation";
 export * from "./validations/common/test-pattern.validation";
-export * from "./validations/common/contains.validation";
+export * from "./functions/contains.function";
 export * from "./validations/common/is-cnpj.validation";
 export * from "./validations/common/is-cpf.validation";
 export * from "./validations/common/is-empty.validation";

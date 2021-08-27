@@ -5,6 +5,7 @@ import camelCase from "lodash.camelcase";
 import typescript from "rollup-plugin-typescript2";
 import { terser } from "rollup-plugin-terser";
 import json from "rollup-plugin-json";
+import externalGlobals from "rollup-plugin-external-globals";
 
 const pkg = require("./package.json");
 
@@ -20,6 +21,17 @@ export default {
       sourcemap: true,
     },
     { file: pkg.module, format: "es", sourcemap: true },
+    // {
+    //   name: camelCase(libraryName),
+    //   file: pkg.browser,
+    //   format: "iife",
+    //   sourcemap: true,
+    //   plugins: [
+    //     externalGlobals({
+    //       window: "utils",
+    //     }),
+    //   ],
+    // },
   ],
   // Indicate here external modules you don't wanna include in your bundle (i.e.: 'lodash')
   external: [],

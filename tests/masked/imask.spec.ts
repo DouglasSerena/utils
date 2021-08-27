@@ -2,6 +2,32 @@ import { MaskIMask, maskIMask, sleep, stackCallback } from "./../../src/utils";
 import { writeAll } from "./../mocks/write-all";
 
 describe(`Class ${MaskIMask.name}`, () => {
+  it("Test value null", () => {
+    const mask = maskIMask({ mask: "(00) 0 0000-0000" });
+    expect(mask.mask(null)).toBe("");
+    expect(mask.unmask(null)).toBe("");
+  });
+
+  it("Test value string", () => {
+    const mask = maskIMask({ mask: "(00) 0 0000-0000" });
+    expect(mask.mask("10")).toBe("(10");
+    expect(mask.mask("10.32")).toBe("(10) 3 2");
+    expect(mask.unmask("(10) 3 2")).toBe("1032");
+  });
+
+  it("Test value string empty", () => {
+    const mask = maskIMask({ mask: "(00) 0 0000-0000" });
+    expect(mask.mask("")).toBe("");
+    expect(mask.unmask("")).toBe("");
+  });
+
+  it("Test value number", () => {
+    const mask = maskIMask({ mask: "(00) 0 0000-0000" });
+    expect(mask.mask(10)).toBe("(10");
+    expect(mask.mask(10.32)).toBe("(10) 3 2");
+    expect(mask.unmask(10.32)).toBe("1032");
+  });
+
   it("Mask with string 'format' & 'unformed'", () => {
     const mask = maskIMask("000.000");
     expect(mask.mask("123456")).toBe("123.456");
