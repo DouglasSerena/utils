@@ -29,6 +29,7 @@ export class MaskVanillaMasker implements IServiceMask {
     this.update(null, config);
 
     this.element.addEventListener("input", () => {
+
       this.update(null, config);
       if (!(this.element instanceof HTMLInputElement)) {
         const range = document.createRange();

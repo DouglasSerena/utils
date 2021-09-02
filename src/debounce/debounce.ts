@@ -3,17 +3,17 @@ import { IConfigDebounce } from "./debounce.type";
 
 const _config: IConfigDebounce = {
   time: 250,
-  _lastRef: 0,
 };
 
-export function debounce(callbackOrTime?: () => void | number, time?: number): Debounce {
+export function debounce(callbackOrTime?: (() => void) | number, time?: number): Debounce {
   return new Debounce(callbackOrTime, time);
 }
 
 export class Debounce {
+  ref: number;
   config: IConfigDebounce;
 
-  constructor(callbackOrTime?: () => void | number, time?: number) {
+  constructor(callbackOrTime?: (() => void) | number, time?: number) {
     if (typeof callbackOrTime === "function") {
       this.config = Object.assign({}, _config);
       if (time) {
@@ -23,21 +23,21 @@ export class Debounce {
     } else {
       this.config = Object.assign({}, _config);
       if (callbackOrTime) {
-        Object.assign(this.config, { callbackOrTime });
+        Object.assign(this.config, { time: callbackOrTime });
       }
     }
   }
 
   run(callback: () => void, time?: number): Debounce {
     this.cancel();
-    this.config._lastRef = stackCallback(callback, time || this.config.time);
+    this.ref = stackCallback(callback, time || this.config.time);
     return this;
   }
 
   cancel(): Debounce {
-    if (this.config._lastRef) {
-      cancelStackCallback(this.config._lastRef);
-      this.config._lastRef = undefined;
+    if (this.ref) {
+      cancelStackCallback(this.ref);
+      this.ref = undefined;
     }
     return this;
   }
