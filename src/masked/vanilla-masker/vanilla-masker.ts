@@ -1,6 +1,5 @@
 import VMasker from "vanilla-masker";
 import { parseNumber } from "../../functions/parse-number.function";
-import { isFloat } from "../../validations/number.validation";
 import { IServiceMask } from "../masked.type";
 import { MoneyOptions } from "./vanilla-masker.type";
 
@@ -29,7 +28,6 @@ export class MaskVanillaMasker implements IServiceMask {
     this.update(null, config);
 
     this.element.addEventListener("input", () => {
-
       this.update(null, config);
       if (!(this.element instanceof HTMLInputElement)) {
         const range = document.createRange();

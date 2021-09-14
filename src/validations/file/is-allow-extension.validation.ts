@@ -1,9 +1,8 @@
-import { AnyFile, ErrosFile, IFileInvalid } from "./file.validation";
-import { isDifferent, isInstanceof, notIsInstanceof } from "../common/common.validation";
-import { isLess } from "../number.validation";
 import { isEmpty } from "../common/is-empty.validation";
+import { TAnyFile, TErrosFile, IFileInvalid } from "./file.type";
+import { isFile } from "./file.validation";
 
-type ErrosAllowExtension = "INVALID_EXTENSION" | "WITHOUT_EXTENSION" | ErrosFile;
+type ErrosAllowExtension = "INVALID_EXTENSION" | "WITHOUT_EXTENSION" | TErrosFile;
 interface IFileInvalidExtension extends IFileInvalid<ErrosAllowExtension> {
   extension?: string;
 }
@@ -13,25 +12,25 @@ export interface IReturnExtension {
   filesInvalid: IFileInvalidExtension[];
 }
 
-export const isAllowExtensions = (files: AnyFile, extensions: string[]): IReturnExtension => {
+export const isAllowExtensions = (files: TAnyFile, extensions: string[]): IReturnExtension => {
   const filesInvalid: IFileInvalidExtension[] = [];
   files = files || [];
 
-  if (isInstanceof(files, File)) {
+  if (isFile(files)) {
     files = [files as File];
   }
 
   for (const file of Array.from(files)) {
     let type = [];
 
-    if (notIsInstanceof(file, File)) {
+    if (!isFile(file)) {
       filesInvalid.push({ error: "NOT_FILE" });
     }
 
     for (const extension of extensions) {
       type = file.name.split(".");
 
-      if (isLess(type.length, 2)) {
+      if (type.length < 2) {
         filesInvalid.push({
           filename: file.name,
           mimeType: file.type,
@@ -39,7 +38,7 @@ export const isAllowExtensions = (files: AnyFile, extensions: string[]): IReturn
         });
       }
 
-      if (isDifferent(extension, type[type.length - 1])) {
+      if (extension !== type[type.length - 1]) {
         filesInvalid.push({
           filename: file.name,
           mimeType: file.type,

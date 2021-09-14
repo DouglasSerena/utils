@@ -1,12 +1,16 @@
+// RESIZE
+export * from "./resize/resize";
+export * from "./resize/resize.type";
+
 // CALC
 export * from "./calc/calc";
 export * from "./calc/math.calc";
 export * from "./calc/calc.type";
 
 // CONST
-export * from "./counts/input-mode.type";
-export * from "./counts/input.type";
-export * from "./counts/mask.type";
+export * from "./constant/input-mode.constant";
+export * from "./constant/input.constant";
+export * from "./constant/mask.constant";
 
 // DEBOUNCE
 export * from "./debounce/debounce";
@@ -33,14 +37,10 @@ export * from "./functions/object/extends.function";
 export * from "./functions/object/sort-asc.function";
 export * from "./functions/object/sort-desc.function";
 
-export * from "./functions/dom.function";
 export * from "./functions/sleep.function";
 export * from "./functions/handle-try.function";
 export * from "./functions/theme-system.function";
-export * from "./functions/time-to-date.function";
 export * from "./functions/parse-number.function";
-export * from "./functions/idle-callback.function";
-export * from "./functions/relative-time.function";
 export * from "./functions/remove-accents.function";
 export * from "./functions/stack-callback.function";
 export * from "./functions/pick-text-color-based-color";
@@ -60,7 +60,6 @@ export * from "./regex/url.regex";
 // VALIDATIONS
 // // COMMON
 export * from "./validations/common/common.validation";
-export * from "./validations/common/test-pattern.validation";
 export * from "./functions/contains.function";
 export * from "./validations/common/is-cnpj.validation";
 export * from "./validations/common/is-cpf.validation";
@@ -73,5 +72,4 @@ export * from "./validations/file/is-allow-extension.validation";
 export * from "./validations/file/max-size.validation";
 export * from "./validations/file/min-size.validation";
 
-export * from "./validations/date.validation";
 export * from "./validations/number.validation";

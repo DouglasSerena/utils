@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "declarationDir": "dist/types",
     "outDir": "dist/lib",
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
   },
   "include": [

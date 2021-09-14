@@ -1,7 +1,7 @@
 import { AnyMaskedOptions } from "imask";
 import { SimpleMaskMoneyConfig } from "simple-mask-money";
-import { CUSTOM_MASKS } from "../counts/mask.type";
-import { isArray, isTypeof } from "../validations/common/common.validation";
+import { CUSTOM_MASKS } from "../constant/mask.constant";
+import { isArray } from "../validations/common/common.validation";
 import { MaskIMask } from "./imask/mask-imask";
 import { IConfigMaskIMask } from "./imask/mask-imask.type";
 import { ConfigMask, IMaskCustom, IServiceMask } from "./masked.type";
@@ -11,7 +11,7 @@ export function masked(
   pattern: string | Partial<ConfigMask>,
   config?: Partial<ConfigMask>
 ): IServiceMask {
-  if (isTypeof<string>(pattern, "string")) {
+  if (typeof pattern === "string") {
     const custoMaskKeys = Object.keys(CUSTOM_MASKS);
     if (custoMaskKeys.includes(pattern?.toUpperCase())) {
       const CUSTOM_MASK = CUSTOM_MASKS[pattern?.toUpperCase()];
