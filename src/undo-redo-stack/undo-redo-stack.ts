@@ -45,7 +45,7 @@ export class UndoRedoStack {
    * @description Executa de desfazer e decrementa o contador */
   public undo(): boolean {
     if (!this.isEmpty) {
-      const item = this[this._current];
+      const item = this._stack[this._current];
       item.undo.call(this, item.data);
       this._current--;
       return true;
@@ -57,7 +57,7 @@ export class UndoRedoStack {
    * @public
    * @description Executa de refazer e incrementa o contador caso exista um desfazer */
   public redo(): boolean {
-    const item = this[this._current + 1];
+    const item = this._stack[this._current + 1];
     if (item) {
       item.redo.call(this, item.data);
       this._current++;

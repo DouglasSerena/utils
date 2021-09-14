@@ -3,10 +3,10 @@ export function selectedList<T = unknown>(): SelectedList {
 }
 
 export class SelectedList<T = unknown> {
-  private _list: T[] = [];
+  public list: T[] = [];
 
   get length(): number {
-    return this._list.length;
+    return this.list.length;
   }
 
   get isEmpty(): boolean {
@@ -15,7 +15,7 @@ export class SelectedList<T = unknown> {
 
   [Symbol.iterator](): { next: () => { value: T; done: boolean } } {
     let index = -1;
-    const list = this._list;
+    const list = this.list;
 
     return {
       next: () => ({ value: list[++index], done: !(index in list) }),
@@ -23,43 +23,43 @@ export class SelectedList<T = unknown> {
   }
 
   select(...value: T[]): number {
-    return this._list.push(...value);
+    return this.list.push(...value);
   }
 
   unselect(value: T | number): T[] {
     if (!(typeof value === "number")) {
-      value = this._list.indexOf(value);
+      value = this.list.indexOf(value);
     }
-    return this._list.splice(value, 1);
+    return this.list.splice(value, 1);
   }
 
   filter(predicate: (value: T, index: number, array: T[]) => boolean): T[] {
-    this._list = this._list.filter(predicate);
-    return this._list;
+    this.list = this.list.filter(predicate);
+    return this.list;
   }
 
   map(predicate: (value: T, index: number, array: T[]) => T): T[] {
-    this._list = this._list.map(predicate);
-    return this._list;
+    this.list = this.list.map(predicate);
+    return this.list;
   }
 
   forEach(predicate: (value: T, index: number, array: T[]) => T): void {
-    this._list.forEach(predicate);
+    this.list.forEach(predicate);
   }
 
   find(predicate: (value: T, index: number, array: T[]) => T): T | null {
-    return this._list.find(predicate);
+    return this.list.find(predicate);
   }
 
   findIndex(predicate: (value: T, index: number, array: T[]) => T): number {
-    return this._list.findIndex(predicate);
+    return this.list.findIndex(predicate);
   }
 
   /**
    * @public
    * @description Esta função limpara a pilha inteira e ira fazer o reset o contador */
   public clear(): T[] {
-    return this._list.splice(0);
+    return this.list.splice(0);
   }
 }
 
