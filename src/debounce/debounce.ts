@@ -46,3 +46,6 @@ export class Debounce {
 debounce.config = (config: Partial<IConfigDebounce>): void => {
   Object.assign(_config, config);
 };
+
+export const isDebounce = (prop: unknown): prop is Debounce => prop instanceof Debounce;
+debounce.isDebounce = isDebounce;

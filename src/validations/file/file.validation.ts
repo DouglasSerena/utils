@@ -1,7 +1,3 @@
-import { isInstanceof } from "../common/common.validation";
-
-export type AnyFile = File[] | FileList | File;
-export type BitSizesKeys = "B" | "KB" | "MB" | "GB" | "TB";
 export const BIT_SIZES = {
   B: 1,
   KB: 1024,
@@ -24,11 +20,4 @@ export const RESOLUTION_HEIGHT = {
   UHD: 2160,
 };
 
-export type ErrosFile = null | "NOT_FILE";
-export interface IFileInvalid<Error = ErrosFile> {
-  error: Error;
-  filename?: string;
-  mimeType?: string;
-}
-
-export const isFile = (file: unknown): file is File => isInstanceof(file, File);
+export const isFile = (file: unknown): file is File => file instanceof File;

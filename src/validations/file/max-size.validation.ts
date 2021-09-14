@@ -1,34 +1,30 @@
-import {
-  AnyFile,
-  BitSizesKeys,
-  BIT_SIZES,
-  ErrosFile,
-  IFileInvalid,
-  isFile,
-} from "./file.validation";
-import { isInstanceof } from "../common/common.validation";
-import { isMore } from "../number.validation";
+import { BIT_SIZES, isFile } from "./file.validation";
 import { isEmpty } from "../common/is-empty.validation";
+import { TAnyFile, TBitSizesKeys, TErrosFile, IFileInvalid } from "./file.type";
 
-export type ErrosMaxSize = ErrosFile | "SIZE";
+export type ErrosMaxSize = TErrosFile | "SIZE";
 export interface IFileInvalidMaxSize extends IFileInvalid<ErrosMaxSize> {
   fileSizeInBytes?: number;
 }
 interface IReturnMaxSize {
   maxSize: number;
-  typeDefined: BitSizesKeys;
+  typeDefined: TBitSizesKeys;
   valid: boolean;
   filesInvalid: IFileInvalidMaxSize[];
 }
 
-export const maxSize = (files: AnyFile, max: number, type: BitSizesKeys = "KB"): IReturnMaxSize => {
+export const maxSize = (
+  files: TAnyFile,
+  max: number,
+  type: TBitSizesKeys = "KB"
+): IReturnMaxSize => {
   const filesInvalid: IFileInvalidMaxSize[] = [];
   files = files || [];
 
   let size = BIT_SIZES[type] || BIT_SIZES.B;
   size = size * max;
 
-  if (isInstanceof(files, File)) {
+  if (isFile(files)) {
     files = [files as File];
   }
 
@@ -37,7 +33,7 @@ export const maxSize = (files: AnyFile, max: number, type: BitSizesKeys = "KB"):
       filesInvalid.push({ error: "NOT_FILE" });
     }
 
-    if (isMore(file.size, size)) {
+    if (file.size > size) {
       filesInvalid.push({
         filename: file.name,
         fileSizeInBytes: file.size,

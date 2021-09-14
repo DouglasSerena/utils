@@ -1,4 +1,3 @@
-import { isString } from "../validations/common/common.validation";
 import { isNegative, isNumeric } from "../validations/number.validation";
 
 export interface IConfigParseNumber {
@@ -13,9 +12,14 @@ const _config: IConfigParseNumber = {
   error: false,
 };
 
+/**
+ * @description Faz a conversão do valor em um tipo numerico
+ * @param {number|string} value
+ * @param {Partial<IConfigParseNumber>} [config]
+ * @returns {number} */
 export function parseNumber(value: number | string, config?: Partial<IConfigParseNumber>): number {
   config = Object.assign({}, _config, config);
-  if (!isNumeric(value) && isString(value)) {
+  if (!isNumeric(value) && typeof value === "string") {
     const negative = isNegative(value);
     const decimalStr = new RegExp(`\\${config?.decimal}`, "g");
     if (config.thousands) {

@@ -1,4 +1,3 @@
-import { isDifferent, isString } from "../../validations/common/common.validation";
 import { isFile } from "../../validations/file/file.validation";
 import { base64toFile } from "./base64-to-file.function";
 import { fileToBase64 } from "./file-to-base64.function";
@@ -6,11 +5,11 @@ import { fileToBase64 } from "./file-to-base64.function";
 export const getSizeImage = async (file: File): Promise<{ height: number; width: number }> => {
   const type = file.type.split("/");
 
-  if (!isFile(file) && isString(file)) {
+  if (!isFile(file) && typeof file === "string") {
     file = base64toFile(file as any, "unnamed.png");
   }
 
-  if (isDifferent(type[0], "image")) {
+  if (type[0] !== "image") {
     throw new Error("File is not image");
   }
 

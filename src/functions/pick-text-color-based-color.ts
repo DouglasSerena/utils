@@ -1,3 +1,9 @@
+/**
+ * @description Verifica qual é a tonalidade que a cor passada via paramentos esta mais proxima
+ * @param {string} color
+ * @param {string} [lightColor="#ffffff"]
+ * @param {string} [darkColor="#000000"]
+ * @return {number} */
 export function pickTextColorBasedColor(
   color: string,
   lightColor = "#ffffff",
