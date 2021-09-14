@@ -12,7 +12,7 @@ export const INPUT_TYPE_OTHER = [
   "submit",
 ];
 export const INPUT_TYPE = [...INPUT_TYPE_DATE, ...INPUT_TYPE_TEXT, ...INPUT_TYPE_OTHER];
-export type InputType =
+export type TInputType =
   | "button"
   | "checkbox"
   | "color"
