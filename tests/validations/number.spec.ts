@@ -1,12 +1,6 @@
 import {
   isBeforeNumber,
-  isDifferentNumber,
-  isEqualNumber,
   isFloat,
-  isLess,
-  isLessOrEqual,
-  isMore,
-  isMoreOrEqual,
   isNegative,
   isNumber,
   isNumeric,
@@ -39,32 +33,6 @@ describe("Function validate date", () => {
     expect(isNegative(2)).toBe(false);
     expect(isNegative(-2)).toBe(true);
     expect(isNegative("-2")).toBe(true);
-  });
-
-  it("Is equal number", () => {
-    expect(isEqualNumber(2, 3)).toBe(false);
-    expect(isEqualNumber(2.2, 2.2)).toBe(true);
-  });
-
-  it("Is different number", () => {
-    expect(isDifferentNumber(2.2, 2.2)).toBe(false);
-    expect(isDifferentNumber(2, 3)).toBe(true);
-  });
-
-  it("Is more", () => {
-    expect(isMore(2, 4)).toBe(false);
-    expect(isMore(2.2, 2)).toBe(true);
-
-    expect(isMoreOrEqual(0.5, 1)).toBe(false);
-    expect(isMoreOrEqual(3, 3)).toBe(true);
-  });
-
-  it("Is less", () => {
-    expect(isLess(2, 1)).toBe(false);
-    expect(isLess(2.2, 3)).toBe(true);
-
-    expect(isLessOrEqual(2, 1)).toBe(false);
-    expect(isLessOrEqual(3, 3)).toBe(true);
   });
 
   it("Is before number", () => {

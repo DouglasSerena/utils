@@ -1,7 +1,14 @@
 node_modules
 .github
+.vscode
+examples
 tests
 docs
 src
 coverage
 docs
+.eslintrc.json
+.editorconfig
+rollup.config.ts
+yarn-error.log
+yarn.lock

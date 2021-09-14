@@ -1,6 +1,4 @@
 import IMask, { AnyMaskedOptions, InputMask } from "imask";
-import { isString } from "../../validations/common/common.validation";
-import { isMore } from "../../validations/number.validation";
 import { IServiceMask } from "../masked.type";
 import { IConfigMaskIMask } from "./mask-imask.type";
 
@@ -20,12 +18,13 @@ export class MaskIMask implements IServiceMask {
   constructor(pattern: string | IConfigMaskIMask, config?: IConfigMaskIMask) {
     this.config = Object.assign({}, this.config, config);
 
-    if (isString(pattern)) {
+    if (typeof pattern === "string") {
       this.pattern = pattern as string;
       const patterns = this.pattern.split("||").sort((one, two) => one.length - two.length);
-      this.config.mask = isMore(patterns.length, 1)
-        ? patterns.map((pattern) => ({ mask: pattern }))
-        : patterns[0];
+      this.config.mask =
+        patterns.length > 1
+          ? patterns.map((pattern) => Object.assign({}, this.config, { mask: pattern }))
+          : patterns[0];
     } else {
       Object.assign(this.config, pattern);
     }
@@ -58,14 +57,14 @@ export class MaskIMask implements IServiceMask {
   mask(value: string | number, config?: IConfigMaskIMask): string {
     config = Object.assign({}, this.config, config);
 
-    const imask = this.createMask(value.toString(), config);
+    const imask = this.createMask(value?.toString() || "", config);
     return imask.value;
   }
 
-  unmask(value: string, config?: IConfigMaskIMask): string {
+  unmask(value: string | number, config?: IConfigMaskIMask): string {
     config = Object.assign({}, this.config, config);
 
-    const imask = this.createMask(value, config);
+    const imask = this.createMask(value?.toString() || "", config);
     return imask.unmaskedValue;
   }
 

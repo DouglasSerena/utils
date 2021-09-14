@@ -1,6 +1,5 @@
 import VMasker from "vanilla-masker";
 import { parseNumber } from "../../functions/parse-number.function";
-import { isFloat } from "../../validations/number.validation";
 import { IServiceMask } from "../masked.type";
 import { MoneyOptions } from "./vanilla-masker.type";
 
@@ -63,11 +62,11 @@ export class MaskVanillaMasker implements IServiceMask {
 
   mask(value: string | number, config?: MoneyOptions): string {
     config = Object.assign({}, this.config, config);
-    if (!isFloat(value) && !config.dispatchEvent) {
-      value = parseNumber(value).toFixed(config.precision);
+    if (!config.dispatchEvent) {
+      value = this.unmask(value?.toString() || "").toFixed(config.precision || 2);
     }
 
-    return VMasker.toMoney(value, config);
+    return VMasker.toMoney(value, { ...config, delimiter: "-" }).replace(/-/g, config.delimiter);
   }
 
   unmask(value: string | number, config?: MoneyOptions): number {

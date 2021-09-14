@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { MaskedEnum, MaskedRange } from "imask";
-import { IMaskCustom } from "./masked.type";
+import { IMaskCustom } from "../masked/masked.type";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
 dayjs.extend(customParseFormat);
@@ -199,7 +199,7 @@ export const CUSTOM_MASKS: { [key: string]: IMaskCustom } = {
     type: "MASK_MONEY",
     config: {
       precision: 3,
-      delimiter: "\u200B",
+      delimiter: "",
       separator: ".",
     },
   },
@@ -207,7 +207,7 @@ export const CUSTOM_MASKS: { [key: string]: IMaskCustom } = {
     type: "MASK_MONEY",
     config: {
       precision: 2,
-      delimiter: "\u200B",
+      delimiter: "",
       separator: ",",
     },
   },

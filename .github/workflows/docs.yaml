@@ -2,7 +2,7 @@ name: Create docs
 
 on:
   push:
-    branches: [docs]
+    branches: [main]
 
 jobs:
   docs:
@@ -23,6 +23,6 @@ jobs:
 
       - uses: EndBug/add-and-commit@v7
         with:
-          add: 'docs'
+          add: 'docs --force'
           branch: docs
           message: 'docs\: New docs'
