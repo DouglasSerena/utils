@@ -4,7 +4,9 @@ export function undoRedoStack(maxAmount = 100): UndoRedoStack {
   return new UndoRedoStack(maxAmount);
 }
 
-export class UndoRedoStack extends Array<IUndoRedo> {
+export class UndoRedoStack {
+  private _stack: IUndoRedo[] = [];
+
   /**
    * @private
    * @description Posição atual na pilha */
@@ -29,8 +31,11 @@ export class UndoRedoStack extends Array<IUndoRedo> {
     return this._current === -1;
   }
 
+  public get length(): number {
+    return this._stack.length;
+  }
+
   constructor(maxAmount = 100) {
-    super();
     this._current = -1;
     this._maxAmount = maxAmount;
   }
@@ -68,19 +73,19 @@ export class UndoRedoStack extends Array<IUndoRedo> {
   public push(...perform: IUndoRedo[]): number {
     if (this._maxAmount === this._current) {
       this._current--;
-      this.shift();
+      this._stack.shift();
     }
     this._current++;
-    this.splice(this._current);
+    this._stack.splice(this._current);
 
-    return super.push(...perform);
+    return this._stack.push(...perform);
   }
 
   /**
    * @public
    * @description Esta função limpara a pilha inteira e ira fazer o reset o contador */
   public clear(): IUndoRedo[] {
-    return this.splice(0);
+    return this._stack.splice(0);
   }
 }
 
