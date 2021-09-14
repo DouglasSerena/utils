@@ -60,6 +60,7 @@ export * from "./regex/url.regex";
 // VALIDATIONS
 // // COMMON
 export * from "./validations/common/common.validation";
+export * from "./validations/common/common.type";
 export * from "./functions/contains.function";
 export * from "./validations/common/is-cnpj.validation";
 export * from "./validations/common/is-cpf.validation";
@@ -68,8 +69,13 @@ export * from "./validations/common/is-password.validation";
 export * from "./validations/common/is-rg-sp.validation";
 // // FILE
 export * from "./validations/file/file.validation";
+export * from "./validations/file/file.type";
 export * from "./validations/file/is-allow-extension.validation";
 export * from "./validations/file/max-size.validation";
 export * from "./validations/file/min-size.validation";
 
 export * from "./validations/number.validation";
+
+// TYPE
+export * from "./types/max-min.type";
+export * from "./types/range.type";
