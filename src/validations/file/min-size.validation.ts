@@ -2,8 +2,8 @@ import { BIT_SIZES, isFile } from "./file.validation";
 import { isEmpty } from "../common/is-empty.validation";
 import { IFileInvalid, TAnyFile, TBitSizesKeys, TErrosFile } from "./file.type";
 
-export type ErrosMinSize = TErrosFile | "SIZE";
-export interface IFileInvalidMinSize extends IFileInvalid<ErrosMinSize> {
+export type TErrorsMinSize = TErrosFile | "SIZE";
+export interface IFileInvalidMinSize extends IFileInvalid<TErrorsMinSize> {
   fileSizeInBytes?: number;
 }
 interface IReturnMinSize {

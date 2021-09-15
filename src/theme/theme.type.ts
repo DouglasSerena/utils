@@ -1,4 +1,4 @@
-export type ColorScheme = "dark" | "light" | "no-preference";
+export type TColorScheme = "dark" | "light" | "no-preference";
 
 export interface ITheme {
   global?: { [key: string]: IColors | string };
@@ -12,7 +12,7 @@ export interface IColors {
 }
 
 export interface IConfigTheme {
-  use?: ColorScheme;
+  use?: TColorScheme;
   prefix?: string;
   _style?: string;
   _element?: HTMLStyleElement;
