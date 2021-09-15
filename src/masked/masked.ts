@@ -4,12 +4,12 @@ import { CUSTOM_MASKS } from "../constant/mask.constant";
 import { isArray } from "../validations/common/common.validation";
 import { MaskIMask } from "./imask/mask-imask";
 import { IConfigMaskIMask } from "./imask/mask-imask.type";
-import { ConfigMask, IMaskCustom, IServiceMask } from "./masked.type";
+import { TConfigMask, IMaskCustom, IServiceMask } from "./masked.type";
 import { MaskVanillaMasker } from "./vanilla-masker/vanilla-masker";
 
 export function masked(
-  pattern: string | Partial<ConfigMask>,
-  config?: Partial<ConfigMask>
+  pattern: string | Partial<TConfigMask>,
+  config?: Partial<TConfigMask>
 ): IServiceMask {
   if (typeof pattern === "string") {
     const custoMaskKeys = Object.keys(CUSTOM_MASKS);

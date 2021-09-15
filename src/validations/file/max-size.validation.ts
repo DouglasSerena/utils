@@ -2,8 +2,8 @@ import { BIT_SIZES, isFile } from "./file.validation";
 import { isEmpty } from "../common/is-empty.validation";
 import { TAnyFile, TBitSizesKeys, TErrosFile, IFileInvalid } from "./file.type";
 
-export type ErrosMaxSize = TErrosFile | "SIZE";
-export interface IFileInvalidMaxSize extends IFileInvalid<ErrosMaxSize> {
+export type TErrorsMaxSize = TErrosFile | "SIZE";
+export interface IFileInvalidMaxSize extends IFileInvalid<TErrorsMaxSize> {
   fileSizeInBytes?: number;
 }
 interface IReturnMaxSize {

@@ -1,8 +1,8 @@
 import { getNode } from "../functions/object/get-node.function";
 import { $extends } from "../functions/object/extends.function";
 import { themeSystem } from "../functions/theme-system.function";
-import { ColorScheme, IColors, ITheme, IConfigTheme } from "./theme.type";
-import { isFalsy } from "../utils";
+import { TColorScheme, IColors, ITheme, IConfigTheme } from "./theme.type";
+import { isFalsy } from "../validations/common/common.validation";
 
 let _config: IConfigTheme = {
   prefix: "color",
@@ -50,7 +50,7 @@ export class Theme {
   public get style(): string {
     return _config._style;
   }
-  public get use(): ColorScheme {
+  public get use(): TColorScheme {
     return _config.use;
   }
   public get config(): IConfigTheme {
@@ -99,7 +99,7 @@ export class Theme {
   /**
    * @private
    * @description Altera o tema do sistema podendo ser dark light ou o padrão */
-  change(theme: ColorScheme): void {
+  change(theme: TColorScheme): void {
     _config.use = theme;
     this.createStyle();
   }

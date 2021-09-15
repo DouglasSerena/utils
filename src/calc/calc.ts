@@ -1,5 +1,5 @@
 import { add, distribute, divide, increment, multiply, subtract } from "./math.calc";
-import { AnyCalc as CalcAny, IConfigCalc } from "./calc.type";
+import { TAnyCalc as CalcAny, IConfigCalc } from "./calc.type";
 import { parseNumber } from "../functions/parse-number.function";
 
 const _config: IConfigCalc = {
@@ -171,4 +171,5 @@ calc.config = (config: Partial<IConfigCalc>): void => {
  * @param {unknown} prop
  * @returns {prop is Calc} */
 export const isCalc = (prop: unknown): prop is Calc => prop instanceof Calc;
+
 calc.isCalc = isCalc;
