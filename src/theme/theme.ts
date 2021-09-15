@@ -2,7 +2,7 @@ import { getNode } from "../functions/object/get-node.function";
 import { $extends } from "../functions/object/extends.function";
 import { themeSystem } from "../functions/theme-system.function";
 import { TColorScheme, IColors, ITheme, IConfigTheme } from "./theme.type";
-import { isFalsy } from "../utils";
+import { isFalsy } from "../validations/common/common.validation";
 
 let _config: IConfigTheme = {
   prefix: "color",
