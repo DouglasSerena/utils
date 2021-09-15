@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>maskVanillaMasker | @douglas-serena/utils</title>
+	<title>undoRedoStack | @douglas-serena/utils</title>
 	<meta name="description" content="Documentation for @douglas-serena/utils">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">@douglas-serena/utils</a>
 				</li>
 				<li>
-					<a href="maskVanillaMasker.html">maskVanillaMasker</a>
+					<a href="undoRedoStack.html">undoRedoStack</a>
 				</li>
 			</ul>
-			<h1>Namespace maskVanillaMasker</h1>
+			<h1>Namespace undoRedoStack</h1>
 		</div>
 	</div>
 </header>
@@ -70,38 +70,43 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Functions</h3>
+							<h3>Variables</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-namespace"><a href="maskVanillaMasker.html#config" class="tsd-kind-icon">config</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-namespace"><a href="undoRedoStack.html#isUndoRedoStack" class="tsd-kind-icon">is<wbr>Undo<wbr>Redo<wbr>Stack</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-namespace">
-					<a name="config" class="tsd-anchor"></a>
-					<h3>config</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-namespace">
-						<li class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MoneyOptions</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/douglas-serena/utils/blob/3a35299/src/masked/vanilla-masker/vanilla-masker.ts#L81">src/masked/vanilla-masker/vanilla-masker.ts:81</a></li>
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-namespace">
+					<a name="isUndoRedoStack" class="tsd-anchor"></a>
+					<h3>is<wbr>Undo<wbr>Redo<wbr>Stack</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Undo<wbr>Redo<wbr>Stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>prop<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">prop</span><span class="tsd-signature-symbol"> is </span><a href="../classes/UndoRedoStack.html" class="tsd-signature-type" data-tsd-kind="Class">UndoRedoStack</a></div>
+					<aside class="tsd-sources">
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-namespace">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>prop<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">prop</span><span class="tsd-signature-symbol"> is </span><a href="../classes/UndoRedoStack.html" class="tsd-signature-type" data-tsd-kind="Class">UndoRedoStack</a></li>
 								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>config: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MoneyOptions</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>prop: <span class="tsd-signature-type">unknown</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">prop</span><span class="tsd-signature-symbol"> is </span><a href="../classes/UndoRedoStack.html" class="tsd-signature-type" data-tsd-kind="Class">UndoRedoStack</a></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -117,7 +122,7 @@
 					<li class=" tsd-kind-namespace">
 						<a href="debounce.html">debounce</a>
 					</li>
-					<li class="current tsd-kind-namespace">
+					<li class=" tsd-kind-namespace">
 						<a href="maskVanillaMasker.html">mask<wbr>Vanilla<wbr>Masker</a>
 					</li>
 					<li class=" tsd-kind-namespace">
@@ -129,15 +134,15 @@
 					<li class=" tsd-kind-namespace">
 						<a href="theme.html">theme</a>
 					</li>
-					<li class=" tsd-kind-namespace">
+					<li class="current tsd-kind-namespace">
 						<a href="undoRedoStack.html">undo<wbr>Redo<wbr>Stack</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-namespace">
-						<a href="maskVanillaMasker.html#config" class="tsd-kind-icon">config</a>
+					<li class=" tsd-kind-variable tsd-parent-kind-namespace">
+						<a href="undoRedoStack.html#isUndoRedoStack" class="tsd-kind-icon">is<wbr>Undo<wbr>Redo<wbr>Stack</a>
 					</li>
 				</ul>
 			</nav>
