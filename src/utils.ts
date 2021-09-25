@@ -5,9 +5,20 @@ export * from "./resize/resize.type";
 // SELECTED LIST
 export * from "./selected-list/selected-list";
 
+// KEYBOARD SHORTCUT
+export * from "./keyboard-shortcut/keyboard-shortcut";
+export * from "./keyboard-shortcut/keyboard-shortcut.type";
+
 // UNDO REDO STACK
 export * from "./undo-redo-stack/undo-redo-stack";
 export * from "./undo-redo-stack/undo-redo-stack.type";
+
+// EVENTS
+// export * from "./events/slider.event";
+
+// MONITORING
+export * from "./monitoring/monitoring";
+export * from "./monitoring/monitoring.type";
 
 // CALC
 export * from "./calc/calc";

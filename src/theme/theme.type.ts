@@ -2,6 +2,7 @@ export type TColorScheme = "dark" | "light" | "no-preference";
 
 export interface ITheme {
   global?: { [key: string]: IColors | string };
+  contrast?: { [key: string]: IColors | string };
   dark?: { [key: string]: IColors | string };
   light?: { [key: string]: IColors | string };
   "no-preference"?: { [key: string]: IColors | string };

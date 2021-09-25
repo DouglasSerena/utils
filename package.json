@@ -36,6 +36,7 @@
     "jsdom": "^16.6.0",
     "lodash.camelcase": "^4.3.0",
     "madge": "^5.0.1",
+    "parcel-bundler": "^1.12.5",
     "rollup": "^2.53.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-external-globals": "^0.6.1",

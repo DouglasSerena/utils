@@ -3,6 +3,7 @@ import { $extends } from "../functions/object/extends.function";
 import { themeSystem } from "../functions/theme-system.function";
 import { TColorScheme, IColors, ITheme, IConfigTheme } from "./theme.type";
 import { isFalsy } from "../validations/common/common.validation";
+import { themeColor } from "./theme-color";
 
 let _config: IConfigTheme = {
   prefix: "color",
@@ -22,7 +23,7 @@ export function theme(themes?: ITheme, config?: IConfigTheme): Theme {
 }
 
 export class Theme {
-  public static _themes: ITheme = {};
+  public static _themes: ITheme = themeColor;
 
   /**
    * @public
