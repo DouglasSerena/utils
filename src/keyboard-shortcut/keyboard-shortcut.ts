@@ -7,6 +7,7 @@ import "./keyboard.polyfill.js";
 const shortcutsMap = new Map<string, IShortcut & IConfigKeyboard>();
 
 const configDefault: Omit<IConfigKeyboard, "handle"> = {
+  allow: [],
   hidden: false,
   trigger: "keydown",
   preventDefault: true,
@@ -94,6 +95,10 @@ export class KeyboardShortcut {
     } else {
       Object.assign(this.config, config);
     }
+
+    this.config.excluded = this.config.excluded.filter(
+      (excluded) => !this.config.allow.includes(excluded)
+    );
 
     for (const shortcut of shortcuts) {
       const handle = (event: KeyboardEvent) => {

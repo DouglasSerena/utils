@@ -873,6 +873,7 @@ var __assign = void 0 && (void 0).__assign || function () {
 
 var shortcutsMap = new Map();
 var configDefault = {
+  allow: [],
   hidden: false,
   trigger: "keydown",
   preventDefault: true,
@@ -946,6 +947,10 @@ function () {
     } else {
       Object.assign(this.config, config);
     }
+
+    this.config.excluded = this.config.excluded.filter(function (excluded) {
+      return !_this.config.allow.includes(excluded);
+    });
 
     var _loop_1 = function _loop_1(shortcut) {
       var handle = function handle(event) {
@@ -1259,6 +1264,266 @@ var isUndoRedoStack = function isUndoRedoStack(prop) {
 exports.isUndoRedoStack = isUndoRedoStack;
 undoRedoStack.isUndoRedoStack = isUndoRedoStack;
 },{}],"../src/undo-redo-stack/undo-redo-stack.type.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+},{}],"../src/events/slider/_slider.event.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SliderEvent = void 0;
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
+
+function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var SliderEvent = /*#__PURE__*/function (_MouseEvent) {
+  _inherits(SliderEvent, _MouseEvent);
+
+  var _super = _createSuper(SliderEvent);
+
+  function SliderEvent(eventInitDict, slider) {
+    var _this;
+
+    _classCallCheck(this, SliderEvent);
+
+    _this = _super.call(this, "slider", eventInitDict);
+    _this.slider = slider;
+    return _this;
+  }
+
+  return SliderEvent;
+}( /*#__PURE__*/_wrapNativeSuper(MouseEvent));
+
+exports.SliderEvent = SliderEvent;
+},{}],"../src/events/slider/slider.event.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.OnSlider = void 0;
+
+var _sliderEvent = require("./_slider.event.js");
+
+var __assign = void 0 && (void 0).__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var OnSlider =
+/** @class */
+function () {
+  function OnSlider(element, listener) {
+    var _this = this;
+
+    this.element = element;
+    this.listener = listener;
+
+    this.up = function () {
+      window.removeEventListener("mouseup", _this.up);
+      window.removeEventListener("mousemove", _this.move);
+      window.removeEventListener("touchend", _this.up);
+      window.removeEventListener("touchmove", _this.move);
+    };
+
+    this.move = function (event) {
+      var _a, _b;
+
+      var _c = _this.element.getBoundingClientRect(),
+          top = _c.top,
+          right = _c.right,
+          bottom = _c.bottom,
+          left = _c.left,
+          width = _c.width,
+          height = _c.height;
+
+      var x = event instanceof MouseEvent ? event.x : event.touches[0].clientX;
+      var y = event instanceof MouseEvent ? event.y : event.touches[0].clientY;
+      var offsetX = x - left;
+      var offsetY = y - top;
+      var slider = {
+        offsetX: offsetX,
+        offsetY: offsetY,
+        top: top,
+        right: right,
+        bottom: bottom,
+        left: left,
+        width: width,
+        height: height
+      };
+
+      if (event instanceof TouchEvent) {
+        var sliderEvent = new _sliderEvent.SliderEvent(__assign(__assign({}, event), event.touches[0]), slider);
+
+        _this.element.dispatchEvent(sliderEvent);
+
+        (_a = _this.listener) === null || _a === void 0 ? void 0 : _a.call(_this, sliderEvent);
+      } else {
+        var sliderEvent = new _sliderEvent.SliderEvent(event, slider);
+
+        _this.element.dispatchEvent(sliderEvent);
+
+        (_b = _this.listener) === null || _b === void 0 ? void 0 : _b.call(_this, sliderEvent);
+      }
+    };
+
+    this.down = function () {
+      window.addEventListener("touchend", _this.up);
+      window.addEventListener("touchmove", _this.move);
+      window.addEventListener("mouseup", _this.up);
+      window.addEventListener("mousemove", _this.move);
+    };
+
+    element.addEventListener("mousedown", this.down);
+    element.addEventListener("touchstart", this.down);
+  }
+
+  OnSlider.prototype.destroy = function () {
+    this.element.removeEventListener("mousedown", this.down);
+    this.element.removeEventListener("touchstart", this.down);
+    window.removeEventListener("mouseup", this.up);
+    window.removeEventListener("mousemove", this.move);
+    window.removeEventListener("touchend", this.up);
+    window.removeEventListener("touchmove", this.move);
+  };
+
+  return OnSlider;
+}();
+
+exports.OnSlider = OnSlider;
+},{"./_slider.event.js":"../src/events/slider/_slider.event.js"}],"../src/events/slider/slider.type.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+},{}],"../src/events/zoom/_zoom.event.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ZoomEvent = void 0;
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _wrapNativeSuper(Class) { var _cache = typeof Map === "function" ? new Map() : undefined; _wrapNativeSuper = function _wrapNativeSuper(Class) { if (Class === null || !_isNativeFunction(Class)) return Class; if (typeof Class !== "function") { throw new TypeError("Super expression must either be null or a function"); } if (typeof _cache !== "undefined") { if (_cache.has(Class)) return _cache.get(Class); _cache.set(Class, Wrapper); } function Wrapper() { return _construct(Class, arguments, _getPrototypeOf(this).constructor); } Wrapper.prototype = Object.create(Class.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }); return _setPrototypeOf(Wrapper, Class); }; return _wrapNativeSuper(Class); }
+
+function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _isNativeFunction(fn) { return Function.toString.call(fn).indexOf("[native code]") !== -1; }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var ZoomEvent = /*#__PURE__*/function (_WheelEvent) {
+  _inherits(ZoomEvent, _WheelEvent);
+
+  var _super = _createSuper(ZoomEvent);
+
+  function ZoomEvent(eventInitDict) {
+    _classCallCheck(this, ZoomEvent);
+
+    return _super.call(this, "zoom", eventInitDict);
+  }
+
+  return ZoomEvent;
+}( /*#__PURE__*/_wrapNativeSuper(WheelEvent));
+
+exports.ZoomEvent = ZoomEvent;
+},{}],"../src/events/zoom/zoom.event.ts":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.OnZoom = void 0;
+
+var _zoomEvent = require("./_zoom.event.js");
+
+var OnZoom =
+/** @class */
+function () {
+  function OnZoom(element, listener) {
+    var _this = this;
+
+    this.element = element;
+    this.listener = listener;
+
+    this.wheel = function (event) {
+      var _a;
+
+      if (event.ctrlKey) {
+        event.preventDefault();
+        var zoomEvent = new _zoomEvent.ZoomEvent(event);
+
+        _this.element.dispatchEvent(zoomEvent);
+
+        (_a = _this.listener) === null || _a === void 0 ? void 0 : _a.call(_this, zoomEvent);
+      }
+    };
+
+    element.addEventListener("wheel", this.wheel);
+  }
+
+  OnZoom.prototype.destroy = function () {
+    this.element.removeEventListener("wheel", this.wheel);
+  };
+
+  return OnZoom;
+}();
+
+exports.OnZoom = OnZoom;
+},{"./_zoom.event.js":"../src/events/zoom/_zoom.event.js"}],"../src/events/zoom/zoom.type.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9266,6 +9531,58 @@ Object.keys(_undoRedoStack2).forEach(function (key) {
   });
 });
 
+var _slider = require("./events/slider/slider.event");
+
+Object.keys(_slider).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _slider[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _slider[key];
+    }
+  });
+});
+
+var _slider2 = require("./events/slider/slider.type");
+
+Object.keys(_slider2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _slider2[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _slider2[key];
+    }
+  });
+});
+
+var _zoom = require("./events/zoom/zoom.event");
+
+Object.keys(_zoom).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _zoom[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _zoom[key];
+    }
+  });
+});
+
+var _zoom2 = require("./events/zoom/zoom.type");
+
+Object.keys(_zoom2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  if (key in exports && exports[key] === _zoom2[key]) return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _zoom2[key];
+    }
+  });
+});
+
 var _monitoring = require("./monitoring/monitoring");
 
 Object.keys(_monitoring).forEach(function (key) {
@@ -9993,7 +10310,7 @@ Object.keys(_range).forEach(function (key) {
     }
   });
 });
-},{"./resize/resize":"../src/resize/resize.ts","./resize/resize.type":"../src/resize/resize.type.ts","./selected-list/selected-list":"../src/selected-list/selected-list.ts","./keyboard-shortcut/keyboard-shortcut":"../src/keyboard-shortcut/keyboard-shortcut.ts","./keyboard-shortcut/keyboard-shortcut.type":"../src/keyboard-shortcut/keyboard-shortcut.type.ts","./undo-redo-stack/undo-redo-stack":"../src/undo-redo-stack/undo-redo-stack.ts","./undo-redo-stack/undo-redo-stack.type":"../src/undo-redo-stack/undo-redo-stack.type.ts","./monitoring/monitoring":"../src/monitoring/monitoring.ts","./monitoring/monitoring.type":"../src/monitoring/monitoring.type.ts","./calc/calc":"../src/calc/calc.ts","./calc/math.calc":"../src/calc/math.calc.ts","./calc/calc.type":"../src/calc/calc.type.ts","./constant/input-mode.constant":"../src/constant/input-mode.constant.ts","./constant/input.constant":"../src/constant/input.constant.ts","./constant/mask.constant":"../src/constant/mask.constant.ts","./debounce/debounce":"../src/debounce/debounce.ts","./debounce/debounce.type":"../src/debounce/debounce.type.ts","./masked/masked":"../src/masked/masked.ts","./masked/masked.type":"../src/masked/masked.type.ts","./masked/imask/mask-imask":"../src/masked/imask/mask-imask.ts","./masked/vanilla-masker/vanilla-masker":"../src/masked/vanilla-masker/vanilla-masker.ts","./theme/theme":"../src/theme/theme.ts","./theme/theme.type":"../src/theme/theme.type.ts","./functions/file/base64-to-file.function":"../src/functions/file/base64-to-file.function.ts","./functions/file/file-to-base64.function":"../src/functions/file/file-to-base64.function.ts","./functions/file/get-size-image.function":"../src/functions/file/get-size-image.function.ts","./functions/object/get-node.function":"../src/functions/object/get-node.function.ts","./functions/object/extends.function":"../src/functions/object/extends.function.ts","./functions/object/sort-asc.function":"../src/functions/object/sort-asc.function.ts","./functions/object/sort-desc.function":"../src/functions/object/sort-desc.function.ts","./functions/sleep.function":"../src/functions/sleep.function.ts","./functions/handle-try.function":"../src/functions/handle-try.function.ts","./functions/theme-system.function":"../src/functions/theme-system.function.ts","./functions/parse-number.function":"../src/functions/parse-number.function.ts","./functions/remove-accents.function":"../src/functions/remove-accents.function.ts","./functions/stack-callback.function":"../src/functions/stack-callback.function.ts","./functions/pick-text-color-based-color":"../src/functions/pick-text-color-based-color.ts","./regex/char-special.regex":"../src/regex/char-special.regex.ts","./regex/cnpj.regex":"../src/regex/cnpj.regex.ts","./regex/cpf-cnpj.regex":"../src/regex/cpf-cnpj.regex.ts","./regex/cpf.regex":"../src/regex/cpf.regex.ts","./regex/email.regex":"../src/regex/email.regex.ts","./regex/number.regex":"../src/regex/number.regex.ts","./regex/phone-br.regex":"../src/regex/phone-br.regex.ts","./regex/time.regex":"../src/regex/time.regex.ts","./regex/upper-case.regex":"../src/regex/upper-case.regex.ts","./regex/url.regex":"../src/regex/url.regex.ts","./validations/common/common.validation":"../src/validations/common/common.validation.ts","./validations/common/common.type":"../src/validations/common/common.type.ts","./functions/contains.function":"../src/functions/contains.function.ts","./validations/common/is-cnpj.validation":"../src/validations/common/is-cnpj.validation.ts","./validations/common/is-cpf.validation":"../src/validations/common/is-cpf.validation.ts","./validations/common/is-empty.validation":"../src/validations/common/is-empty.validation.ts","./validations/common/is-password.validation":"../src/validations/common/is-password.validation.ts","./validations/common/is-rg-sp.validation":"../src/validations/common/is-rg-sp.validation.ts","./validations/file/file.validation":"../src/validations/file/file.validation.ts","./validations/file/file.type":"../src/validations/file/file.type.ts","./validations/file/is-allow-extension.validation":"../src/validations/file/is-allow-extension.validation.ts","./validations/file/max-size.validation":"../src/validations/file/max-size.validation.ts","./validations/file/min-size.validation":"../src/validations/file/min-size.validation.ts","./validations/number.validation":"../src/validations/number.validation.ts","./types/max-min.type":"../src/types/max-min.type.ts","./types/range.type":"../src/types/range.type.ts"}],"main.ts":[function(require,module,exports) {
+},{"./resize/resize":"../src/resize/resize.ts","./resize/resize.type":"../src/resize/resize.type.ts","./selected-list/selected-list":"../src/selected-list/selected-list.ts","./keyboard-shortcut/keyboard-shortcut":"../src/keyboard-shortcut/keyboard-shortcut.ts","./keyboard-shortcut/keyboard-shortcut.type":"../src/keyboard-shortcut/keyboard-shortcut.type.ts","./undo-redo-stack/undo-redo-stack":"../src/undo-redo-stack/undo-redo-stack.ts","./undo-redo-stack/undo-redo-stack.type":"../src/undo-redo-stack/undo-redo-stack.type.ts","./events/slider/slider.event":"../src/events/slider/slider.event.ts","./events/slider/slider.type":"../src/events/slider/slider.type.ts","./events/zoom/zoom.event":"../src/events/zoom/zoom.event.ts","./events/zoom/zoom.type":"../src/events/zoom/zoom.type.ts","./monitoring/monitoring":"../src/monitoring/monitoring.ts","./monitoring/monitoring.type":"../src/monitoring/monitoring.type.ts","./calc/calc":"../src/calc/calc.ts","./calc/math.calc":"../src/calc/math.calc.ts","./calc/calc.type":"../src/calc/calc.type.ts","./constant/input-mode.constant":"../src/constant/input-mode.constant.ts","./constant/input.constant":"../src/constant/input.constant.ts","./constant/mask.constant":"../src/constant/mask.constant.ts","./debounce/debounce":"../src/debounce/debounce.ts","./debounce/debounce.type":"../src/debounce/debounce.type.ts","./masked/masked":"../src/masked/masked.ts","./masked/masked.type":"../src/masked/masked.type.ts","./masked/imask/mask-imask":"../src/masked/imask/mask-imask.ts","./masked/vanilla-masker/vanilla-masker":"../src/masked/vanilla-masker/vanilla-masker.ts","./theme/theme":"../src/theme/theme.ts","./theme/theme.type":"../src/theme/theme.type.ts","./functions/file/base64-to-file.function":"../src/functions/file/base64-to-file.function.ts","./functions/file/file-to-base64.function":"../src/functions/file/file-to-base64.function.ts","./functions/file/get-size-image.function":"../src/functions/file/get-size-image.function.ts","./functions/object/get-node.function":"../src/functions/object/get-node.function.ts","./functions/object/extends.function":"../src/functions/object/extends.function.ts","./functions/object/sort-asc.function":"../src/functions/object/sort-asc.function.ts","./functions/object/sort-desc.function":"../src/functions/object/sort-desc.function.ts","./functions/sleep.function":"../src/functions/sleep.function.ts","./functions/handle-try.function":"../src/functions/handle-try.function.ts","./functions/theme-system.function":"../src/functions/theme-system.function.ts","./functions/parse-number.function":"../src/functions/parse-number.function.ts","./functions/remove-accents.function":"../src/functions/remove-accents.function.ts","./functions/stack-callback.function":"../src/functions/stack-callback.function.ts","./functions/pick-text-color-based-color":"../src/functions/pick-text-color-based-color.ts","./regex/char-special.regex":"../src/regex/char-special.regex.ts","./regex/cnpj.regex":"../src/regex/cnpj.regex.ts","./regex/cpf-cnpj.regex":"../src/regex/cpf-cnpj.regex.ts","./regex/cpf.regex":"../src/regex/cpf.regex.ts","./regex/email.regex":"../src/regex/email.regex.ts","./regex/number.regex":"../src/regex/number.regex.ts","./regex/phone-br.regex":"../src/regex/phone-br.regex.ts","./regex/time.regex":"../src/regex/time.regex.ts","./regex/upper-case.regex":"../src/regex/upper-case.regex.ts","./regex/url.regex":"../src/regex/url.regex.ts","./validations/common/common.validation":"../src/validations/common/common.validation.ts","./validations/common/common.type":"../src/validations/common/common.type.ts","./functions/contains.function":"../src/functions/contains.function.ts","./validations/common/is-cnpj.validation":"../src/validations/common/is-cnpj.validation.ts","./validations/common/is-cpf.validation":"../src/validations/common/is-cpf.validation.ts","./validations/common/is-empty.validation":"../src/validations/common/is-empty.validation.ts","./validations/common/is-password.validation":"../src/validations/common/is-password.validation.ts","./validations/common/is-rg-sp.validation":"../src/validations/common/is-rg-sp.validation.ts","./validations/file/file.validation":"../src/validations/file/file.validation.ts","./validations/file/file.type":"../src/validations/file/file.type.ts","./validations/file/is-allow-extension.validation":"../src/validations/file/is-allow-extension.validation.ts","./validations/file/max-size.validation":"../src/validations/file/max-size.validation.ts","./validations/file/min-size.validation":"../src/validations/file/min-size.validation.ts","./validations/number.validation":"../src/validations/number.validation.ts","./types/max-min.type":"../src/types/max-min.type.ts","./types/range.type":"../src/types/range.type.ts"}],"main.ts":[function(require,module,exports) {
 "use strict";
 
 var _utils = require("./../src/utils");
@@ -10004,6 +10321,15 @@ var _utils = require("./../src/utils");
   description: "UNDO"
 }, function (event, key, target) {
   console.log(event, key, target);
+});
+var div = document.querySelector("div");
+var slider = new _utils.OnSlider(div);
+new _utils.OnZoom(div);
+div.addEventListener("slider", function (event) {
+  console.log(event);
+});
+div.addEventListener("zoom", function (event) {
+  console.log(event);
 });
 },{"./../src/utils":"../src/utils.ts"}],"C:/Users/dougl/AppData/Roaming/nvm/v14.17.0/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -10033,7 +10359,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57962" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62935" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

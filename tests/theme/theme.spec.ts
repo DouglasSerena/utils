@@ -1,6 +1,10 @@
 import { contains, theme } from "./../../src/utils";
 
 describe("Function theme", () => {
+  beforeEach(() => {
+    theme().reset();
+  });
+
   it("Create theme", () => {
     theme({
       light: {

@@ -16,6 +16,7 @@ export interface IShortcut {
 }
 
 export interface IConfigKeyboard extends Omit<IShortcut, "keys" | "listener"> {
+  allow: string[];
   excluded: string[];
   preventDefault: boolean;
   stopPropagation: boolean;

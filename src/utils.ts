@@ -14,7 +14,10 @@ export * from "./undo-redo-stack/undo-redo-stack";
 export * from "./undo-redo-stack/undo-redo-stack.type";
 
 // EVENTS
-// export * from "./events/slider.event";
+// export * from "./events/slider/slider.event";
+// export * from "./events/slider/slider.type";
+// export * from "./events/zoom/zoom.event";
+// export * from "./events/zoom/zoom.type";
 
 // MONITORING
 export * from "./monitoring/monitoring";
