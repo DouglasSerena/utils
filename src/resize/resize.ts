@@ -1,3 +1,99 @@
+// import { IConfigResize } from "./resize.type";
+
+// const defaultConfig: IConfigResize = {
+//   direction: "horizontal",
+// };
+
+// export function resize(element: HTMLElement, config: Partial<IConfigResize>): Resize {
+//   return new Resize(element, config);
+// }
+
+// export class Resize {
+//   private config: IConfigResize = {} as IConfigResize;
+//   private parent: HTMLElement;
+//   private next: HTMLElement;
+//   private prev: HTMLElement;
+
+//   private x = 0;
+//   private y = 0;
+//   private width = 0;
+//   private height = 0;
+
+//   constructor(public element: HTMLElement, config: Partial<IConfigResize>) {
+//     Object.assign(this.config, defaultConfig, config);
+
+//     element.addEventListener("mousedown", this.down);
+//   }
+
+//   public up = (): void => {
+//     this.element.style.removeProperty("cursor");
+//     document.body.style.removeProperty("cursor");
+
+//     this.prev.style.removeProperty("user-select");
+//     this.prev.style.removeProperty("pointer-events");
+
+//     this.next.style.removeProperty("user-select");
+//     this.next.style.removeProperty("pointer-events");
+
+//     document.removeEventListener("mousemove", this.move);
+//     document.removeEventListener("mouseup", this.up);
+//   };
+
+//   public move = (event: MouseEvent): void => {
+//     const offsetX = event.clientX - this.x;
+//     const offsetY = event.clientY - this.y;
+
+//     this.resize(offsetX, offsetY);
+
+//     const cursor = this.config.direction === "horizontal" ? "col-resize" : "row-resize";
+//     this.element.style.cursor = cursor;
+//     document.body.style.cursor = cursor;
+
+//     this.prev.style.userSelect = "none";
+//     this.prev.style.pointerEvents = "none";
+
+//     this.next.style.userSelect = "none";
+//     this.next.style.pointerEvents = "none";
+//   };
+
+//   public down = (event: MouseEvent): void => {
+//     this.x = event.clientX;
+//     this.y = event.clientY;
+
+//     this.parent = this.element.parentElement as HTMLElement;
+//     this.next = this.element.nextElementSibling as HTMLElement;
+//     this.prev = this.element.previousElementSibling as HTMLElement;
+
+//     const { width, height } = this.prev.getBoundingClientRect();
+
+//     this.width = width;
+//     this.height = height;
+
+//     document.addEventListener("mousemove", this.move);
+//     document.addEventListener("mouseup", this.up);
+//   };
+
+//   public destroy(): void {
+//     this.up();
+//     this.element.removeEventListener("mousedown", this.down);
+//   }
+
+//   private resize(offsetX: number, offsetY: number) {
+//     const directions = {
+//       vertical: () => {
+//         const height = ((this.height + offsetY) * 100) / this.parent.getBoundingClientRect().height;
+
+//         this.prev.style.height = `${height}%`;
+//       },
+//       horizontal: () => {
+//         const width = ((this.width + offsetX) * 100) / this.parent.getBoundingClientRect().width;
+//         this.prev.style.width = `${width}%`;
+//       },
+//     };
+//     directions[this.config.direction]();
+//   }
+// }
+
 import { $extends } from "../functions/object/extends.function";
 import { IConfigResize, TTypeResize } from "./resize.type";
 

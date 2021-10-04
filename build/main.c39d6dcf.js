@@ -386,6 +386,78 @@ exports.Resize = void 0;
 
 var _extends = require("../functions/object/extends.function");
 
+// import { IConfigResize } from "./resize.type";
+// const defaultConfig: IConfigResize = {
+//   direction: "horizontal",
+// };
+// export function resize(element: HTMLElement, config: Partial<IConfigResize>): Resize {
+//   return new Resize(element, config);
+// }
+// export class Resize {
+//   private config: IConfigResize = {} as IConfigResize;
+//   private parent: HTMLElement;
+//   private next: HTMLElement;
+//   private prev: HTMLElement;
+//   private x = 0;
+//   private y = 0;
+//   private width = 0;
+//   private height = 0;
+//   constructor(public element: HTMLElement, config: Partial<IConfigResize>) {
+//     Object.assign(this.config, defaultConfig, config);
+//     element.addEventListener("mousedown", this.down);
+//   }
+//   public up = (): void => {
+//     this.element.style.removeProperty("cursor");
+//     document.body.style.removeProperty("cursor");
+//     this.prev.style.removeProperty("user-select");
+//     this.prev.style.removeProperty("pointer-events");
+//     this.next.style.removeProperty("user-select");
+//     this.next.style.removeProperty("pointer-events");
+//     document.removeEventListener("mousemove", this.move);
+//     document.removeEventListener("mouseup", this.up);
+//   };
+//   public move = (event: MouseEvent): void => {
+//     const offsetX = event.clientX - this.x;
+//     const offsetY = event.clientY - this.y;
+//     this.resize(offsetX, offsetY);
+//     const cursor = this.config.direction === "horizontal" ? "col-resize" : "row-resize";
+//     this.element.style.cursor = cursor;
+//     document.body.style.cursor = cursor;
+//     this.prev.style.userSelect = "none";
+//     this.prev.style.pointerEvents = "none";
+//     this.next.style.userSelect = "none";
+//     this.next.style.pointerEvents = "none";
+//   };
+//   public down = (event: MouseEvent): void => {
+//     this.x = event.clientX;
+//     this.y = event.clientY;
+//     this.parent = this.element.parentElement as HTMLElement;
+//     this.next = this.element.nextElementSibling as HTMLElement;
+//     this.prev = this.element.previousElementSibling as HTMLElement;
+//     const { width, height } = this.prev.getBoundingClientRect();
+//     this.width = width;
+//     this.height = height;
+//     document.addEventListener("mousemove", this.move);
+//     document.addEventListener("mouseup", this.up);
+//   };
+//   public destroy(): void {
+//     this.up();
+//     this.element.removeEventListener("mousedown", this.down);
+//   }
+//   private resize(offsetX: number, offsetY: number) {
+//     const directions = {
+//       vertical: () => {
+//         const height = ((this.height + offsetY) * 100) / this.parent.getBoundingClientRect().height;
+//         this.prev.style.height = `${height}%`;
+//       },
+//       horizontal: () => {
+//         const width = ((this.width + offsetX) * 100) / this.parent.getBoundingClientRect().width;
+//         this.prev.style.width = `${width}%`;
+//       },
+//     };
+//     directions[this.config.direction]();
+//   }
+// }
 function resize(element, config) {
   return new Resize(element, config);
 }
@@ -691,115 +763,6 @@ exports.Resize = Resize;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-},{}],"../src/selected-list/selected-list.ts":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.selectedList = selectedList;
-exports.isSelectedList = exports.SelectedList = void 0;
-
-function selectedList() {
-  return new SelectedList();
-}
-
-var SelectedList =
-/** @class */
-function () {
-  function SelectedList() {
-    this.list = [];
-  }
-
-  Object.defineProperty(SelectedList.prototype, "length", {
-    get: function get() {
-      return this.list.length;
-    },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(SelectedList.prototype, "isEmpty", {
-    get: function get() {
-      return this.length === 0;
-    },
-    enumerable: false,
-    configurable: true
-  });
-
-  SelectedList.prototype[Symbol.iterator] = function () {
-    var index = -1;
-    var list = this.list;
-    return {
-      next: function next() {
-        return {
-          value: list[++index],
-          done: !(index in list)
-        };
-      }
-    };
-  };
-
-  SelectedList.prototype.select = function () {
-    var _a;
-
-    var value = [];
-
-    for (var _i = 0; _i < arguments.length; _i++) {
-      value[_i] = arguments[_i];
-    }
-
-    return (_a = this.list).push.apply(_a, value);
-  };
-
-  SelectedList.prototype.unselect = function (value) {
-    if (!(typeof value === "number")) {
-      value = this.list.indexOf(value);
-    }
-
-    return this.list.splice(value, 1);
-  };
-
-  SelectedList.prototype.filter = function (predicate) {
-    this.list = this.list.filter(predicate);
-    return this.list;
-  };
-
-  SelectedList.prototype.map = function (predicate) {
-    this.list = this.list.map(predicate);
-    return this.list;
-  };
-
-  SelectedList.prototype.forEach = function (predicate) {
-    this.list.forEach(predicate);
-  };
-
-  SelectedList.prototype.find = function (predicate) {
-    return this.list.find(predicate);
-  };
-
-  SelectedList.prototype.findIndex = function (predicate) {
-    return this.list.findIndex(predicate);
-  };
-  /**
-   * @public
-   * @description Esta função limpara a pilha inteira e ira fazer o reset o contador */
-
-
-  SelectedList.prototype.clear = function () {
-    return this.list.splice(0);
-  };
-
-  return SelectedList;
-}();
-
-exports.SelectedList = SelectedList;
-
-var isSelectedList = function isSelectedList(prop) {
-  return prop instanceof SelectedList;
-};
-
-exports.isSelectedList = isSelectedList;
-selectedList.isSelectedList = isSelectedList;
 },{}],"../src/functions/coerce-array.function.ts":[function(require,module,exports) {
 "use strict";
 
@@ -913,14 +876,14 @@ function normalize(shortcuts, platform) {
   }
 }
 
-function keyboardShortcut(shortcuts, config, listener) {
-  return new KeyboardShortcut(shortcuts, config, listener);
+function keyboardShortcut(shortcuts, config) {
+  return new KeyboardShortcut(shortcuts, config);
 }
 
 var KeyboardShortcut =
 /** @class */
 function () {
-  function KeyboardShortcut(shortcuts, config, listener) {
+  function KeyboardShortcut(shortcuts, config) {
     var _this = this;
 
     this.shortcuts = [];
@@ -939,15 +902,7 @@ function () {
       throw new Error("[KEYBOARD] Unable to continue due to lack of valid keys to register");
     }
 
-    this.config = Object.assign({}, configDefault);
-    var _listener = listener;
-
-    if (typeof config === "function") {
-      _listener = config;
-    } else {
-      Object.assign(this.config, config);
-    }
-
+    this.config = Object.assign({}, configDefault, config);
     this.config.excluded = this.config.excluded.filter(function (excluded) {
       return !_this.config.allow.includes(excluded);
     });
@@ -971,7 +926,7 @@ function () {
             event.stopPropagation();
           }
 
-          _listener(event, shortcut, event.target);
+          config.listener(event, shortcut, event.target);
         }
       };
 
@@ -982,8 +937,7 @@ function () {
       }
 
       shortcutsMap.set(shortcut, __assign(__assign({}, this_1.config), {
-        keys: shortcut,
-        listener: _listener
+        keys: shortcut
       }));
       this_1.shortcuts.push(shortcutsMap.get(shortcut));
     };
@@ -1121,7 +1075,7 @@ keyboardShortcut.updateShortcut = function (shortcutLast, shortcut) {
 
   var config = shortcutsMap.get(shortcutLast);
   keyboardShortcut.unbindShortcut(shortcutLast);
-  return new KeyboardShortcut(shortcut, config, config.listener);
+  return new KeyboardShortcut(shortcut.keys || shortcutLast, config);
 };
 },{"../functions/coerce-array.function":"../src/functions/coerce-array.function.ts","../functions/host-platform.function":"../src/functions/host-platform.function.ts","./keyboard.polyfill.js":"../src/keyboard-shortcut/keyboard.polyfill.js"}],"../src/keyboard-shortcut/keyboard-shortcut.type.ts":[function(require,module,exports) {
 "use strict";
@@ -1275,62 +1229,52 @@ Object.defineProperty(exports, "__esModule", {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.monitoring = monitoring;
 exports.Monitoring = void 0;
+
+function monitoring() {
+  return new Monitoring();
+}
 
 var Monitoring =
 /** @class */
 function () {
   function Monitoring() {}
 
-  Object.defineProperty(Monitoring.prototype, "isDesktop", {
-    get: function get() {
-      var _a;
-
-      return (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(min-width: 960px)").matches;
-    },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Monitoring.prototype, "isTable", {
-    get: function get() {
-      var _a;
-
-      return (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(min-width: 720px)").matches;
-    },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Monitoring.prototype, "isMobile", {
-    get: function get() {
-      var _a;
-
-      return (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(max-width: 540px)").matches;
-    },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Monitoring.prototype, "isDark", {
-    get: function get() {
-      var _a;
-
-      return (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(prefers-color-scheme: dark)").matches;
-    },
-    enumerable: false,
-    configurable: true
-  });
-  Object.defineProperty(Monitoring.prototype, "isLight", {
-    get: function get() {
-      var _a;
-
-      return (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(prefers-color-scheme: light)").matches;
-    },
-    enumerable: false,
-    configurable: true
-  });
   return Monitoring;
 }();
 
 exports.Monitoring = Monitoring;
+
+monitoring.isDesktop = function () {
+  var _a;
+
+  return (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(min-width: 960px)").matches;
+}();
+
+monitoring.isTable = function () {
+  var _a;
+
+  return (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(min-width: 720px)").matches;
+}();
+
+monitoring.isMobile = function () {
+  var _a;
+
+  return (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(max-width: 540px)").matches;
+}();
+
+monitoring.isDark = function () {
+  var _a;
+
+  return (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(prefers-color-scheme: dark)").matches;
+}();
+
+monitoring.isLight = function () {
+  var _a;
+
+  return (_a = window === null || window === void 0 ? void 0 : window.matchMedia) === null || _a === void 0 ? void 0 : _a.call(window, "(prefers-color-scheme: light)").matches;
+}();
 },{}],"../src/monitoring/monitoring.type.ts":[function(require,module,exports) {
 "use strict";
 
@@ -9206,19 +9150,6 @@ Object.keys(_resize2).forEach(function (key) {
   });
 });
 
-var _selectedList = require("./selected-list/selected-list");
-
-Object.keys(_selectedList).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  if (key in exports && exports[key] === _selectedList[key]) return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _selectedList[key];
-    }
-  });
-});
-
 var _keyboardShortcut = require("./keyboard-shortcut/keyboard-shortcut");
 
 Object.keys(_keyboardShortcut).forEach(function (key) {
@@ -9998,14 +9929,40 @@ Object.keys(_range).forEach(function (key) {
     }
   });
 });
-},{"./resize/resize":"../src/resize/resize.ts","./resize/resize.type":"../src/resize/resize.type.ts","./selected-list/selected-list":"../src/selected-list/selected-list.ts","./keyboard-shortcut/keyboard-shortcut":"../src/keyboard-shortcut/keyboard-shortcut.ts","./keyboard-shortcut/keyboard-shortcut.type":"../src/keyboard-shortcut/keyboard-shortcut.type.ts","./undo-redo-stack/undo-redo-stack":"../src/undo-redo-stack/undo-redo-stack.ts","./undo-redo-stack/undo-redo-stack.type":"../src/undo-redo-stack/undo-redo-stack.type.ts","./monitoring/monitoring":"../src/monitoring/monitoring.ts","./monitoring/monitoring.type":"../src/monitoring/monitoring.type.ts","./calc/calc":"../src/calc/calc.ts","./calc/math.calc":"../src/calc/math.calc.ts","./calc/calc.type":"../src/calc/calc.type.ts","./constant/input-mode.constant":"../src/constant/input-mode.constant.ts","./constant/input.constant":"../src/constant/input.constant.ts","./constant/mask.constant":"../src/constant/mask.constant.ts","./debounce/debounce":"../src/debounce/debounce.ts","./debounce/debounce.type":"../src/debounce/debounce.type.ts","./masked/masked":"../src/masked/masked.ts","./masked/masked.type":"../src/masked/masked.type.ts","./masked/imask/mask-imask":"../src/masked/imask/mask-imask.ts","./masked/vanilla-masker/vanilla-masker":"../src/masked/vanilla-masker/vanilla-masker.ts","./theme/theme":"../src/theme/theme.ts","./theme/theme.type":"../src/theme/theme.type.ts","./functions/file/base64-to-file.function":"../src/functions/file/base64-to-file.function.ts","./functions/file/file-to-base64.function":"../src/functions/file/file-to-base64.function.ts","./functions/file/get-size-image.function":"../src/functions/file/get-size-image.function.ts","./functions/object/get-node.function":"../src/functions/object/get-node.function.ts","./functions/object/extends.function":"../src/functions/object/extends.function.ts","./functions/object/sort-asc.function":"../src/functions/object/sort-asc.function.ts","./functions/object/sort-desc.function":"../src/functions/object/sort-desc.function.ts","./functions/sleep.function":"../src/functions/sleep.function.ts","./functions/handle-try.function":"../src/functions/handle-try.function.ts","./functions/theme-system.function":"../src/functions/theme-system.function.ts","./functions/parse-number.function":"../src/functions/parse-number.function.ts","./functions/remove-accents.function":"../src/functions/remove-accents.function.ts","./functions/stack-callback.function":"../src/functions/stack-callback.function.ts","./functions/pick-text-color-based-color":"../src/functions/pick-text-color-based-color.ts","./regex/char-special.regex":"../src/regex/char-special.regex.ts","./regex/cnpj.regex":"../src/regex/cnpj.regex.ts","./regex/cpf-cnpj.regex":"../src/regex/cpf-cnpj.regex.ts","./regex/cpf.regex":"../src/regex/cpf.regex.ts","./regex/email.regex":"../src/regex/email.regex.ts","./regex/number.regex":"../src/regex/number.regex.ts","./regex/phone-br.regex":"../src/regex/phone-br.regex.ts","./regex/time.regex":"../src/regex/time.regex.ts","./regex/upper-case.regex":"../src/regex/upper-case.regex.ts","./regex/url.regex":"../src/regex/url.regex.ts","./validations/common/common.validation":"../src/validations/common/common.validation.ts","./validations/common/common.type":"../src/validations/common/common.type.ts","./functions/contains.function":"../src/functions/contains.function.ts","./validations/common/is-cnpj.validation":"../src/validations/common/is-cnpj.validation.ts","./validations/common/is-cpf.validation":"../src/validations/common/is-cpf.validation.ts","./validations/common/is-empty.validation":"../src/validations/common/is-empty.validation.ts","./validations/common/is-password.validation":"../src/validations/common/is-password.validation.ts","./validations/common/is-rg-sp.validation":"../src/validations/common/is-rg-sp.validation.ts","./validations/file/file.validation":"../src/validations/file/file.validation.ts","./validations/file/file.type":"../src/validations/file/file.type.ts","./validations/file/is-allow-extension.validation":"../src/validations/file/is-allow-extension.validation.ts","./validations/file/max-size.validation":"../src/validations/file/max-size.validation.ts","./validations/file/min-size.validation":"../src/validations/file/min-size.validation.ts","./validations/number.validation":"../src/validations/number.validation.ts","./types/max-min.type":"../src/types/max-min.type.ts","./types/range.type":"../src/types/range.type.ts"}],"main.ts":[function(require,module,exports) {
+},{"./resize/resize":"../src/resize/resize.ts","./resize/resize.type":"../src/resize/resize.type.ts","./keyboard-shortcut/keyboard-shortcut":"../src/keyboard-shortcut/keyboard-shortcut.ts","./keyboard-shortcut/keyboard-shortcut.type":"../src/keyboard-shortcut/keyboard-shortcut.type.ts","./undo-redo-stack/undo-redo-stack":"../src/undo-redo-stack/undo-redo-stack.ts","./undo-redo-stack/undo-redo-stack.type":"../src/undo-redo-stack/undo-redo-stack.type.ts","./monitoring/monitoring":"../src/monitoring/monitoring.ts","./monitoring/monitoring.type":"../src/monitoring/monitoring.type.ts","./calc/calc":"../src/calc/calc.ts","./calc/math.calc":"../src/calc/math.calc.ts","./calc/calc.type":"../src/calc/calc.type.ts","./constant/input-mode.constant":"../src/constant/input-mode.constant.ts","./constant/input.constant":"../src/constant/input.constant.ts","./constant/mask.constant":"../src/constant/mask.constant.ts","./debounce/debounce":"../src/debounce/debounce.ts","./debounce/debounce.type":"../src/debounce/debounce.type.ts","./masked/masked":"../src/masked/masked.ts","./masked/masked.type":"../src/masked/masked.type.ts","./masked/imask/mask-imask":"../src/masked/imask/mask-imask.ts","./masked/vanilla-masker/vanilla-masker":"../src/masked/vanilla-masker/vanilla-masker.ts","./theme/theme":"../src/theme/theme.ts","./theme/theme.type":"../src/theme/theme.type.ts","./functions/file/base64-to-file.function":"../src/functions/file/base64-to-file.function.ts","./functions/file/file-to-base64.function":"../src/functions/file/file-to-base64.function.ts","./functions/file/get-size-image.function":"../src/functions/file/get-size-image.function.ts","./functions/object/get-node.function":"../src/functions/object/get-node.function.ts","./functions/object/extends.function":"../src/functions/object/extends.function.ts","./functions/object/sort-asc.function":"../src/functions/object/sort-asc.function.ts","./functions/object/sort-desc.function":"../src/functions/object/sort-desc.function.ts","./functions/sleep.function":"../src/functions/sleep.function.ts","./functions/handle-try.function":"../src/functions/handle-try.function.ts","./functions/theme-system.function":"../src/functions/theme-system.function.ts","./functions/parse-number.function":"../src/functions/parse-number.function.ts","./functions/remove-accents.function":"../src/functions/remove-accents.function.ts","./functions/stack-callback.function":"../src/functions/stack-callback.function.ts","./functions/pick-text-color-based-color":"../src/functions/pick-text-color-based-color.ts","./regex/char-special.regex":"../src/regex/char-special.regex.ts","./regex/cnpj.regex":"../src/regex/cnpj.regex.ts","./regex/cpf-cnpj.regex":"../src/regex/cpf-cnpj.regex.ts","./regex/cpf.regex":"../src/regex/cpf.regex.ts","./regex/email.regex":"../src/regex/email.regex.ts","./regex/number.regex":"../src/regex/number.regex.ts","./regex/phone-br.regex":"../src/regex/phone-br.regex.ts","./regex/time.regex":"../src/regex/time.regex.ts","./regex/upper-case.regex":"../src/regex/upper-case.regex.ts","./regex/url.regex":"../src/regex/url.regex.ts","./validations/common/common.validation":"../src/validations/common/common.validation.ts","./validations/common/common.type":"../src/validations/common/common.type.ts","./functions/contains.function":"../src/functions/contains.function.ts","./validations/common/is-cnpj.validation":"../src/validations/common/is-cnpj.validation.ts","./validations/common/is-cpf.validation":"../src/validations/common/is-cpf.validation.ts","./validations/common/is-empty.validation":"../src/validations/common/is-empty.validation.ts","./validations/common/is-password.validation":"../src/validations/common/is-password.validation.ts","./validations/common/is-rg-sp.validation":"../src/validations/common/is-rg-sp.validation.ts","./validations/file/file.validation":"../src/validations/file/file.validation.ts","./validations/file/file.type":"../src/validations/file/file.type.ts","./validations/file/is-allow-extension.validation":"../src/validations/file/is-allow-extension.validation.ts","./validations/file/max-size.validation":"../src/validations/file/max-size.validation.ts","./validations/file/min-size.validation":"../src/validations/file/min-size.validation.ts","./validations/number.validation":"../src/validations/number.validation.ts","./types/max-min.type":"../src/types/max-min.type.ts","./types/range.type":"../src/types/range.type.ts"}],"main.ts":[function(require,module,exports) {
 "use strict";
 
 var _utils = require("./../src/utils");
 
-(0, _utils.keyboardShortcut)(["shift.?"], function (event, key, target) {
-  console.log(event, key, target);
+var ctrlZ = (0, _utils.keyboardShortcut)("ctrl.z", {
+  listener: function listener(event) {
+    console.log(event);
+  }
 });
+(0, _utils.contextMenu)("subgroup", {
+  title: "aipwhd0pw",
+  listener: function listener(event) {
+    console.log(event);
+  }
+});
+(0, _utils.contextMenu)("document", {
+  title: "awdawgaeg",
+  subgroup: "subgroup"
+});
+(0, _utils.contextMenu)("document", {
+  title: "Desfazer",
+  shortcut: "ctrl + z",
+  listener: function listener(event) {
+    console.log(event);
+  }
+});
+
+_utils.contextMenu.updateItem("document", {
+  title: "awdawgaeg",
+  disabled: true
+});
+
+console.log(_utils.contextMenu.getItem("document", "desfazer"), _utils.contextMenu.getGroups(["document", "subgroup"]));
 },{"./../src/utils":"../src/utils.ts"}],"C:/Users/dougl/AppData/Roaming/nvm/v14.17.0/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -10034,7 +9991,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65479" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57892" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -12,3 +12,5 @@ docs
 rollup.config.ts
 yarn-error.log
 yarn.lock
+.cache
+build

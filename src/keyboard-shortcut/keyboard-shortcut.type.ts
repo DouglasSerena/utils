@@ -8,14 +8,16 @@ export interface IShortcutGroup {
 
 export interface IShortcut {
   keys: string;
+  icon?: string;
   group?: string;
   hidden?: boolean;
+  disabled?: boolean;
   description?: string;
   targets: TKeyboardTarget;
   listener: TKeyboardListener;
 }
 
-export interface IConfigKeyboard extends Omit<IShortcut, "keys" | "listener"> {
+export interface IConfigKeyboard extends Omit<IShortcut, "keys"> {
   allow: string[];
   excluded: string[];
   preventDefault: boolean;

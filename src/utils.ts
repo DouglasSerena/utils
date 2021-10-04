@@ -1,9 +1,10 @@
+// DECORATORS
+export * from "./decorators/event-emitter";
+export * from "./decorators/keyboard-shortcut";
+
 // RESIZE
 export * from "./resize/resize";
 export * from "./resize/resize.type";
-
-// SELECTED LIST
-export * from "./selected-list/selected-list";
 
 // KEYBOARD SHORTCUT
 export * from "./keyboard-shortcut/keyboard-shortcut";

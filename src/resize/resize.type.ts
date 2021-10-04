@@ -1,3 +1,7 @@
+// export interface IConfigResize {
+//   direction: "horizontal" | "vertical";
+// }
+
 import { TMaxMin } from "../types/max-min.type";
 
 export type TTypeResize =

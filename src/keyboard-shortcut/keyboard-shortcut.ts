@@ -6,7 +6,7 @@ import "./keyboard.polyfill.js";
 
 const shortcutsMap = new Map<string, IShortcut & IConfigKeyboard>();
 
-const configDefault: Omit<IConfigKeyboard, "handle"> = {
+const configDefault: Omit<IConfigKeyboard, "handle" | "listener"> = {
   allow: [],
   hidden: false,
   trigger: "keydown",
@@ -42,35 +42,18 @@ function normalize(shortcuts: string | string[], platform = hostPlatform()): str
 
 export function keyboardShortcut(
   shortcuts: string | string[],
-  listener: TKeyboardListener
-): KeyboardShortcut;
-export function keyboardShortcut(
-  shortcuts: string | string[],
-  config: Partial<IConfigKeyboard>,
-  listener: TKeyboardListener
-): KeyboardShortcut;
-export function keyboardShortcut(
-  shortcuts: string | string[],
-  config: Partial<IConfigKeyboard> | TKeyboardListener,
-  listener?: TKeyboardListener
+  config: Partial<IConfigKeyboard> & { listener: TKeyboardListener }
 ): KeyboardShortcut {
-  return new KeyboardShortcut(shortcuts, config as Partial<IConfigKeyboard>, listener);
+  return new KeyboardShortcut(shortcuts, config);
 }
 
 export class KeyboardShortcut {
   public shortcuts: (IShortcut & IConfigKeyboard)[] = [];
   private config: IConfigKeyboard = {} as IConfigKeyboard;
 
-  constructor(shortcuts: string | string[], listener: TKeyboardListener);
   constructor(
     shortcuts: string | string[],
-    config: Partial<IConfigKeyboard>,
-    listener: TKeyboardListener
-  );
-  constructor(
-    shortcuts: string | string[],
-    config: Partial<IConfigKeyboard> | TKeyboardListener,
-    listener?: TKeyboardListener
+    config: Partial<IConfigKeyboard> & { listener: TKeyboardListener }
   ) {
     shortcuts = coerceArray(normalize(shortcuts));
     shortcuts = shortcuts.filter((shortcut) => {
@@ -87,14 +70,7 @@ export class KeyboardShortcut {
       throw new Error(`[KEYBOARD] Unable to continue due to lack of valid keys to register`);
     }
 
-    this.config = Object.assign({}, configDefault) as IConfigKeyboard;
-    let _listener = listener;
-
-    if (typeof config === "function") {
-      _listener = config;
-    } else {
-      Object.assign(this.config, config);
-    }
+    this.config = Object.assign({}, configDefault, config) as IConfigKeyboard;
 
     this.config.excluded = this.config.excluded.filter(
       (excluded) => !this.config.allow.includes(excluded)
@@ -117,7 +93,7 @@ export class KeyboardShortcut {
             event.stopPropagation();
           }
 
-          _listener(event, shortcut, event.target as HTMLElement);
+          config.listener(event, shortcut, event.target as HTMLElement);
         }
       };
 
@@ -126,7 +102,7 @@ export class KeyboardShortcut {
         this.config.handle = handle;
       }
 
-      shortcutsMap.set(shortcut, { ...this.config, keys: shortcut, listener: _listener });
+      shortcutsMap.set(shortcut, { ...this.config, keys: shortcut });
       this.shortcuts.push(shortcutsMap.get(shortcut));
     }
   }
@@ -154,7 +130,7 @@ export class KeyboardShortcut {
     for (const key of shortcut.split(".")) {
       const modifier = modifiers[key];
       if (modifier === undefined) {
-        const code = event.code.replace(/Key/i, "").toLowerCase();
+        const code = event.key.replace(/Key/i, "").toLowerCase();
         if (key !== code) {
           return false;
         }
@@ -219,7 +195,7 @@ keyboardShortcut.unbindShortcut = (shortcuts: string | string[]) => {
   }
 };
 
-keyboardShortcut.updateShortcut = (shortcutLast: string, shortcut: string) => {
+keyboardShortcut.updateShortcut = (shortcutLast: string, shortcut: IShortcut & IConfigKeyboard) => {
   if (!shortcutsMap.has(shortcutLast)) {
     throw new Error(`[KEYBOARD] Key shortcut "${shortcutLast}" has not been registered`);
   }
@@ -227,5 +203,5 @@ keyboardShortcut.updateShortcut = (shortcutLast: string, shortcut: string) => {
   const config = shortcutsMap.get(shortcutLast);
   keyboardShortcut.unbindShortcut(shortcutLast);
 
-  return new KeyboardShortcut(shortcut, config, config.listener);
+  return new KeyboardShortcut(shortcut.keys || shortcutLast, config);
 };
