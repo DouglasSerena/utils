@@ -12,6 +12,8 @@
     "strictFunctionTypes": false,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": true,
   },
   "include": [
     "src/**/*.ts",

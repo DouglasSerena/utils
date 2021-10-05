@@ -1,6 +1,5 @@
-// DECORATORS
-export * from "./decorators/event-emitter";
-export * from "./decorators/keyboard-shortcut";
+// EVENT EMITTER
+export * from "./event-emitter/event-emitter";
 
 // RESIZE
 export * from "./resize/resize";
