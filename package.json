@@ -1,10 +1,11 @@
 {
   "name": "@douglas-serena/utils",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "main": "dist/utils.umd.js",
   "module": "dist/utils.es5.js",
   "typings": "dist/types/utils.d.ts",
   "license": "MIT",
+  "browserslist": "> 0.25%, not dead",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DouglasSerena/utils.git"
@@ -26,6 +27,7 @@
     "build": "npm run test && npm run build:ts"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.15.8",
     "@types/inputmask": "^5.0.1",
     "@types/jest": "^26.0.24",
     "@types/vanilla-masker": "^1.2.1",
