@@ -1,6 +1,6 @@
 {
   "name": "@douglas-serena/utils",
-  "version": "1.2.15",
+  "version": "1.3.0",
   "main": "dist/utils.umd.js",
   "module": "dist/utils.es5.js",
   "typings": "dist/types/utils.d.ts",
@@ -27,6 +27,7 @@
     "build": "npm run test && npm run build:ts"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.8",
     "@babel/plugin-transform-runtime": "^7.15.8",
     "@types/inputmask": "^5.0.1",
     "@types/jest": "^26.0.24",
@@ -54,6 +55,7 @@
     "typescript": "^4.5.0-dev.20210818"
   },
   "dependencies": {
+    "@babel/runtime-corejs2": "^7.15.4",
     "dayjs": "^1.10.4",
     "imask": "^6.1.0",
     "inputmask": "^5.0.6",
