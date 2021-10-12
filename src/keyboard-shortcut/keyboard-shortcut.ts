@@ -2,9 +2,10 @@ import { IConfigKeyboard, IShortcut, IShortcutGroup } from "./keyboard-shortcut.
 import { TKeyboardListener } from "./types/keyboard-listener.type";
 import { coerceArray } from "../functions/coerce-array.function";
 import { hostPlatform } from "../functions/host-platform.function";
+import { Global } from "../global/global";
 import "./keyboard.polyfill.js";
 
-const shortcutsMap = new Map<string, IShortcut & IConfigKeyboard>();
+Global.defined("SHORTCUT", new Map<string, IShortcut & IConfigKeyboard>());
 
 const configDefault: Omit<IConfigKeyboard, "handle" | "listener"> = {
   allow: [],
@@ -57,7 +58,7 @@ export class KeyboardShortcut {
   ) {
     shortcuts = coerceArray(normalize(shortcuts));
     shortcuts = shortcuts.filter((shortcut) => {
-      if (shortcutsMap.has(shortcut)) {
+      if (Global.get("SHORTCUT").has(shortcut)) {
         console.warn(
           `[KEYBOARD] Shortcut key "${shortcut}" already registered, so it was built from the list`
         );
@@ -102,8 +103,8 @@ export class KeyboardShortcut {
         this.config.handle = handle;
       }
 
-      shortcutsMap.set(shortcut, { ...this.config, keys: shortcut });
-      this.shortcuts.push(shortcutsMap.get(shortcut));
+      Global.get("SHORTCUT").set(shortcut, { ...this.config, keys: shortcut });
+      this.shortcuts.push(Global.get("SHORTCUT").get(shortcut));
     }
   }
 
@@ -148,14 +149,16 @@ export class KeyboardShortcut {
 keyboardShortcut.shortcuts = [] as (IShortcut & IConfigKeyboard)[];
 Object.defineProperty(keyboardShortcut, "shortcuts", {
   get() {
-    return Array.from(shortcutsMap.values()).map((shortcut) => ({ ...shortcut }));
+    return Array.from(Global.get("SHORTCUT").values()).map((shortcut: IShortcut) => ({
+      ...shortcut,
+    }));
   },
 });
 
 keyboardShortcut.group = [] as IShortcutGroup[];
 Object.defineProperty(keyboardShortcut, "group", {
   get() {
-    const shortcuts = Array.from(shortcutsMap.values());
+    const shortcuts: IShortcut[] = Array.from(Global.get("SHORTCUT").values());
     const groups: IShortcutGroup[] = [];
 
     for (const shortcut of shortcuts) {
@@ -181,26 +184,26 @@ keyboardShortcut.unbindShortcut = (shortcuts: string | string[]) => {
   shortcuts = coerceArray(normalize(shortcuts));
 
   for (const shortcut of shortcuts) {
-    if (!shortcutsMap.has(shortcut)) {
+    if (!Global.get("SHORTCUT").has(shortcut)) {
       console.warn(`[KEYBOARD] Key shortcut "${shortcut}" has not been registered`);
       continue;
     }
 
-    const config = shortcutsMap.get(shortcut);
+    const config = Global.get("SHORTCUT").get(shortcut);
     for (const target of coerceArray(config.targets)) {
       target.removeEventListener(config.trigger, config.handle);
     }
 
-    shortcutsMap.delete(shortcut);
+    Global.get("SHORTCUT").delete(shortcut);
   }
 };
 
 keyboardShortcut.updateShortcut = (shortcutLast: string, shortcut: IShortcut & IConfigKeyboard) => {
-  if (!shortcutsMap.has(shortcutLast)) {
+  if (!Global.get("SHORTCUT").has(shortcutLast)) {
     throw new Error(`[KEYBOARD] Key shortcut "${shortcutLast}" has not been registered`);
   }
 
-  const config = shortcutsMap.get(shortcutLast);
+  const config = Global.get("SHORTCUT").get(shortcutLast);
   keyboardShortcut.unbindShortcut(shortcutLast);
 
   return new KeyboardShortcut(shortcut.keys || shortcutLast, config);

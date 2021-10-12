@@ -98,4 +98,14 @@ describe("Function calc", () => {
     result = calc("6115.95", { increment: 0.05 }).distribute("1");
     expect(result).toEqual([6115.95]);
   });
+
+  it("Keep between", () => {
+    let result = calc("100.215").keepBetween({ min: 50, max: 100 });
+    expect(result.value).toBe(100);
+    expect(result.valueRaw).toBe(100);
+
+    result = calc("42.32").keepBetween(100, 50);
+    expect(result.value).toBe(50);
+    expect(result.valueRaw).toBe(50);
+  });
 });

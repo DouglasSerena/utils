@@ -1,25 +1,29 @@
-import { add, distribute, divide, increment, multiply, subtract } from "./math.calc";
+import { add, distribute, divide, increment, multiply, subtract } from "./calculator.calc";
 import { TAnyCalc as CalcAny, IConfigCalc } from "./calc.type";
 import { parseNumber } from "../functions/parse-number.function";
+import { Global } from "../utils";
 
-const _config: IConfigCalc = {
+const _config = Global.defined("CALCULATOR", {
   decimal: ",",
   thousands: ".",
   error: false,
   precision: 2,
   increment: 0,
   round: "round",
-};
+});
 
 export function calc(value?: CalcAny | Calc, config?: Partial<IConfigCalc>): Calc {
   return new Calc(value, config);
 }
 
 export class Calc {
-  public value: number;
   public valueRaw: number;
   public precision: number;
   public config: IConfigCalc;
+
+  public get value(): number {
+    return this._roundingNumber(this.valueRaw);
+  }
 
   constructor(value?: CalcAny | Calc, config?: Partial<IConfigCalc>) {
     this.config = Object.assign({}, _config, config);
@@ -52,7 +56,6 @@ export class Calc {
     } else {
       this.valueRaw = parseNumber(value as string, this.config);
     }
-    this.value = this._roundingNumber(this.valueRaw);
   }
 
   /**
@@ -84,7 +87,6 @@ export class Calc {
    * @returns {Calc}  */
   public add(value: CalcAny | Calc): Calc {
     this.valueRaw = add(this.valueRaw, this._parse(value));
-    this.value = this._roundingNumber(this.valueRaw);
 
     return this;
   }
@@ -96,7 +98,6 @@ export class Calc {
    * @returns {Calc} */
   public subtract(value: CalcAny | Calc): Calc {
     this.valueRaw = subtract(this.valueRaw, this._parse(value));
-    this.value = this._roundingNumber(this.valueRaw);
 
     return this;
   }
@@ -108,7 +109,6 @@ export class Calc {
    * @returns {Calc} */
   public multiply(value: CalcAny | Calc): Calc {
     this.valueRaw = multiply(this.valueRaw, this._parse(value));
-    this.value = this._roundingNumber(this.valueRaw);
 
     return this;
   }
@@ -120,7 +120,6 @@ export class Calc {
    * @returns {Calc} */
   public divide(value: CalcAny | Calc): Calc {
     this.valueRaw = divide(this.valueRaw, this._parse(value));
-    this.value = this._roundingNumber(this.valueRaw);
 
     return this;
   }
@@ -138,6 +137,21 @@ export class Calc {
       subtract(this.valueRaw, multiply(result.pop(), result.length))
     );
     return [...result, rest];
+  }
+
+  /**
+   * @public
+   * @description Manter o valor entre o range
+   * @returns {string} */
+  public keepBetween(max: number, min?: number): Calc;
+  public keepBetween(range: { max: number; min: number }): Calc;
+  public keepBetween(rangeOrMax: { min: number; max: number } | number, min = 0): Calc {
+    if (typeof rangeOrMax !== "number") {
+      this.valueRaw = Math.max(Math.min(this.valueRaw, rangeOrMax.max), rangeOrMax.min);
+    } else {
+      this.valueRaw = Math.max(Math.min(this.valueRaw, rangeOrMax as number), min);
+    }
+    return this;
   }
 
   /**

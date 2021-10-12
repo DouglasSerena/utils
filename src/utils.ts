@@ -1,6 +1,3 @@
-// EVENT EMITTER
-export * from "./event-emitter/event-emitter";
-
 // RESIZE
 export * from "./resize/resize";
 export * from "./resize/resize.type";
@@ -13,19 +10,14 @@ export * from "./keyboard-shortcut/keyboard-shortcut.type";
 export * from "./undo-redo-stack/undo-redo-stack";
 export * from "./undo-redo-stack/undo-redo-stack.type";
 
-// EVENTS
-// export * from "./events/slider/slider.event";
-// export * from "./events/slider/slider.type";
-// export * from "./events/zoom/zoom.event";
-// export * from "./events/zoom/zoom.type";
+// PUBLISH SUBSCRIBE
+export * from "./publish-subscribe/publish-subscribe";
 
-// MONITORING
-export * from "./monitoring/monitoring";
-export * from "./monitoring/monitoring.type";
+// GLOBAL
+export * from "./global/global";
 
 // CALC
 export * from "./calc/calc";
-export * from "./calc/math.calc";
 export * from "./calc/calc.type";
 
 // CONST
