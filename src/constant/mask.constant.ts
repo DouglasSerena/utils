@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { MaskedEnum, MaskedRange } from "imask";
 import { IMaskCustom } from "../masked/masked.type";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-
+import { Global } from "../utils";
 dayjs.extend(customParseFormat);
 
 export const BLOCKS_DATE = {
@@ -50,6 +50,12 @@ export const BLOCKS_DATE = {
     to: 59,
     placeholderChar: "-",
   },
+  SSS: {
+    mask: MaskedRange,
+    from: 0,
+    to: 999,
+    placeholderChar: "-",
+  },
   A: {
     mask: MaskedEnum,
     enum: ["AM", "PM"],
@@ -64,7 +70,7 @@ export const BLOCKS_DATE = {
   },
 };
 
-export const CUSTOM_MASKS: { [key: string]: IMaskCustom } = {
+export const CUSTOM_MASKS: { [key: string]: IMaskCustom } = Global.defined("MASKED_CUSTOM", {
   TEL: {
     type: "MASK",
     config: {
@@ -179,6 +185,28 @@ export const CUSTOM_MASKS: { [key: string]: IMaskCustom } = {
       parse: (str) => dayjs(str, "H:mm A").toDate(),
     },
   },
+  FULL_TIME: {
+    type: "MASK",
+    config: {
+      mask: Date,
+      lazy: false,
+      pattern: "HH:mm:ss",
+      blocks: BLOCKS_DATE,
+      format: (date) => dayjs(date).format("HH:mm:ss"),
+      parse: (str) => dayjs(str, "HH:mm:ss").toDate(),
+    },
+  },
+  FULL_TIME_MMS: {
+    type: "MASK",
+    config: {
+      mask: Date,
+      lazy: false,
+      pattern: "HH:mm:ss:SSS",
+      blocks: BLOCKS_DATE,
+      format: (date) => dayjs(date).format("HH:mm:ss:SSS"),
+      parse: (str) => dayjs(str, "HH:mm:ss:SSS").toDate(),
+    },
+  },
   CURRENCY: {
     type: "MASK_MONEY",
     config: {
@@ -211,4 +239,4 @@ export const CUSTOM_MASKS: { [key: string]: IMaskCustom } = {
       separator: ",",
     },
   },
-};
+});

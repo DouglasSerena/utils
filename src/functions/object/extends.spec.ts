@@ -1,5 +1,5 @@
-import "../../../src/functions/object/extends.function";
-import { $extends } from "../../../src/functions/object/extends.function";
+import "./extends.function";
+import { $extends } from "./extends.function";
 
 describe("Function merge object", () => {
   it("Test merge objects default", () => {

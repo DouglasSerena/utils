@@ -1,7 +1,3 @@
-// RESIZE
-export * from "./resize/resize";
-export * from "./resize/resize.type";
-
 // KEYBOARD SHORTCUT
 export * from "./keyboard-shortcut/keyboard-shortcut";
 export * from "./keyboard-shortcut/keyboard-shortcut.type";

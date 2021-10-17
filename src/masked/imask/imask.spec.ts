@@ -1,5 +1,5 @@
-import { MaskIMask, maskIMask, sleep, stackCallback } from "./../../src/utils";
-import { writeAll } from "./../mocks/write-all";
+import { MaskIMask, maskIMask, sleep, stackCallback } from "../../utils";
+import { writeAll } from "../../utils-test/write-all";
 
 describe(`Class ${MaskIMask.name}`, () => {
   it("Test value null", () => {

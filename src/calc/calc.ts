@@ -1,4 +1,3 @@
-import { add, distribute, divide, increment, multiply, subtract } from "./calculator.calc";
 import { TAnyCalc as CalcAny, IConfigCalc } from "./calc.type";
 import { parseNumber } from "../functions/parse-number.function";
 import { Global } from "../utils";
@@ -22,47 +21,20 @@ export class Calc {
   public config: IConfigCalc;
 
   public get value(): number {
-    return this._roundingNumber(this.valueRaw);
+    return this.rounding(this.valueRaw);
   }
 
   constructor(value?: CalcAny | Calc, config?: Partial<IConfigCalc>) {
     this.config = Object.assign({}, _config, config);
     this.precision = Math.pow(10, this.config?.precision);
 
-    this._save(value);
+    this.valueRaw = calc.isCalc(value) ? value.valueRaw : parseNumber(value as string, this.config);
   }
 
   /**
    * @public
-   * @description Converte um valor do tipo string ou Calc para um number
-   * @param {CalcAny | Calc} value
-   * @returns {number} */
-  private _parse(value: CalcAny | Calc): number {
-    if (isCalc(value)) {
-      value = value.valueRaw;
-    } else {
-      value = parseNumber(value as string, this.config);
-    }
-    return value;
-  }
-
-  /**
-   * @public
-   * @description Salva o valor verificando que tipo que ele é
-   * @param {CalcAny | Calc} value */
-  private _save(value: CalcAny | Calc): void {
-    if (isCalc(value)) {
-      this.valueRaw = value.valueRaw;
-    } else {
-      this.valueRaw = parseNumber(value as string, this.config);
-    }
-  }
-
-  /**
-   * @public
-   * @description Arredonda o valor usando a configuração da classe
-   * @param {number | string} value */
-  private _roundingNumber(value: number | string): number {
+   * @description Arredonda o valor usando a configuração da classe */
+  public rounding(value: number | string): number {
     value = Number(value) * this.precision;
     value = Number(value.toFixed(4));
 
@@ -70,10 +42,7 @@ export class Calc {
     value = mathRound(value as number) / this.precision;
 
     if (this.config.increment) {
-      /**
-       * @description Faz um incremento de valor
-       * @example */
-      value = increment(value, this.config.increment) * this.precision;
+      value = calc.increment(value, this.config.increment) * this.precision;
       value = mathRound(value as number) / this.precision;
     }
 
@@ -82,67 +51,57 @@ export class Calc {
 
   /**
    * @public
-   * @description Faz a adição do valor passado via parametro no valor salvo na classe
-   * @param {CalcAny | Calc} value
-   * @returns {Calc}  */
+   * @description Faz a adição do valor passado via parametro no valor salvo na classe */
   public add(value: CalcAny | Calc): Calc {
-    this.valueRaw = add(this.valueRaw, this._parse(value));
-
-    return this;
+    return (this.valueRaw += calc.parse(value, this.config)) && this;
   }
 
   /**
    * @public
-   * @description Faz a subtração do valor passado via parametro no valor salvo na classe
-   * @param {CalcAny | Calc} value
-   * @returns {Calc} */
+   * @description Faz a subtração do valor passado via parametro no valor salvo na classe */
   public subtract(value: CalcAny | Calc): Calc {
-    this.valueRaw = subtract(this.valueRaw, this._parse(value));
-
-    return this;
+    return (this.valueRaw -= calc.parse(value, this.config)) && this;
   }
 
   /**
    * @public
-   * @description Faz a multiplicação do valor passado via parametro no valor salvo na classe
-   * @param {CalcAny | Calc} value
-   * @returns {Calc} */
+   * @description Faz a multiplicação do valor passado via parametro no valor salvo na classe */
   public multiply(value: CalcAny | Calc): Calc {
-    this.valueRaw = multiply(this.valueRaw, this._parse(value));
-
-    return this;
+    return (this.valueRaw *= calc.parse(value, this.config)) && this;
   }
 
   /**
    * @public
-   * @description Faz a divisão do valor passado via parametro no valor salvo na classe
-   * @param {CalcAny | Calc} value
-   * @returns {Calc} */
+   * @description Faz a divisão do valor passado via parametro no valor salvo na classe */
   public divide(value: CalcAny | Calc): Calc {
-    this.valueRaw = divide(this.valueRaw, this._parse(value));
-
-    return this;
+    return (this.valueRaw /= calc.parse(value, this.config)) && this;
   }
 
   /**
    * @public
-   * @description Distribui o valor salvo na classe igualmente entre a quantidade passada
-   * @param {CalcAny | Calc} value
-   * @returns {number[]} */
+   * @description Distribui o valor salvo na classe igualmente entre a quantidade passada*/
   public distribute(amount: CalcAny | Calc): number[] {
-    const result = distribute(this.valueRaw, this._parse(amount)).map((value) => {
-      return this._roundingNumber(value);
-    });
-    const rest = this._roundingNumber(
-      subtract(this.valueRaw, multiply(result.pop(), result.length))
-    );
-    return [...result, rest];
+    amount = calc.parse(amount, this.config);
+
+    const values: number[] = [];
+    let index = amount;
+    let value = this.valueRaw / amount;
+
+    for (; index > 0; index--) {
+      if (index === 1) {
+        value = this.rounding(this.valueRaw - value * (amount - 1));
+        values.push(this.rounding(this.valueRaw - value * values.length));
+      } else {
+        values.push(this.rounding(value));
+      }
+    }
+
+    return values;
   }
 
   /**
    * @public
-   * @description Manter o valor entre o range
-   * @returns {string} */
+   * @description Manter o valor entre o range */
   public keepBetween(max: number, min?: number): Calc;
   public keepBetween(range: { max: number; min: number }): Calc;
   public keepBetween(rangeOrMax: { min: number; max: number } | number, min = 0): Calc {
@@ -156,16 +115,14 @@ export class Calc {
 
   /**
    * @public
-   * @description Transforma o valor em um string
-   * @returns {string} */
+   * @description Transforma o valor em um string */
   public toString(): string {
     return this.value.toString();
   }
 
   /**
    * @public
-   * @description Transforma o valor do calculo em um json {value: 21.2}
-   * @returns {number} */
+   * @description Transforma o valor do calculo em um json {value: 21.2} */
   public toJson(): number {
     return this.value;
   }
@@ -173,17 +130,23 @@ export class Calc {
 
 /**
  * @public
- * @description Configura as opções padrão da classe Calc
- * @param {Partial<IConfigCalc>} config */
+ * @description Configura as opções padrão da classe Calc */
 calc.config = (config: Partial<IConfigCalc>): void => {
   Object.assign(_config, config);
 };
 
 /**
  * @public
- * @description Verifica se o parametro é do tipo Calc
- * @param {unknown} prop
- * @returns {prop is Calc} */
-export const isCalc = (prop: unknown): prop is Calc => prop instanceof Calc;
+ * @description Verifica se o parametro é do tipo Calc */
+calc.isCalc = (prop: unknown): prop is Calc => prop instanceof Calc;
 
-calc.isCalc = isCalc;
+/**
+ * @public
+ * @description Converte um valor do tipo string ou Calc para um number */
+calc.parse = (value: CalcAny | Calc, config?: Partial<IConfigCalc>): number => {
+  config = Object.assign({}, _config, config);
+  return calc.isCalc(value) ? value.valueRaw : parseNumber(value, config);
+};
+
+calc.increment = (value: CalcAny | Calc, increment: number): number =>
+  increment > 0 ? Math.round(calc.parse(value) / increment) * increment : calc.parse(value);

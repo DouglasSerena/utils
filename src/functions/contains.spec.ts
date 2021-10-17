@@ -1,4 +1,4 @@
-import { contains } from "../../src/utils";
+import { contains } from "../utils";
 
 describe("Function contains", () => {
   it("Contain 'sao' in 'São paulo'", () => {

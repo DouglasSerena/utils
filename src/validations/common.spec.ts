@@ -11,7 +11,7 @@ import {
   isPassword,
   isTruthy,
   isUndefined,
-} from "./../../src/utils";
+} from "../utils";
 
 describe("Function validate common", () => {
   it("Valida with value null", () => {

@@ -121,28 +121,23 @@ export class KeyboardShortcut {
    * @private
    * @description Checa se a tecla pressionada é valida */
   private _checkKeyboardShortcut(shortcut: string, event: KeyboardEvent) {
-    const modifiers = {
-      ctrl: event.ctrlKey,
-      alt: event.altKey,
-      meta: event.metaKey,
-      shift: event.shiftKey,
+    const keysPress = () => {
+      const keys: string[] = [event.key.replace(/Key/i, "").toLowerCase()];
+
+      if (event.ctrlKey) keys.push("ctrl");
+      if (event.altKey) keys.push("alt");
+      if (event.metaKey) keys.push("meta");
+      if (event.shiftKey) keys.push("shift");
+
+      return keys;
     };
+    const shortcuts = shortcut.split(".");
+    const keys = keysPress();
 
-    for (const key of shortcut.split(".")) {
-      const modifier = modifiers[key];
-      if (modifier === undefined) {
-        const code = event.key.replace(/Key/i, "").toLowerCase();
-        if (key !== code) {
-          return false;
-        }
-      } else {
-        if (!modifier) {
-          return false;
-        }
-      }
+    if (keys.length < shortcuts.length) {
+      return false;
     }
-
-    return true;
+    return keys.findIndex((key) => !shortcuts.includes(key)) === -1;
   }
 }
 
