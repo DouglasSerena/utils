@@ -129,10 +129,17 @@ export class KeyboardShortcut {
       if (event.metaKey) keys.push("meta");
       if (event.shiftKey) keys.push("shift");
 
-      return keys;
+      return keys.reduce((keys, key) => {
+        if (keys.includes(key)) {
+          return keys;
+        }
+        return keys.concat(key);
+      }, []);
     };
     const shortcuts = shortcut.split(".");
     const keys = keysPress();
+
+    console.log(keys, shortcuts);
 
     if (keys.length < shortcuts.length) {
       return false;

@@ -2545,11 +2545,18 @@ function () {
       if (event.altKey) keys.push("alt");
       if (event.metaKey) keys.push("meta");
       if (event.shiftKey) keys.push("shift");
-      return keys;
+      return keys.reduce(function (keys, key) {
+        if (keys.includes(key)) {
+          return keys;
+        }
+
+        return keys.concat(key);
+      }, []);
     };
 
     var shortcuts = shortcut.split(".");
     var keys = keysPress();
+    console.log(keys, shortcuts);
 
     if (keys.length < shortcuts.length) {
       return false;
@@ -23039,6 +23046,11 @@ var _utils = require("./../src/utils");
     return console.log("meta.z");
   }
 });
+(0, _utils.keyboardShortcut)("shift.?", {
+  listener: function listener() {
+    return console.log("shift.?");
+  }
+});
 },{"./../src/utils":"../src/utils.ts"}],"C:/Users/dougl/AppData/Roaming/nvm/v14.17.0/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -23067,7 +23079,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63529" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53225" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
