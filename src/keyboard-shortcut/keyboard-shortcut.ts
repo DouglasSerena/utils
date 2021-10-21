@@ -22,11 +22,11 @@ const configDefault: Omit<IConfigKeyboard, "handle" | "listener"> = {
  * @description Funções para deixa a teclas em um padrão */
 function normalize(shortcuts: string | string[], platform = hostPlatform()): string | string[] {
   const normalize = (shortcut: string) => {
-    shortcut = shortcut.toLowerCase();
+    shortcut = shortcut?.toLowerCase();
     switch (platform) {
       case "pc":
         return shortcut
-          .split(".")
+          ?.split(".")
           .map((shortcut) => (shortcut === "meta" ? "ctrl" : shortcut))
           .join(".");
       default:
@@ -35,7 +35,7 @@ function normalize(shortcuts: string | string[], platform = hostPlatform()): str
   };
 
   if (Array.isArray(shortcuts)) {
-    return shortcuts.map((shortcut) => normalize(shortcut));
+    return shortcuts?.map((shortcut) => normalize(shortcut));
   } else {
     return normalize(shortcuts);
   }
@@ -78,6 +78,8 @@ export class KeyboardShortcut {
     );
 
     for (const shortcut of shortcuts) {
+      if (!shortcut) break;
+
       const handle = (event: KeyboardEvent) => {
         if (this._checkKeyboardShortcut(shortcut, event)) {
           for (const selector of this.config.excluded) {
@@ -122,7 +124,7 @@ export class KeyboardShortcut {
    * @description Checa se a tecla pressionada é valida */
   private _checkKeyboardShortcut(shortcut: string, event: KeyboardEvent) {
     const keysPress = () => {
-      const keys: string[] = [event.key.replace(/Key/i, "").toLowerCase()];
+      const keys: string[] = [event.key.replace(/Key/i, "")?.toLowerCase()];
 
       if (event.ctrlKey) keys.push("ctrl");
       if (event.altKey) keys.push("alt");
@@ -138,8 +140,6 @@ export class KeyboardShortcut {
     };
     const shortcuts = shortcut.split(".");
     const keys = keysPress();
-
-    console.log(keys, shortcuts);
 
     if (keys.length < shortcuts.length) {
       return false;

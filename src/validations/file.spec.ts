@@ -1,4 +1,4 @@
-import { base64toFile, isAllowExtensions, isFile, maxSize, minSize } from "./../../src/utils";
+import { base64toFile, isAllowExtensions, isFile, maxSize, minSize } from "../utils";
 import path from "path";
 import fs from "fs";
 

@@ -23,5 +23,5 @@ export interface IConfigKeyboard extends Omit<IShortcut, "keys"> {
   preventDefault: boolean;
   stopPropagation: boolean;
   handle: (event: KeyboardEvent) => void;
-  trigger: "keydown" | "keyup" | "keypress";
+  trigger: "keydown" | "keyup" | "input" | "keypress";
 }

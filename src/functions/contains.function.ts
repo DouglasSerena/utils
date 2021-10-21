@@ -7,12 +7,12 @@ export interface IContainsOption {
 }
 
 export function contains<T = string>(
-  value: T,
+  value: T | null,
   compare: string | RegExp,
   options?: IContainsOption
 ): boolean {
   if (!value) return false;
-  let _value = value.toString();
+  let _value = value.toString() as string | null;
 
   options = Object.assign(
     {},
@@ -30,13 +30,13 @@ export function contains<T = string>(
     }
   }
   if (!options?.caseSensitive) {
-    _value = _value.toLowerCase();
+    _value = _value?.toLowerCase();
     if (typeof compare === "string") {
-      compare = compare.toLowerCase();
+      compare = compare?.toLowerCase();
     }
   }
   if (options?.removeSpace) {
-    _value = _value.replace(/ +/g, "");
+    _value = _value?.replace(/ +/g, "");
     if (typeof compare === "string") {
       compare = compare.replace(/ +/g, "");
     }

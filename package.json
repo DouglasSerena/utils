@@ -1,6 +1,6 @@
 {
   "name": "@douglas-serena/utils",
-  "version": "1.4.11",
+  "version": "1.4.13",
   "main": "dist/utils.umd.js",
   "module": "dist/utils.es5.js",
   "typings": "dist/types/utils.d.ts",
@@ -59,7 +59,7 @@
     "dayjs": "^1.10.4",
     "imask": "^6.1.0",
     "inputmask": "^5.0.6",
-    "rxjs": "^7.3.1",
+    "rxjs": "^6.6.7",
     "simple-mask-money": "^3.0.1",
     "vanilla-masker": "^1.2.0"
   }

@@ -1,4 +1,4 @@
-export function removeAccents(work: string): string {
+export function removeAccents(work?: string): string {
   const accents = {
     â: "a",
     Â: "A",

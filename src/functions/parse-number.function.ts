@@ -29,11 +29,15 @@ export function parseNumber(value: number | string, config?: Partial<IConfigPars
 
     value = value.toString().replace(decimalStr, ".");
 
-    let [prefix, sufixa] = value.split(".");
-    prefix = prefix?.replace(/\D/g, "");
-    sufixa = sufixa?.replace(/\D/g, "");
+    let [prefix, sufixa] = value.split("."); // eslint-disable-line prefer-const
+    value = prefix?.replace(/\D/g, "");
 
-    value = Number(`${prefix}.${sufixa}`) || 0;
+    if (sufixa) {
+      sufixa = sufixa?.replace(/\D/g, "");
+      value += `.${sufixa}`;
+    }
+
+    value = Number(value) || 0;
     if (negative) {
       value = -value;
     }
