@@ -1,4 +1,4 @@
-import { pickTextColorBasedColor } from "./../../src/utils";
+import { pickTextColorBasedColor } from "./pick-text-color-based-color";
 
 describe(`function ${pickTextColorBasedColor.name}`, () => {
   it("Get text color light or dark with based color (black)", () => {

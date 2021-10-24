@@ -1,4 +1,4 @@
-import { IConfigParseNumber } from "../functions/parse-number.function";
+import { IConfigParseNumber } from "../../functions/parse-number.function";
 
 export type TAnyCalc = string | number;
 

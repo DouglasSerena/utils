@@ -1,20 +1,20 @@
-import { getNode } from "../functions/object/get-node.function";
-import { $extends } from "../functions/object/extends.function";
-import { themeSystem } from "../functions/theme-system.function";
+import { getNode } from "../../functions/object/get-node.function";
+import { $extends } from "../../functions/object/extends.function";
 import { TColorScheme, IColors, ITheme, IConfigTheme } from "./theme.type";
-import { isFalsy } from "../validations/common/common.validation";
+import { isFalsy } from "../../validations/common/common.validation";
 import { themeColor } from "./theme-color";
+import { Global } from "../global/global";
 
 let _config: IConfigTheme = {
   prefix: "color",
-  use: themeSystem() || "light",
+  use: Global.themeSystem || "light",
   disableSystemBasedColorShift: false,
   _element: document.createElement("style"),
 };
 
 window?.matchMedia?.("(prefers-color-scheme: dark)")?.addEventListener("change", (event) => {
   if (isFalsy(_config.disableSystemBasedColorShift)) {
-    theme().change(themeSystem() || "light");
+    theme().change(Global.themeSystem || "light");
   }
 });
 
@@ -61,7 +61,7 @@ export class Theme {
     return _config._element;
   }
   get themeSystem(): "dark" | "light" {
-    return themeSystem() || "light";
+    return Global.themeSystem || "light";
   }
 
   constructor(themes?: ITheme, config?: IConfigTheme) {

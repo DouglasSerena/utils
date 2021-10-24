@@ -1,4 +1,4 @@
-import { $extends } from "./../functions/object/extends.function";
+import { $extends } from "./../../functions/object/extends.function";
 
 export class Global {
   public static defined<T = unknown>(key: string, value: T): T {
@@ -25,7 +25,10 @@ export class Global {
     return window["__DOUGLAS_SERENA__"][key];
   }
 
-  // VARIABLES
+  // VARIABLES]
+  public static get themeSystem(): "dark" | "light" {
+    return window?.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
   public static get isDesktop(): boolean {
     return window?.matchMedia?.("(min-width: 960px)").matches;
   }

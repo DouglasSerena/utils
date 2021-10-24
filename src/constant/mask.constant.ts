@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 import { MaskedEnum, MaskedRange } from "imask";
-import { IMaskCustom } from "../masked/masked.type";
+import { IMaskCustom } from "./../classes/masked/masked.type";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { Global } from "../utils";
+import { Global } from "./../classes/global/global";
 dayjs.extend(customParseFormat);
 
 export const BLOCKS_DATE = {

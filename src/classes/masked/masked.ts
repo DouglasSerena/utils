@@ -1,7 +1,6 @@
 import { AnyMaskedOptions } from "imask";
 import { SimpleMaskMoneyConfig } from "simple-mask-money";
-import { CUSTOM_MASKS } from "../constant/mask.constant";
-import { isArray } from "../validations/common/common.validation";
+import { CUSTOM_MASKS } from "./../../constant/mask.constant";
 import { MaskIMask } from "./imask/mask-imask";
 import { IConfigMaskIMask } from "./imask/mask-imask.type";
 import { TConfigMask, IMaskCustom, IServiceMask } from "./masked.type";
@@ -18,7 +17,7 @@ export function masked(
 
       if (CUSTOM_MASK.type === "MASK") {
         const _config = CUSTOM_MASK.config as any;
-        if (isArray(_config.mask)) {
+        if (Array.isArray(_config.mask)) {
           _config.mask = _config.mask.map((mask: IConfigMaskIMask) => {
             return Object.assign({}, config, mask);
           });

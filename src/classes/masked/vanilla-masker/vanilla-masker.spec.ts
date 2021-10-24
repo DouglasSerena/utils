@@ -1,5 +1,5 @@
-import { MaskVanillaMasker, maskVanillaMasker } from "../../utils";
-import { writeOnePerOne } from "../../utils-test/write-one-per-one";
+import { writeOnePerOne } from "../../../utils-test/write-one-per-one";
+import { MaskVanillaMasker, maskVanillaMasker } from "./vanilla-masker";
 
 describe(`Class ${MaskVanillaMasker.name}`, () => {
   it("Test value null", () => {

@@ -1,4 +1,4 @@
-import { calc } from "./../../src/utils";
+import { calc } from "./calc";
 
 describe("Function calc", () => {
   it("Parse", () => {

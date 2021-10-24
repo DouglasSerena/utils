@@ -1,6 +1,6 @@
 import { TAnyCalc as CalcAny, IConfigCalc } from "./calc.type";
-import { parseNumber } from "../functions/parse-number.function";
-import { Global } from "../utils";
+import { parseNumber } from "./../../functions/parse-number.function";
+import { Global } from "../global/global";
 
 const _config = Global.defined("CALCULATOR", {
   decimal: ",",
@@ -28,7 +28,9 @@ export class Calc {
     this.config = Object.assign({}, _config, config);
     this.precision = Math.pow(10, this.config?.precision);
 
-    this.valueRaw = calc.isCalc(value) ? value.valueRaw : parseNumber(value as string, this.config);
+    this.valueRaw = calc.isCalc(value)
+      ? value.valueRaw
+      : parseNumber(value as string, this.config as any);
   }
 
   /**
@@ -145,7 +147,7 @@ calc.isCalc = (prop: unknown): prop is Calc => prop instanceof Calc;
  * @description Converte um valor do tipo string ou Calc para um number */
 calc.parse = (value: CalcAny | Calc, config?: Partial<IConfigCalc>): number => {
   config = Object.assign({}, _config, config);
-  return calc.isCalc(value) ? value.valueRaw : parseNumber(value, config);
+  return calc.isCalc(value) ? value.valueRaw : parseNumber(value, config as any);
 };
 
 calc.increment = (value: CalcAny | Calc, increment: number): number =>

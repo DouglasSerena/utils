@@ -1,5 +1,5 @@
 import VMasker from "vanilla-masker";
-import { parseNumber } from "../../functions/parse-number.function";
+import { parseNumber } from "../../../functions/parse-number.function";
 import { IServiceMask } from "../masked.type";
 import { MoneyOptions } from "./vanilla-masker.type";
 

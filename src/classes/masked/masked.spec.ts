@@ -1,6 +1,6 @@
-import { masked } from "../utils";
-import { writeAll } from "../utils-test/write-all";
-import { writeOnePerOne } from "../utils-test/write-one-per-one";
+import { masked } from "./masked";
+import { writeAll } from "../../utils-test/write-all";
+import { writeOnePerOne } from "../../utils-test/write-one-per-one";
 
 describe("Function masked", () => {
   it("Mask with string 'format' & 'unformed'", () => {

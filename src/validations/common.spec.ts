@@ -1,27 +1,21 @@
+import { isCpf } from "./common/is-cpf.validation";
+import { isCnpj } from "./common/is-cnpj.validation";
+import { isPassword } from "./common/is-password.validation";
 import {
-  contains,
-  isArray,
-  isCnpj,
-  isCpf,
   isCpfOrCnpj,
-  isEmpty,
   isFalsy,
   isFill,
   isNull,
-  isPassword,
   isTruthy,
   isUndefined,
-} from "../utils";
+} from "./common/common.validation";
+import { isEmpty } from "./common/is-empty.validation";
 
 describe("Function validate common", () => {
   it("Valida with value null", () => {
     expect(isCnpj(null)).toBe(false);
     expect(isCnpj(undefined)).toBe(false);
     expect(isCnpj("")).toBe(false);
-  });
-  it("Is contais", () => {
-    expect(contains("000.000.000-00", "000.000")).toBe(true);
-    expect(contains("000.000.00000", "000000")).toBe(false);
   });
   it("Is password", () => {
     expect(isPassword("Do@1234567")).toBe(true);
@@ -34,11 +28,6 @@ describe("Function validate common", () => {
   it("Is empty", () => {
     expect(isEmpty([])).toBe(true);
     expect(isEmpty([""])).toBe(false);
-  });
-  it("Is array", () => {
-    expect(isArray([])).toBe(true);
-    expect(isArray({})).toBe(false);
-    expect(isArray("")).toBe(false);
   });
   it("Is falsy", () => {
     expect(isFalsy(" ")).toBe(false);

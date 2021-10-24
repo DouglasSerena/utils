@@ -1,4 +1,5 @@
-import { Debounce, debounce as _debounce, stackCallback } from "./../../src/utils";
+import { Debounce, debounce as _debounce } from "./../debounce/debounce";
+import { stackCallback } from "./../../functions/stack-callback.function";
 
 describe("function debounce", () => {
   let debounce: Debounce;

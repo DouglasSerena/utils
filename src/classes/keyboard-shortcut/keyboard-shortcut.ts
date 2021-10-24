@@ -1,9 +1,8 @@
 import { IConfigKeyboard, IShortcut, IShortcutGroup } from "./keyboard-shortcut.type";
 import { TKeyboardListener } from "./types/keyboard-listener.type";
-import { coerceArray } from "../functions/coerce-array.function";
-import { hostPlatform } from "../functions/host-platform.function";
 import { Global } from "../global/global";
-import "./keyboard.polyfill.js";
+import { coerceArray } from "../../functions/coerce-array.function";
+import { hostPlatform } from "../../functions/host-platform.function";
 
 Global.defined("SHORTCUT", new Map<string, IShortcut & IConfigKeyboard>());
 

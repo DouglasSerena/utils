@@ -1,4 +1,4 @@
-import { parseNumber } from "./../../src/utils";
+import { parseNumber } from "./parse-number.function";
 
 describe("function parseNumber", () => {
   it("String to number", () => {

@@ -1,4 +1,5 @@
-import { contains, theme } from "../utils";
+import { theme } from "../theme/theme";
+import { contains } from "./../../functions/contains.function";
 
 describe("Function theme", () => {
   beforeEach(() => {

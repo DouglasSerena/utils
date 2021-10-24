@@ -1,4 +1,4 @@
-import { cancelStackCallback, stackCallback } from "../functions/stack-callback.function";
+import { cancelStackCallback, stackCallback } from "../../functions/stack-callback.function";
 import { IConfigDebounce } from "./debounce.type";
 
 const _config: IConfigDebounce = {

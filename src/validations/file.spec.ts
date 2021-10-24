@@ -1,4 +1,8 @@
-import { base64toFile, isAllowExtensions, isFile, maxSize, minSize } from "../utils";
+import { isFile } from "./file/file.validation";
+import { isAllowExtensions } from "./file/is-allow-extension.validation";
+import { maxSize } from "./file/max-size.validation";
+import { minSize } from "./file/min-size.validation";
+import { base64toFile } from "./../functions/file/base64-to-file.function";
 import path from "path";
 import fs from "fs";
 
